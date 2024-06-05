@@ -1,1 +1,1 @@
-# TOPIC (TOpology-based Prediction of crystal structure for Inorganic solid electrolyes with Corner-Sharing framework)
+# TOPIC (TOpology-based Prediction of crystal structure for Inorganic solid electrolyes with Corner-sharing framework)
