@@ -77,7 +77,7 @@ to bind randSpg with python, do
   cd /SPINNER-directory/randSpg-vspinner/python
   mkdir build
   cd build
-  cmake .. -D Pybind11=/VIRTUAL_ENV_DIR/lib/python3.9/site-packeges/pybind11/share/cmake/pybind11/ 
+  cmake .. -D pybind11_DIR=/VIRTUAL_ENV_DIR/lib/python3.9/site-packeges/pybind11/share/cmake/pybind11/ 
   make –j3
   cp pyrandspg.cpython* /directory-where-your-python-is/lib/python3/site-packages/
 ```
@@ -124,7 +124,6 @@ If your machine support SIMD, we recommend to use SIMD version. It speeds up aro
 
 ```
   cp /SPINNER-directory/spinner/simple_nn/features/symmetry_function/SIMD/pair_nn_simd.* /LAMMPS-directory/src/
-  cp /SPINNER-directory/spinner/simple_nn/features/symmetry_function/symmetry_function.h /LAMMPS-directory/src/
 ```
 
 ```
@@ -136,6 +135,12 @@ find the below line and add "-xAVX" tag in the cmake/preset/my_opeapi.cmake
 
 ```
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -xAVX" CACHE STRING "" FORCE)
+```
+
+add the bellow line in the cmake/preset/my_opeapi.cmake
+
+```
+set(ENV{VIRTUAL_ENV} "/YOUR_VIRTUAL_ENV_DIR/")
 ```
 
 ```
