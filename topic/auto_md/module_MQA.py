@@ -1,6 +1,6 @@
 import os, re
-from spinner.auto_md.module_util import write_log_with_timestamp, write_log, create_and_move_to_directory, calculate_elapsed_time, move_to_directory, get_abs_path
-from spinner.auto_md.module_vasp import copy_inputs, edit_INCAR, run_vasp, grep_nth_item
+from topic.auto_md.module_util import write_log_with_timestamp, write_log, create_and_move_to_directory, calculate_elapsed_time, move_to_directory, get_abs_path
+from topic.auto_md.module_vasp import copy_inputs, edit_INCAR, run_vasp, grep_nth_item
 
 def run_melting(input_yaml):
     working_dir = input_yaml['working_dir']

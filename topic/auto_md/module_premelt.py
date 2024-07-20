@@ -1,8 +1,8 @@
 import os
 import shutil as shu
-from spinner.auto_md.rand_structure import create_rand_structure
-from spinner.auto_md.module_util import write_log, write_log_with_timestamp, calculate_elapsed_time, create_and_move_to_directory, move_to_directory, get_abs_path
-from spinner.auto_md.module_vasp import edit_INCAR, run_vasp
+from topic.auto_md.rand_structure import create_rand_structure
+from topic.auto_md.module_util import write_log, write_log_with_timestamp, calculate_elapsed_time, create_and_move_to_directory, move_to_directory, get_abs_path
+from topic.auto_md.module_vasp import edit_INCAR, run_vasp
 
 def run_premelting(input_yaml):
     working_dir = input_yaml['working_dir']

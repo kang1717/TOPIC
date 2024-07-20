@@ -2,7 +2,7 @@ import ase.io
 import numpy as np
 import os, re
 from lammps import lammps
-from spinner.auto_md.module_util import write_log, write_log_with_timestamp, calculate_elapsed_time
+from topic.auto_md.module_util import write_log, write_log_with_timestamp, calculate_elapsed_time
 
 
 def calculate_prdf(input_yaml, target_dir='melt/'):

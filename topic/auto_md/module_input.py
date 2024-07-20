@@ -1,5 +1,5 @@
 import sys, yaml, collections, os
-from spinner.auto_md.module_util import create_and_move_to_directory
+from topic.auto_md.module_util import create_and_move_to_directory
 
 def initialize_auto_md(md_setting_yaml, num_tasks, working_dir):
     src_dir = os.path.dirname(os.path.abspath(__file__))

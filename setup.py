@@ -24,18 +24,18 @@ setup(
     description='TOPIC',
     author='Sungwoo Kang, Seungwoo Hwang',
     python_requires='>=3.6',
-    packages=find_packages(include=['spinner', 'spinner*']),
+    packages=find_packages(include=['topic', 'topic*']),
     include_package_data=True,
     package_data={
         '': ['configure_default.yaml', 'INCAR_premelt', 'KPOINTS', '*.cpp', '*.h', 'params_*'],
     },
     entry_points={
         'console_scripts':[
-            'spinner_auto_md = topic.auto_md.spinner_auto_md:main',
-            'spinner_nnp_train = topic.nnp_train.initial_NNP_training:main',
+            'topic_auto_md = topic.auto_md.topic_auto_md:main',
+            'topic_nnp_train = topic.nnp_train.initial_NNP_training:main',
             'configure_csp = topic.utils.configure_csp:main',
             'topic_csp = topic.topology_csp.topology_csp:main',
-            #'spinner_dft_relax = spinner.spinner_dft_relax:main',
+            #'topic_dft_relax = topic.topic_dft_relax:main',
         ]
     },
     install_requires=install_requires,

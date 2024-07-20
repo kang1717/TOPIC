@@ -2,7 +2,7 @@ import re
 import shutil as shu
 import subprocess as sub
 import numpy as np
-from spinner.auto_md.module_util import get_abs_path
+from topic.auto_md.module_util import get_abs_path
 
 def copy_inputs(from_dir, to_dir, copy_list): 
     for file in copy_list:

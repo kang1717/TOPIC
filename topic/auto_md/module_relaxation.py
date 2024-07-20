@@ -1,8 +1,8 @@
 import os
 import shutil as shu
 import numpy as np
-from spinner.auto_md.module_vasp import edit_INCAR, run_vasp, get_velocity_and_write, grep_nth_item, copy_inputs
-from spinner.auto_md.module_util import create_and_move_to_directory, write_log, write_log_with_timestamp, calculate_elapsed_time, move_to_directory, get_abs_path
+from topic.auto_md.module_vasp import edit_INCAR, run_vasp, get_velocity_and_write, grep_nth_item, copy_inputs
+from topic.auto_md.module_util import create_and_move_to_directory, write_log, write_log_with_timestamp, calculate_elapsed_time, move_to_directory, get_abs_path
 
 def run_initial_relaxation(input_yaml, test_mode=False):
     log = input_yaml['log_path']

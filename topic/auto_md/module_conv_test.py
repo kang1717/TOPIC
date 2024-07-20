@@ -1,8 +1,8 @@
 import os, time
 import shutil as shu
 import numpy as np
-from spinner.auto_md.module_util import write_log, write_log_with_timestamp, calculate_elapsed_time, create_and_move_to_directory, move_to_directory, get_abs_path, get_cpu_core_number, get_divisor
-from spinner.auto_md.module_vasp import edit_INCAR, edit_KP, run_vasp, copy_inputs, get_energy_force_stress, get_maximum_enmax_value, get_loop_plus_real_time
+from topic.auto_md.module_util import write_log, write_log_with_timestamp, calculate_elapsed_time, create_and_move_to_directory, move_to_directory, get_abs_path, get_cpu_core_number, get_divisor
+from topic.auto_md.module_vasp import edit_INCAR, edit_KP, run_vasp, copy_inputs, get_energy_force_stress, get_maximum_enmax_value, get_loop_plus_real_time
 
 def run_convergence_test(input_yaml):
     working_dir = input_yaml['working_dir']

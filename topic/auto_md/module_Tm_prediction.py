@@ -1,8 +1,8 @@
 import shutil as shu
 import os
-from spinner.auto_md.module_util import write_log, write_log_with_timestamp, calculate_elapsed_time, create_and_move_to_directory, move_to_directory, get_abs_path
-from spinner.auto_md.module_vasp import edit_INCAR, copy_inputs, run_vasp, scale_velo, grep_nth_item
-from spinner.auto_md.module_relaxation import do_final_relaxation_and_md
+from topic.auto_md.module_util import write_log, write_log_with_timestamp, calculate_elapsed_time, create_and_move_to_directory, move_to_directory, get_abs_path
+from topic.auto_md.module_vasp import edit_INCAR, copy_inputs, run_vasp, scale_velo, grep_nth_item
+from topic.auto_md.module_relaxation import do_final_relaxation_and_md
 import numpy as np
 
 def run_melting_temperature_prediction(input_yaml, test_mode=False):
