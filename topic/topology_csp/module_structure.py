@@ -1,21 +1,35 @@
-import os,sys
-from basic_tools import *
+import os, sys, yaml
+from topic.topology_csp.basic_tools import *
 import re
 import math
 import numpy as np
 
-import os,sys,random,datetime
+import random, datetime
 import subprocess
 import shutil
 import pyrandspg
 
-import time
-from time import time
-from poscar import *
+from topic.topology_csp.poscar import *
+
+########### read input.yaml file #############
+
+input_file = str(sys.argv[1])
+with open(input_file, 'r') as f:
+    total_yaml = yaml.safe_load(f)
+
+material    = total_yaml['material']
+cation_cn   = total_yaml['cation_cn']
+
+# Getting cation information, and sort with number of atoms
+cat_info = {k: v for k, v in material.items() if k not in {'Li', 'O'}}
+cat_info = sorted(cat_info.items(), key=lambda item: item[1], reverse=True)
+# Merging cation information and oxygen information
+frame_info = dict(cat_info) | dict([('O', material['O'])])
 
 anion_type = ['O','F','S','Cl']
-poscarline = " P Ti O\n 18 12 72" 
-cation_cn  = {'Ti':6, 'P':4}
+poscarline = f"{' '.join(frame_info.keys())}\n{' '.join(map(str, frame_info.values()))}"
+
+##############################################
 
 def distance(a,b) :
     return sum([(x-y)**2.0 for x,y in zip(a,b)])**0.5 ;
@@ -154,13 +168,6 @@ def make_oxygen():
     cation_o_pair[ckey] = sorted(cation_o_pair[ckey])
 
   return cation_o_pair
-
-#t2  = time()
-#print(make_oxygen())
-#t3 = time()
-
-#print (t3-t2)
-
 
 atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
                    N=14.01, O=16.00, F=19.00, Ne=20.18, Na=22.99, Mg=24.31,

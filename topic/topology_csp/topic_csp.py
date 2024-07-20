@@ -1,7 +1,7 @@
-from module_structure import *
-from module_lammps import *
-from module_scrutinize import *
-from module_log import *
+from topic.topology_csp.module_structure import *
+from topic.topology_csp.module_lammps import *
+from topic.topology_csp.module_scrutinize import *
+from topic.topology_csp.module_log import *
 import time
 from time import time
 import mpi4py
@@ -168,5 +168,5 @@ def main():
       T3 = t5-t4
       write_log(rank,spg, iteration_1, iteration_2, T0, T1, T2, T3, fail_2, fail_3, E, V)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

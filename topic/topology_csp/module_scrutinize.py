@@ -1,21 +1,21 @@
-import sys
-from basic_tools import *
+import sys, yaml
+from topic.topology_csp.basic_tools import *
 import copy
 from copy import deepcopy
 import random
 
+########### read input.yaml file #############
 
-# bond info
-bond_dict  = {}
-bond_dict['Ti-O'] = 1.880
-bond_dict['P-O']  = 1.530
-bond_dict['O-Ti'] = 1.880
-bond_dict['O-P']  = 1.530
+input_file = str(sys.argv[1])
+with open(input_file, 'r') as f:
+    total_yaml = yaml.safe_load(f)
+
+cation_cn   = total_yaml['cation_cn']
+bond_dict   = total_yaml['distance_constraint']
 
 anion_type = ['O','F','S','Cl']
 
-cation_cn  = {'Ti':6, 'P':4}
-
+##############################################
 
 def scrutinize(contcarname,cation_ref):
  pos = read_poscar_dict(contcarname)

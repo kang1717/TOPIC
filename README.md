@@ -27,11 +27,12 @@ SPINNER supports Python `3.6` or higher version. SPINNER utilizes Python modules
   - PyYAML (https://pypi.org/project/PyYAML/)
   - numpy (1.x.x version) (https://numpy.org/)
   - pybind11 (https://github.com/pybind/pybind11/)
+  - pymatgen ()
 
 You can download these modules by
 
 ```
-  pip3 install mpi4py PyYAML numpy==1.26.4 pybind11
+  pip3 install mpi4py PyYAML numpy==1.26.4 pybind11 pymatgen
 ```
 
 or directly downloading the source codes from the webpages.
@@ -146,10 +147,10 @@ set(ENV{VIRTUAL_ENV} "/YOUR_VIRTUAL_ENV_DIR/")
 ```
   mkdir build
   cd build
-  cmake -D PKG_PYTHON=yes -D PKG_EXTRA-COMPUTE=yes -D PKG_INTEL=yes -D BUILD_MPI=no \
-  -D LAMMPS_MACHINE=simd_serial  -D INTEL_ARCH=cpu -D BUILD_SHARED_LIBS=yes  \
-  -D  CMAKE_BUILD_TYPE=Release  -C ../cmake/presets/nolib.cmake  -C ../cmake/presets/my_oneapi.cmake \
-  -D CMAKE_INSTALL_PREFIX=/VIRTUAL_ENV_DIR/ ../cmake/
+  cmake -D PKG_PYTHON=yes -D PKG_EXTRA-COMPUTE=yes -D PKG_EXTRA-PAIR=yes -D PKG_INTEL=yes \
+  -D BUILD_MPI=no -D LAMMPS_MACHINE=simd_serial  -D INTEL_ARCH=cpu -D BUILD_SHARED_LIBS=yes  \
+  -D  CMAKE_BUILD_TYPE=Release  -D CMAKE_INSTALL_PREFIX=/VIRTUAL_ENV_DIR/ \
+  -C ../cmake/presets/nolib.cmake -C ../cmake/presets/my_oneapi.cmake ../cmake/
   cmake --build . --target install
   cmake --build . --target install-python
 ```

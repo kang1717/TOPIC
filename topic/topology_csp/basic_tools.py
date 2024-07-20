@@ -9,7 +9,7 @@ import pymatgen
 import pymatgen
 from pymatgen.core.structure import Structure
 from pymatgen.core.structure import IStructure
-from basic_tools import *
+from topic.topology_csp.basic_tools import *
 # basic tools
 
 def atomic_number_to_element(atomic_number):
