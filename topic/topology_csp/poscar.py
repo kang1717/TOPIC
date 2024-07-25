@@ -14,13 +14,13 @@ class poscar:
             for i in range(len(a)):
                 total += a[i]*b[i]
             return total
-        
+
         def norm(self,a):
             total = 0
             for i in range(len(a)):
                 total += a[i]**2
             return math.sqrt(total)
-        
+
         def cross(self,a,b):
             if len(a) != len(b):
                 print("Warning on function 'dot': Vector dimension is not the same.")
@@ -32,10 +32,10 @@ class poscar:
                  a[2]*b[0] - a[0]*b[2],
                  a[0]*b[1] - a[1]*b[0]]
             return c
-        
+
         def triple(self,a):
             return self.dot(a[0],self.cross(a[1],a[2]))
-        
+
         def frac2cart(self,LatticeVectorSet,Fractional):
             Decomposed = []
             for i in [0,1,2]:
@@ -151,7 +151,7 @@ class poscar:
         for cnt in range(len(CartesianList)):
             Relative.append(list(np.dot(Ainverse,np.transpose(CartesianList[cnt]))))
         return Relative
-        
+
     def relative2cart(self,RelativeList):
         Cartesian = []
         for j in range(len(RelativeList)):

@@ -1,5 +1,6 @@
 import os, sys, yaml
-from topic.topology_csp.basic_tools import *
+from topic.topology_csp.basic_tools import read_poscar_dict, direct2cartesian, calculate_distance, \
+                        adatom_dict_fix, write_contcar_dict, cartesian2direct
 import re
 import math
 import numpy as np
@@ -9,7 +10,7 @@ import subprocess
 import shutil
 import pyrandspg
 
-from topic.topology_csp.poscar import *
+#from poscar import *
 
 ########### read input.yaml file #############
 
@@ -31,147 +32,127 @@ poscarline = f"{' '.join(frame_info.keys())}\n{' '.join(map(str, frame_info.valu
 
 ##############################################
 
-def distance(a,b) :
-    return sum([(x-y)**2.0 for x,y in zip(a,b)])**0.5 ;
+def distance(a, b) :
+    return sum([(x-y)**2.0 for x, y in zip(a, b)])**0.5 ;
 
-def dist_pbc(a,b,cell) :
-    imagecell = [-1,0,1]
+def dist_pbc(a, b, cell) :
+    imagecell = [-1, 0, 1]
     pbc = [[i,j,k] for i in imagecell for j in imagecell for k in imagecell]
     b_pbc = [[b[i] + cell*pbc[j][i] for i in range(3)] for j in range(len(pbc))]
-    return min([distance(a,b_pbc[i]) for i in range(len(pbc))])
+
+    return min([distance(a, b_pbc[i]) for i in range(len(pbc))])
 
 at=re.compile('[A-Z][a-z]?')
 
-
 def make_oxygen():
-  pos = read_poscar_dict("POSCAR_cation")
-  iteration_limit = len(pos['coor'])-2
- 
-  # calculate distance info
-  pos['coor'] = direct2cartesian(pos['latt'],pos['coor'])
-  pos['cartesian'] = True
-  distance_array = {}
-  for i1,c1 in enumerate(pos['coor']):
-   r_data = []
+    pos = read_poscar_dict("POSCAR_cation")
+    iteration_limit = len(pos['coor']) - 2
 
-   for i2,c2 in enumerate(pos['coor']):
-    if i1 != i2:
+    # calculate distance info
+    pos['coor'] = direct2cartesian(pos['latt'], pos['coor'])
+    pos['cartesian'] = True
+    distance_array = {}
+    for i1,c1 in enumerate(pos['coor']):
+        r_data = []
 
-      r = calculate_distance(c1,c2,pos['latt'])
+        for i2, c2 in enumerate(pos['coor']):
+            if i1 != i2:
+                r = calculate_distance(c1, c2, pos['latt'])
+                r_data.append([i2, r])
 
-      r_data.append([i2,r])
+        r_data = sorted(r_data, key=lambda x:x[1])
 
-   r_data = sorted(r_data,key=lambda x:x[1]) 
+        distance_array[i1] = [i[0] for i in r_data]
 
-   distance_array[i1] = [i[0] for i in r_data]
+    # define n_cation
+    n_cation = [i for i in range(len(pos['coor']))]
 
-  # define n_cation
-  n_cation = [i for i in range(len(pos['coor']))]
+    # select pairs
+    cation_dict = {}
 
-  # select pairs
-  cation_dict = {}
+    iteration = 0
+    fail = 1
 
-  iteration = 0
-  fail = 1
+    while fail==1:
+        pair_lists  = []
 
-  while fail==1:
-  
-    pair_lists  = []
+        fail=0
+        random.shuffle(n_cation)
 
-    fail=0
-    random.shuffle(n_cation)
+        for k,a0 in enumerate(pos['coor']):
+            cation_dict[k] = []
 
-    for k,a0 in enumerate(pos['coor']):
-       
-      cation_dict[k] = []
+        fail = 0
 
-    fail = 0
+        # link cations
+        for ta in n_cation:
+            ta_type = pos['atomarray'][ta]
 
-    # link cations
-    for ta in n_cation:
+            CN = cation_cn[ta_type]
 
-      ta_type = pos['atomarray'][ta]
-      
-      CN = cation_cn[ta_type]
+            # link other cations
+            ii = 0
+            if len(cation_dict[ta]) < CN:
+                while len(cation_dict[ta]) < CN:
+                    if ii > iteration_limit:
+                        fail = 1
+                        break
 
-      # link other cations
-      ii = 0
+                    candidate = distance_array[ta][ii]
+                    candidate_type = pos['atomarray'][candidate]
+                    candidate_CN   = cation_cn[candidate_type]
 
-      if len(cation_dict[ta]) < CN:
-       while len(cation_dict[ta]) < CN:
-        if ii > iteration_limit:
-          fail = 1
-          break
+                    if candidate not in cation_dict[ta] and len(cation_dict[candidate]) < candidate_CN:
+                        cation_dict[ta].append(candidate)
+                        cation_dict[candidate].append(ta)
+                        pair_lists.append([ta,candidate])
 
-        candidate = distance_array[ta][ii]  
-        candidate_type = pos['atomarray'][candidate]
-        candidate_CN   = cation_cn[candidate_type] 
+                    ii += 1
+        iteration += 1
 
-        if candidate not in cation_dict[ta] and len(cation_dict[candidate]) < candidate_CN:
+    # add oxygen
+    cation_o_pair = {}
 
-          cation_dict[ta].append(candidate)
-          cation_dict[candidate].append(ta)
-          pair_lists.append([ta,candidate])
+    for n in sorted(n_cation):
+        cation_o_pair[n] = []
+    o_lists = []
+    O_num = len(n_cation)
+    for pair in pair_lists:
+        dmax = 100.0
+        a1 = pair[0]
+        a2 = pair[1]
+        c1 = pos['coor'][a1]
+        c2 = pos['coor'][a2]
+        for I in range(3):
+            i = float(I-1)
+            for J in range(3):
+                j = float(J-1)
+                for K in range(3):
+                    k = float(K-1)
+                    c2_new = c2 + i*pos['latt'][0] + j*pos['latt'][1] + k*pos['latt'][2]
+                    d = np.linalg.norm(c2_new-c1)
 
-        ii += 1 
-    iteration += 1
+                    if d < dmax:
+                        dmax = d
+                        o_atom = (c1+c2_new)/2.0
 
-  # add oxygen
+        pos = adatom_dict_fix(pos, o_atom, 'O', 'T')
 
-  cation_o_pair = {}
+        cation_o_pair[a1].append(O_num)
+        cation_o_pair[a2].append(O_num)
+        O_num += 1
 
-  for n in sorted(n_cation):
-    cation_o_pair[n] = []
- 
-  o_lists = []
+    write_contcar_dict(pos, "POSCAR")
 
-  O_num = len(n_cation)
-  for pair in pair_lists:
+    # sort cation_o_pair
+    for ckey in cation_o_pair.keys():
+        cation_o_pair[ckey] = sorted(cation_o_pair[ckey])
 
-     dmax = 100.0
-
-     a1 = pair[0]
-     a2 = pair[1]  
-
-     c1 = pos['coor'][a1]
-     c2 = pos['coor'][a2]
-
-
-     for I in range(3):
-      i = float(I-1) 
-
-      for J in range(3):
-       j = float(J-1)
-
-       for K in range(3):
-        k = float(K-1)
-
-        c2_new = c2 + i*pos['latt'][0] + j*pos['latt'][1] + k*pos['latt'][2]
-        d = np.linalg.norm(c2_new-c1)
-
-        if d < dmax:
-
-          dmax = d
-
-          o_atom = (c1+c2_new)/2.0
-  
-     pos = adatom_dict_fix(pos,o_atom,'O','T')
-
-     cation_o_pair[a1].append(O_num)
-     cation_o_pair[a2].append(O_num)
-     O_num += 1
- 
-  write_contcar_dict(pos,"POSCAR")    
-
-  # sort cation_o_pair
-  for ckey in cation_o_pair.keys():
-    cation_o_pair[ckey] = sorted(cation_o_pair[ckey])
-
-  return cation_o_pair
+    return cation_o_pair
 
 atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
                    N=14.01, O=16.00, F=19.00, Ne=20.18, Na=22.99, Mg=24.31,
-                   Al=26.98, Si=28.09, P=30.97, S=32.07, Cl=35.45, 
+                   Al=26.98, Si=28.09, P=30.97, S=32.07, Cl=35.45,
                    K=39.10, Ca=40.07, Sc=44.96, Ti=47.87, V=50.94, Cr=52.00,
                    Mn=54.94, Fe=55.85, Co=58.93, Ni=58.69, Cu=63.55, Zn=65.39,
                    Ga=69.72, Ge=72.61, As=74.92, Se=78.96, Br=79.90, Kr=83.80,
@@ -192,156 +173,133 @@ atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
                    Hs=269.00, Mt=268.00)
 
 
-def coo2CONTCAR(filename,output="CONTCAR"):
- #------------------------- simple structure file part -----------------------#
- LammpsLines = open(filename).readlines()
- LatticeVector = [[0,0,0],[0,0,0],[0,0,0]]
- name = LammpsLines[0]
- #if '#' == LammpsLines[0][0]:
- #    name = LammpsLines[0].split('#',1)[1]
- for cnt in range(1,len(LammpsLines)):
-    if 'atoms' in LammpsLines[cnt]:
-        numIon = int(LammpsLines[cnt].split()[0])
-    elif 'atom types' in LammpsLines[cnt]:
-        numElements = int(LammpsLines[cnt].split()[0])
-    elif 'xlo' in LammpsLines[cnt]:
-        LatticeVector[0][0] = float(LammpsLines[cnt].split()[1]) - float(LammpsLines[cnt].split()[0])
-    elif 'ylo' in LammpsLines[cnt]:
-        LatticeVector[1][1] = float(LammpsLines[cnt].split()[1]) - float(LammpsLines[cnt].split()[0])
-    elif 'zlo' in LammpsLines[cnt]:
-        LatticeVector[2][2] = float(LammpsLines[cnt].split()[1]) - float(LammpsLines[cnt].split()[0])
-    elif 'xy' in LammpsLines[cnt]:
-        LatticeVector[1][0] = float(LammpsLines[cnt].split()[0])
-        LatticeVector[2][0] = float(LammpsLines[cnt].split()[1])
-        LatticeVector[2][1] = float(LammpsLines[cnt].split()[2])
-    elif 'Masses' in LammpsLines[cnt]:
-        MassesLines = []
-        cursor = 0
-        while True:
-            cursor += 1
-            if LammpsLines[cnt+cursor].split() != []:
-                MassesLines.append(LammpsLines[cnt+cursor])
-            if len(MassesLines) == numElements:
+def coo2CONTCAR(filename, output="CONTCAR"):
+    #------------------------- simple structure file part -----------------------#
+    LammpsLines = open(filename).readlines()
+    LatticeVector = [[0,0,0],[0,0,0],[0,0,0]]
+    name = LammpsLines[0]
+    #if '#' == LammpsLines[0][0]:
+    #    name = LammpsLines[0].split('#',1)[1]
+    for cnt in range(1,len(LammpsLines)):
+        if 'atoms' in LammpsLines[cnt]:
+            numIon = int(LammpsLines[cnt].split()[0])
+        elif 'atom types' in LammpsLines[cnt]:
+            numElements = int(LammpsLines[cnt].split()[0])
+        elif 'xlo' in LammpsLines[cnt]:
+            LatticeVector[0][0] = float(LammpsLines[cnt].split()[1]) - float(LammpsLines[cnt].split()[0])
+        elif 'ylo' in LammpsLines[cnt]:
+            LatticeVector[1][1] = float(LammpsLines[cnt].split()[1]) - float(LammpsLines[cnt].split()[0])
+        elif 'zlo' in LammpsLines[cnt]:
+            LatticeVector[2][2] = float(LammpsLines[cnt].split()[1]) - float(LammpsLines[cnt].split()[0])
+        elif 'xy' in LammpsLines[cnt]:
+            LatticeVector[1][0] = float(LammpsLines[cnt].split()[0])
+            LatticeVector[2][0] = float(LammpsLines[cnt].split()[1])
+            LatticeVector[2][1] = float(LammpsLines[cnt].split()[2])
+        elif 'Masses' in LammpsLines[cnt]:
+            MassesLines = []
+            cursor = 0
+            while True:
+                cursor += 1
+                if LammpsLines[cnt+cursor].split() != []:
+                    MassesLines.append(LammpsLines[cnt+cursor])
+                if len(MassesLines) == numElements:
+                    break
+        elif 'Atoms' in LammpsLines[cnt]:
+            AtomsLines = []
+            cursor = 0
+            while True:
+                cursor += 1
+                if LammpsLines[cnt+cursor].split() != []:
+                    AtomsLines.append(LammpsLines[cnt+cursor])
+                if len(AtomsLines) == numIon:
+                    break
+    MassesLines.sort(key=lambda x: int(x.split()[0]))
+    #AtomsLines.sort(key=lambda x: float(x.split()[4]))   # sort about z coordinate
+    #AtomsLines.sort(key=lambda x: int(x.split()[1]))
+    ElementList = []
+    AMItems = list(atomic_mass.items())
+    for line in MassesLines:
+        mass = round(float(line.split()[1]),0)
+        for Tup in AMItems:
+            if round(Tup[1],0) == mass:
+                ElementList.append(Tup[0])
                 break
-    elif 'Atoms' in LammpsLines[cnt]:
-        AtomsLines = []
-        cursor = 0
-        while True:
-            cursor += 1
-            if LammpsLines[cnt+cursor].split() != []:
-                AtomsLines.append(LammpsLines[cnt+cursor])
-            if len(AtomsLines) == numIon:
-                break
- MassesLines.sort(key=lambda x: int(x.split()[0]))
- #AtomsLines.sort(key=lambda x: float(x.split()[4]))   # sort about z coordinate
- #AtomsLines.sort(key=lambda x: int(x.split()[1]))
- ElementList = []
- AMItems = list(atomic_mass.items())
- for line in MassesLines:
-    mass = round(float(line.split()[1]),0)
-    for Tup in AMItems:
-        if round(Tup[1],0) == mass:
-            ElementList.append(Tup[0])
-            break
- NumIonList = [0]*numElements
- Cartesian = []
- for line in AtomsLines:
-    NumIonList[int(line.split()[1])-1] += 1
-    Cartesian.append(line.split()[2:])
- #------------------------------------------------------------------#
+    NumIonList = [0]*numElements
+    Cartesian = []
+    for line in AtomsLines:
+        NumIonList[int(line.split()[1])-1] += 1
+        Cartesian.append(line.split()[2:])
+    #------------------------------------------------------------------#
 
- #------------------------ print scripts -----------------------------#
- printBuffer = ''
- printBuffer += '(Converted from LAMMPS) '+name+' 1.0\n'
- for rowCnt in range(3):
-    for colCnt in range(3):
-        printBuffer += '   %12.8f ' %float(LatticeVector[rowCnt][colCnt])
-    printBuffer += '\n'
- #for comp in ElementList:
- #   printBuffer += '  %s' %comp
- #printBuffer += '\n'
- #for comp in NumIonList:
- #    printBuffer += '  %s' %comp
+    #------------------------ print scripts -----------------------------#
+    printBuffer = ''
+    printBuffer += '(Converted from LAMMPS) '+name+' 1.0\n'
+    for rowCnt in range(3):
+        for colCnt in range(3):
+            printBuffer += '   %12.8f ' %float(LatticeVector[rowCnt][colCnt])
+        printBuffer += '\n'
+    #for comp in ElementList:
+    #   printBuffer += '  %s' %comp
+    #printBuffer += '\n'
+    #for comp in NumIonList:
+    #    printBuffer += '  %s' %comp
 
- printBuffer += poscarline 
- printBuffer += '\nCartesian\n'
- for rowCnt in range(numIon):
-    for colCnt in range(3):
-        printBuffer += '   %12.8f ' %float(Cartesian[rowCnt][colCnt])
-    printBuffer += '\n'
+    printBuffer += poscarline
+    printBuffer += '\nCartesian\n'
+    for rowCnt in range(numIon):
+        for colCnt in range(3):
+            printBuffer += '   %12.8f ' %float(Cartesian[rowCnt][colCnt])
+        printBuffer += '\n'
 
- with open(output,"w") as w:
-   w.write(printBuffer)
+    with open(output,"w") as w:
+        w.write(printBuffer)
 
 def randspg(composition,elements,volume,tolerance):
+    while 1:
+        lmin = volume**(1.0/3.0) * 0.4
+        lmax = volume**(1.0/3.0) * 2.5
 
-  while 1:
+        spg = random.randint(1,230)
 
-    lmin = volume**(1.0/3.0) * 0.4
-    lmax = volume**(1.0/3.0) * 2.5
+        pymin = pyrandspg.LatticeStruct(lmin, lmin, lmin, 60.0, 60.0, 60.0)
+        pymax = pyrandspg.LatticeStruct(lmax, lmax, lmax, 120.0, 120.0, 120.0)
 
-    spg = random.randint(1,230)
+        input_ = pyrandspg.RandSpgInput(spg, composition, pymin,pymax, 1.0, volume*0.9, volume*1.2, 100, tolerance, False)
 
-    pymin = pyrandspg.LatticeStruct(lmin, lmin, lmin, 60.0, 60.0, 60.0)
-    pymax = pyrandspg.LatticeStruct(lmax, lmax, lmax, 120.0, 120.0, 120.0)
+        c = pyrandspg.RandSpg.randSpgCrystal(input_)
 
-    input_ = pyrandspg.RandSpgInput(spg, composition, pymin,pymax, 1.0, volume*0.9, volume*1.2, 100, tolerance, False)
+        structure = c.getPOSCARString()
 
-    c = pyrandspg.RandSpg.randSpgCrystal(input_)
+        if 'nan' not in structure:
+            break
 
-    structure = c.getPOSCARString()
+    structure_lists = structure.split('\n')
 
-    if 'nan' not in structure:
-      break
+    with open("POSCAR_cation0","w") as w:
+        for i,line in enumerate(structure_lists):
+            if i == 0:
+                w.write("randspg\n")
+            elif i == 5:
+                w.write(elements+"\n")
+            elif i == 7:
+                w.write("Selective dynamics\n")
+                w.write(line+'\n')
+            elif i > 7 and i < (len(composition)+8):
+                w.write(line+" T T T\n")
+            elif i >= (len(composition)+8):
+                continue
+            else:
+                w.write(line+"\n")
 
-  structure_lists = structure.split('\n')
+    pos = read_poscar_dict("POSCAR_cation0")
+    pos['coor'] = direct2cartesian(pos['latt'],pos['coor'])
 
-  with open("POSCAR_cation0","w") as w:
+    for i in range(len(pos['coor'])):
+        pos['coor'][i][0] += 0.01*random.random()
+        pos['coor'][i][1] += 0.01*random.random()
+        pos['coor'][i][2] += 0.01*random.random()
 
-   for i,line in enumerate(structure_lists):
+    pos['coor'] = cartesian2direct(pos['latt'],pos['coor'])
+    write_contcar_dict(pos,"POSCAR_cation")
 
-    if i == 0:
-     w.write("randspg\n")
-
-    elif i == 5:
-     w.write(elements+"\n")
-
-    elif i == 7:
-     w.write("Selective dynamics\n")
-     w.write(line+'\n')
-
-    elif i > 7 and i < (len(composition)+8):
-     w.write(line+" T T T\n")
-
-    elif i >= (len(composition)+8):
-     continue
-
-    else:
-     w.write(line+"\n")
-    
-  pos = read_poscar_dict("POSCAR_cation0")
-  pos['coor'] = direct2cartesian(pos['latt'],pos['coor']) 
-
-  for i in range(len(pos['coor'])):
-    pos['coor'][i][0] += 0.01*random.random()
-    pos['coor'][i][1] += 0.01*random.random()
-    pos['coor'][i][2] += 0.01*random.random()
-
-  pos['coor'] = cartesian2direct(pos['latt'],pos['coor']) 
-  
-
-  write_contcar_dict(pos,"POSCAR_cation")
-
-  return spg
-###########
-########### input #############
-'''
-spg_tolerance =[ [[1,1], 3.3],
-                 [[1,2], 3.1],
-                 [[2,2], 2.8]]
-composition = [1 for i in range(16)] + [2 for i in range(8)]
-volume      = 800.0
-elements = 'Ta P'
-
-randspg(composition,elements,volume,spg_tolerance)
-'''
+    return spg
