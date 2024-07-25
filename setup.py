@@ -35,6 +35,7 @@ setup(
             'topic_nnp_train = topic.nnp_train.initial_NNP_training:main',
             'configure_csp = topic.utils.configure_csp:main',
             'topic_csp = topic.topology_csp.topic_csp:main',
+            'topic_post = topic.topology_csp.post_processing:main',
             #'topic_dft_relax = topic.topic_dft_relax:main',
         ]
     },
