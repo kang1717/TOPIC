@@ -1,0 +1,25 @@
+mass * 1
+
+atom_modify sort 0 0.0
+
+thermo 1
+thermo_style custom step temp pe evdwl ecoul vol press spcpu
+
+minimize 0.0 2.0e-7 200000 10000000
+
+
+############ fix metal #################
+group metals id <= 24
+fix metalfix metals setforce 0 0 0 
+
+
+
+
+
+############ unfix metal #################
+unfix metalfix
+pair_coeff 1*16 1*16    harmonic/cut 0.2 3.1
+pair_coeff 1*16 17*24   harmonic/cut 0.2 3.37
+pair_coeff 17*24 17*24  harmonic/cut 0.2 2.8 
+pair_coeff 25*88 25*88  harmonic/cut 0.2 2.5
+

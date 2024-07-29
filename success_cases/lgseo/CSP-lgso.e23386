@@ -1,0 +1,416 @@
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+Traceback (most recent call last):
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+Traceback (most recent call last):
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+KeyError: '16'
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+Traceback (most recent call last):
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+                  ^^^^^^^^^^^^^
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+KeyError: '16'
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '8'
+Traceback (most recent call last):
+  File "/home/sung.w.kang/sse-new/lgseo/csp/main.py", line 68, in <module>
+    cation_dict = make_oxygen()
+                  ^^^^^^^^^^^^^
+  File "/home/sung.w.kang/sse-new/lgseo/csp/module_structure.py", line 83, in make_oxygen
+    CN = cation_cn[ta_type]
+         ~~~~~~~~~^^^^^^^^^
+KeyError: '16'

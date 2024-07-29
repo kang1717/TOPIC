@@ -1,0 +1,10 @@
+1. Only left successful folder due to the large size
+
+2. In the case of LMSO_1, only spg of 60 is tried. Grep spg for module_structure.py
+
+3. Success structure No.
+
+ - LTPO: 27492
+ - LMSO_1: 87
+ - LMSO_2: 1110
+ - LGSeO:  118

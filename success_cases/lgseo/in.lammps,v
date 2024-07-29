@@ -1,0 +1,192 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2024.05.03.07.23.36;	author sung.w.kang;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@boundary p p p
+units metal
+atom_modify map yes
+neigh_modify delay 0 every 1 check yes
+
+read_data coo
+
+#pair_style lj/cut 10.0
+#pair_coeff * * 0.0001 1.541 10.0
+
+pair_style hybrid/overlay lj/cut 7.0 harmonic/cut
+pair_coeff 1 3  lj/cut  5.0 1.939 7.0 
+pair_coeff 2 3  lj/cut  5.0 1.541 7.0
+
+pair_coeff 1 1  lj/cut  0.0 2.0 0.5
+pair_coeff 1 2  lj/cut  0.0 2.0 0.5
+pair_coeff 2 2  lj/cut  0.0 2.0 0.5
+pair_coeff 3 3  lj/cut  0.0 2.0 0.5
+
+
+pair_coeff 1 1  harmonic/cut 0.5 3.668 
+pair_coeff 1 2  harmonic/cut 0.5 3.328
+pair_coeff 2 2  harmonic/cut 0.5 2.934
+pair_coeff 3 3  harmonic/cut 0.5 2.588 
+
+pair_coeff 1 3  harmonic/cut 0.0 7.0
+pair_coeff 2 3  harmonic/cut 0.0 7.0
+
+
+mass 1 180.94788 
+mass 2 30.973
+mass 3 15.999
+
+thermo 1
+thermo_style custom step temp pe evdwl ecoul vol press spcpu
+
+
+fix spring1 all restrain bond 1 40 10.0 10.0 1.939
+fix spring2 all restrain bond 1 46 10.0 10.0 1.939
+fix spring3 all restrain bond 1 44 10.0 10.0 1.939
+fix spring4 all restrain bond 1 52 10.0 10.0 1.939
+fix spring5 all restrain bond 1 69 10.0 10.0 1.939
+fix spring6 all restrain bond 1 78 10.0 10.0 1.939
+fix spring7 all restrain bond 2 70 10.0 10.0 1.939
+fix spring8 all restrain bond 2 25 10.0 10.0 1.939
+fix spring9 all restrain bond 2 29 10.0 10.0 1.939
+fix spring10 all restrain bond 2 39 10.0 10.0 1.939
+fix spring11 all restrain bond 2 27 10.0 10.0 1.939
+fix spring12 all restrain bond 2 36 10.0 10.0 1.939
+fix spring13 all restrain bond 3 33 10.0 10.0 1.939
+fix spring14 all restrain bond 3 81 10.0 10.0 1.939
+fix spring15 all restrain bond 3 42 10.0 10.0 1.939
+fix spring16 all restrain bond 3 41 10.0 10.0 1.939
+fix spring17 all restrain bond 3 26 10.0 10.0 1.939
+fix spring18 all restrain bond 3 31 10.0 10.0 1.939
+fix spring19 all restrain bond 4 39 10.0 10.0 1.939
+fix spring20 all restrain bond 4 35 10.0 10.0 1.939
+fix spring21 all restrain bond 4 50 10.0 10.0 1.939
+fix spring22 all restrain bond 4 38 10.0 10.0 1.939
+fix spring23 all restrain bond 4 51 10.0 10.0 1.939
+fix spring24 all restrain bond 4 77 10.0 10.0 1.939
+fix spring25 all restrain bond 5 38 10.0 10.0 1.939
+fix spring26 all restrain bond 5 57 10.0 10.0 1.939
+fix spring27 all restrain bond 5 64 10.0 10.0 1.939
+fix spring28 all restrain bond 5 33 10.0 10.0 1.939
+fix spring29 all restrain bond 5 28 10.0 10.0 1.939
+fix spring30 all restrain bond 5 55 10.0 10.0 1.939
+fix spring31 all restrain bond 6 59 10.0 10.0 1.939
+fix spring32 all restrain bond 6 49 10.0 10.0 1.939
+fix spring33 all restrain bond 6 45 10.0 10.0 1.939
+fix spring34 all restrain bond 6 42 10.0 10.0 1.939
+fix spring35 all restrain bond 6 53 10.0 10.0 1.939
+fix spring36 all restrain bond 6 63 10.0 10.0 1.939
+fix spring37 all restrain bond 7 47 10.0 10.0 1.939
+fix spring38 all restrain bond 7 37 10.0 10.0 1.939
+fix spring39 all restrain bond 7 48 10.0 10.0 1.939
+fix spring40 all restrain bond 7 54 10.0 10.0 1.939
+fix spring41 all restrain bond 7 84 10.0 10.0 1.939
+fix spring42 all restrain bond 7 34 10.0 10.0 1.939
+fix spring43 all restrain bond 8 72 10.0 10.0 1.939
+fix spring44 all restrain bond 8 54 10.0 10.0 1.939
+fix spring45 all restrain bond 8 29 10.0 10.0 1.939
+fix spring46 all restrain bond 8 62 10.0 10.0 1.939
+fix spring47 all restrain bond 8 69 10.0 10.0 1.939
+fix spring48 all restrain bond 8 32 10.0 10.0 1.939
+fix spring49 all restrain bond 9 52 10.0 10.0 1.939
+fix spring50 all restrain bond 9 59 10.0 10.0 1.939
+fix spring51 all restrain bond 9 57 10.0 10.0 1.939
+fix spring52 all restrain bond 9 51 10.0 10.0 1.939
+fix spring53 all restrain bond 9 34 10.0 10.0 1.939
+fix spring54 all restrain bond 9 60 10.0 10.0 1.939
+fix spring55 all restrain bond 10 30 10.0 10.0 1.939
+fix spring56 all restrain bond 10 78 10.0 10.0 1.939
+fix spring57 all restrain bond 10 26 10.0 10.0 1.939
+fix spring58 all restrain bond 10 50 10.0 10.0 1.939
+fix spring59 all restrain bond 10 85 10.0 10.0 1.939
+fix spring60 all restrain bond 10 49 10.0 10.0 1.939
+fix spring61 all restrain bond 11 66 10.0 10.0 1.939
+fix spring62 all restrain bond 11 82 10.0 10.0 1.939
+fix spring63 all restrain bond 11 58 10.0 10.0 1.939
+fix spring64 all restrain bond 11 45 10.0 10.0 1.939
+fix spring65 all restrain bond 11 43 10.0 10.0 1.939
+fix spring66 all restrain bond 11 30 10.0 10.0 1.939
+fix spring67 all restrain bond 12 56 10.0 10.0 1.939
+fix spring68 all restrain bond 12 61 10.0 10.0 1.939
+fix spring69 all restrain bond 12 76 10.0 10.0 1.939
+fix spring70 all restrain bond 12 32 10.0 10.0 1.939
+fix spring71 all restrain bond 12 79 10.0 10.0 1.939
+fix spring72 all restrain bond 12 70 10.0 10.0 1.939
+fix spring73 all restrain bond 13 71 10.0 10.0 1.939
+fix spring74 all restrain bond 13 73 10.0 10.0 1.939
+fix spring75 all restrain bond 13 43 10.0 10.0 1.939
+fix spring76 all restrain bond 13 87 10.0 10.0 1.939
+fix spring77 all restrain bond 13 61 10.0 10.0 1.939
+fix spring78 all restrain bond 13 74 10.0 10.0 1.939
+fix spring79 all restrain bond 14 86 10.0 10.0 1.939
+fix spring80 all restrain bond 14 84 10.0 10.0 1.939
+fix spring81 all restrain bond 14 82 10.0 10.0 1.939
+fix spring82 all restrain bond 14 76 10.0 10.0 1.939
+fix spring83 all restrain bond 14 63 10.0 10.0 1.939
+fix spring84 all restrain bond 14 28 10.0 10.0 1.939
+fix spring85 all restrain bond 15 80 10.0 10.0 1.939
+fix spring86 all restrain bond 15 75 10.0 10.0 1.939
+fix spring87 all restrain bond 15 74 10.0 10.0 1.939
+fix spring88 all restrain bond 15 62 10.0 10.0 1.939
+fix spring89 all restrain bond 15 31 10.0 10.0 1.939
+fix spring90 all restrain bond 15 68 10.0 10.0 1.939
+fix spring91 all restrain bond 16 71 10.0 10.0 1.939
+fix spring92 all restrain bond 16 53 10.0 10.0 1.939
+fix spring93 all restrain bond 16 35 10.0 10.0 1.939
+fix spring94 all restrain bond 16 83 10.0 10.0 1.939
+fix spring95 all restrain bond 16 27 10.0 10.0 1.939
+fix spring96 all restrain bond 16 66 10.0 10.0 1.939
+fix spring97 all restrain bond 17 81 10.0 10.0 1.541
+fix spring98 all restrain bond 17 58 10.0 10.0 1.541
+fix spring99 all restrain bond 17 77 10.0 10.0 1.541
+fix spring100 all restrain bond 17 88 10.0 10.0 1.541
+fix spring101 all restrain bond 18 68 10.0 10.0 1.541
+fix spring102 all restrain bond 18 87 10.0 10.0 1.541
+fix spring103 all restrain bond 18 47 10.0 10.0 1.541
+fix spring104 all restrain bond 18 25 10.0 10.0 1.541
+fix spring105 all restrain bond 19 36 10.0 10.0 1.541
+fix spring106 all restrain bond 19 72 10.0 10.0 1.541
+fix spring107 all restrain bond 19 56 10.0 10.0 1.541
+fix spring108 all restrain bond 19 40 10.0 10.0 1.541
+fix spring109 all restrain bond 20 37 10.0 10.0 1.541
+fix spring110 all restrain bond 20 55 10.0 10.0 1.541
+fix spring111 all restrain bond 20 41 10.0 10.0 1.541
+fix spring112 all restrain bond 20 67 10.0 10.0 1.541
+fix spring113 all restrain bond 21 60 10.0 10.0 1.541
+fix spring114 all restrain bond 21 44 10.0 10.0 1.541
+fix spring115 all restrain bond 21 88 10.0 10.0 1.541
+fix spring116 all restrain bond 21 86 10.0 10.0 1.541
+fix spring117 all restrain bond 22 64 10.0 10.0 1.541
+fix spring118 all restrain bond 22 79 10.0 10.0 1.541
+fix spring119 all restrain bond 22 48 10.0 10.0 1.541
+fix spring120 all restrain bond 22 83 10.0 10.0 1.541
+fix spring121 all restrain bond 23 73 10.0 10.0 1.541
+fix spring122 all restrain bond 23 80 10.0 10.0 1.541
+fix spring123 all restrain bond 23 65 10.0 10.0 1.541
+fix spring124 all restrain bond 23 67 10.0 10.0 1.541
+fix spring125 all restrain bond 24 85 10.0 10.0 1.541
+fix spring126 all restrain bond 24 75 10.0 10.0 1.541
+fix spring127 all restrain bond 24 46 10.0 10.0 1.541
+fix spring128 all restrain bond 24 65 10.0 10.0 1.541
+fix F1 all box/relax iso 0.0 vmax 0.001
+minimize 0.0 2.0e-3 1000 100000
+write_data coo_out
+
+@

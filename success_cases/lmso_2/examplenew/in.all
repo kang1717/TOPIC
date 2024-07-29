@@ -1,0 +1,1585 @@
+boundary p p p
+units metal
+atom_modify map yes
+neighbor 2.0 bin
+neigh_modify every 1 delay 0 check yes
+
+
+read_data coo
+
+mass * 1
+
+atom_modify sort 0 0.0
+
+thermo 1
+thermo_style custom step temp pe evdwl ecoul vol press spcpu
+
+pair_style hybrid/overlay lj/cut 6.0 harmonic/cut 
+
+pair_coeff   *     *   harmonic/cut       0.0  0.0
+pair_coeff 25*88 25*88 harmonic/cut       0.01 2.0
+pair_coeff * * lj/cut         0.0 0.0   0.0
+
+minimize 0.0 2.0e-3 1000 10000000
+
+pair_coeff   *     *   harmonic/cut       0.0  0.0
+
+pair_coeff 1 37 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 1 38 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 1 39 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 1 40 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 1 41 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 1 42 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 2 25 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 2 26 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 2 27 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 2 28 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 2 29 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 2 30 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 3 50 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 3 59 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 3 82 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 3 84 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 3 85 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 3 86 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 4 31 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 4 32 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 4 33 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 4 34 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 4 35 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 4 36 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 5 45 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 5 61 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 5 62 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 5 63 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 5 64 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 5 65 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 6 61 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 6 68 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 6 69 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 6 70 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 6 71 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 6 72 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 7 36 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 7 49 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 7 58 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 7 67 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 7 75 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 7 78 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 8 35 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 8 48 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 8 54 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 8 57 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 8 81 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 8 88 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 9 31 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 9 44 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 9 63 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 9 71 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 9 74 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 9 76 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 10 30 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 10 33 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 10 42 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 10 52 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 10 64 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 10 69 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 11 32 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 11 62 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 11 66 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 11 68 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 11 76 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 11 80 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 12 29 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 12 34 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 12 65 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 12 70 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 12 86 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 12 87 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 13 41 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 13 51 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 13 53 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 13 77 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 13 84 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 13 88 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 14 43 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 14 60 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 14 73 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 14 81 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 14 82 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 14 83 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 15 55 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 15 56 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 15 57 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 15 58 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 15 59 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 15 60 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 16 46 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 16 47 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 16 48 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 16 49 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 16 50 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 16 51 lj/cut 3.0 1.7274526144741178 6.0
+pair_coeff 17 38 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 17 47 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 17 66 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 17 67 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 18 39 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 18 55 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 18 72 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 18 79 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 19 25 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 19 52 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 19 53 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 19 54 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 20 28 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 20 43 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 20 44 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 20 45 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 21 40 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 21 73 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 21 74 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 21 75 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 22 37 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 22 77 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 22 78 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 22 79 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 23 26 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 23 56 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 23 85 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 23 87 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 24 27 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 24 46 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 24 80 lj/cut 3.0 1.3728749246542629 6.0
+pair_coeff 24 83 lj/cut 3.0 1.3728749246542629 6.0
+
+pair_coeff 1 25 harmonic/cut 0.2 3.2 
+pair_coeff 1 26 harmonic/cut 0.2 3.2 
+pair_coeff 1 27 harmonic/cut 0.2 3.2 
+pair_coeff 1 28 harmonic/cut 0.2 3.2 
+pair_coeff 1 29 harmonic/cut 0.2 3.2 
+pair_coeff 1 30 harmonic/cut 0.2 3.2 
+pair_coeff 1 50 harmonic/cut 0.2 3.2 
+pair_coeff 1 59 harmonic/cut 0.2 3.2 
+pair_coeff 1 82 harmonic/cut 0.2 3.2 
+pair_coeff 1 84 harmonic/cut 0.2 3.2 
+pair_coeff 1 85 harmonic/cut 0.2 3.2 
+pair_coeff 1 86 harmonic/cut 0.2 3.2 
+pair_coeff 1 31 harmonic/cut 0.2 3.2 
+pair_coeff 1 32 harmonic/cut 0.2 3.2 
+pair_coeff 1 33 harmonic/cut 0.2 3.2 
+pair_coeff 1 34 harmonic/cut 0.2 3.2 
+pair_coeff 1 35 harmonic/cut 0.2 3.2 
+pair_coeff 1 36 harmonic/cut 0.2 3.2 
+pair_coeff 1 45 harmonic/cut 0.2 3.2 
+pair_coeff 1 61 harmonic/cut 0.2 3.2 
+pair_coeff 1 62 harmonic/cut 0.2 3.2 
+pair_coeff 1 63 harmonic/cut 0.2 3.2 
+pair_coeff 1 64 harmonic/cut 0.2 3.2 
+pair_coeff 1 65 harmonic/cut 0.2 3.2 
+pair_coeff 1 68 harmonic/cut 0.2 3.2 
+pair_coeff 1 69 harmonic/cut 0.2 3.2 
+pair_coeff 1 70 harmonic/cut 0.2 3.2 
+pair_coeff 1 71 harmonic/cut 0.2 3.2 
+pair_coeff 1 72 harmonic/cut 0.2 3.2 
+pair_coeff 1 49 harmonic/cut 0.2 3.2 
+pair_coeff 1 58 harmonic/cut 0.2 3.2 
+pair_coeff 1 67 harmonic/cut 0.2 3.2 
+pair_coeff 1 75 harmonic/cut 0.2 3.2 
+pair_coeff 1 78 harmonic/cut 0.2 3.2 
+pair_coeff 1 48 harmonic/cut 0.2 3.2 
+pair_coeff 1 54 harmonic/cut 0.2 3.2 
+pair_coeff 1 57 harmonic/cut 0.2 3.2 
+pair_coeff 1 81 harmonic/cut 0.2 3.2 
+pair_coeff 1 88 harmonic/cut 0.2 3.2 
+pair_coeff 1 44 harmonic/cut 0.2 3.2 
+pair_coeff 1 74 harmonic/cut 0.2 3.2 
+pair_coeff 1 76 harmonic/cut 0.2 3.2 
+pair_coeff 1 52 harmonic/cut 0.2 3.2 
+pair_coeff 1 66 harmonic/cut 0.2 3.2 
+pair_coeff 1 80 harmonic/cut 0.2 3.2 
+pair_coeff 1 87 harmonic/cut 0.2 3.2 
+pair_coeff 1 51 harmonic/cut 0.2 3.2 
+pair_coeff 1 53 harmonic/cut 0.2 3.2 
+pair_coeff 1 77 harmonic/cut 0.2 3.2 
+pair_coeff 1 43 harmonic/cut 0.2 3.2 
+pair_coeff 1 60 harmonic/cut 0.2 3.2 
+pair_coeff 1 73 harmonic/cut 0.2 3.2 
+pair_coeff 1 83 harmonic/cut 0.2 3.2 
+pair_coeff 1 55 harmonic/cut 0.2 3.2 
+pair_coeff 1 56 harmonic/cut 0.2 3.2 
+pair_coeff 1 46 harmonic/cut 0.2 3.2 
+pair_coeff 1 47 harmonic/cut 0.2 3.2 
+pair_coeff 1 79 harmonic/cut 0.2 3.2 
+pair_coeff 2 37 harmonic/cut 0.2 3.2 
+pair_coeff 2 38 harmonic/cut 0.2 3.2 
+pair_coeff 2 39 harmonic/cut 0.2 3.2 
+pair_coeff 2 40 harmonic/cut 0.2 3.2 
+pair_coeff 2 41 harmonic/cut 0.2 3.2 
+pair_coeff 2 42 harmonic/cut 0.2 3.2 
+pair_coeff 2 50 harmonic/cut 0.2 3.2 
+pair_coeff 2 59 harmonic/cut 0.2 3.2 
+pair_coeff 2 82 harmonic/cut 0.2 3.2 
+pair_coeff 2 84 harmonic/cut 0.2 3.2 
+pair_coeff 2 85 harmonic/cut 0.2 3.2 
+pair_coeff 2 86 harmonic/cut 0.2 3.2 
+pair_coeff 2 31 harmonic/cut 0.2 3.2 
+pair_coeff 2 32 harmonic/cut 0.2 3.2 
+pair_coeff 2 33 harmonic/cut 0.2 3.2 
+pair_coeff 2 34 harmonic/cut 0.2 3.2 
+pair_coeff 2 35 harmonic/cut 0.2 3.2 
+pair_coeff 2 36 harmonic/cut 0.2 3.2 
+pair_coeff 2 45 harmonic/cut 0.2 3.2 
+pair_coeff 2 61 harmonic/cut 0.2 3.2 
+pair_coeff 2 62 harmonic/cut 0.2 3.2 
+pair_coeff 2 63 harmonic/cut 0.2 3.2 
+pair_coeff 2 64 harmonic/cut 0.2 3.2 
+pair_coeff 2 65 harmonic/cut 0.2 3.2 
+pair_coeff 2 68 harmonic/cut 0.2 3.2 
+pair_coeff 2 69 harmonic/cut 0.2 3.2 
+pair_coeff 2 70 harmonic/cut 0.2 3.2 
+pair_coeff 2 71 harmonic/cut 0.2 3.2 
+pair_coeff 2 72 harmonic/cut 0.2 3.2 
+pair_coeff 2 49 harmonic/cut 0.2 3.2 
+pair_coeff 2 58 harmonic/cut 0.2 3.2 
+pair_coeff 2 67 harmonic/cut 0.2 3.2 
+pair_coeff 2 75 harmonic/cut 0.2 3.2 
+pair_coeff 2 78 harmonic/cut 0.2 3.2 
+pair_coeff 2 48 harmonic/cut 0.2 3.2 
+pair_coeff 2 54 harmonic/cut 0.2 3.2 
+pair_coeff 2 57 harmonic/cut 0.2 3.2 
+pair_coeff 2 81 harmonic/cut 0.2 3.2 
+pair_coeff 2 88 harmonic/cut 0.2 3.2 
+pair_coeff 2 44 harmonic/cut 0.2 3.2 
+pair_coeff 2 74 harmonic/cut 0.2 3.2 
+pair_coeff 2 76 harmonic/cut 0.2 3.2 
+pair_coeff 2 52 harmonic/cut 0.2 3.2 
+pair_coeff 2 66 harmonic/cut 0.2 3.2 
+pair_coeff 2 80 harmonic/cut 0.2 3.2 
+pair_coeff 2 87 harmonic/cut 0.2 3.2 
+pair_coeff 2 51 harmonic/cut 0.2 3.2 
+pair_coeff 2 53 harmonic/cut 0.2 3.2 
+pair_coeff 2 77 harmonic/cut 0.2 3.2 
+pair_coeff 2 43 harmonic/cut 0.2 3.2 
+pair_coeff 2 60 harmonic/cut 0.2 3.2 
+pair_coeff 2 73 harmonic/cut 0.2 3.2 
+pair_coeff 2 83 harmonic/cut 0.2 3.2 
+pair_coeff 2 55 harmonic/cut 0.2 3.2 
+pair_coeff 2 56 harmonic/cut 0.2 3.2 
+pair_coeff 2 46 harmonic/cut 0.2 3.2 
+pair_coeff 2 47 harmonic/cut 0.2 3.2 
+pair_coeff 2 79 harmonic/cut 0.2 3.2 
+pair_coeff 3 37 harmonic/cut 0.2 3.2 
+pair_coeff 3 38 harmonic/cut 0.2 3.2 
+pair_coeff 3 39 harmonic/cut 0.2 3.2 
+pair_coeff 3 40 harmonic/cut 0.2 3.2 
+pair_coeff 3 41 harmonic/cut 0.2 3.2 
+pair_coeff 3 42 harmonic/cut 0.2 3.2 
+pair_coeff 3 25 harmonic/cut 0.2 3.2 
+pair_coeff 3 26 harmonic/cut 0.2 3.2 
+pair_coeff 3 27 harmonic/cut 0.2 3.2 
+pair_coeff 3 28 harmonic/cut 0.2 3.2 
+pair_coeff 3 29 harmonic/cut 0.2 3.2 
+pair_coeff 3 30 harmonic/cut 0.2 3.2 
+pair_coeff 3 31 harmonic/cut 0.2 3.2 
+pair_coeff 3 32 harmonic/cut 0.2 3.2 
+pair_coeff 3 33 harmonic/cut 0.2 3.2 
+pair_coeff 3 34 harmonic/cut 0.2 3.2 
+pair_coeff 3 35 harmonic/cut 0.2 3.2 
+pair_coeff 3 36 harmonic/cut 0.2 3.2 
+pair_coeff 3 45 harmonic/cut 0.2 3.2 
+pair_coeff 3 61 harmonic/cut 0.2 3.2 
+pair_coeff 3 62 harmonic/cut 0.2 3.2 
+pair_coeff 3 63 harmonic/cut 0.2 3.2 
+pair_coeff 3 64 harmonic/cut 0.2 3.2 
+pair_coeff 3 65 harmonic/cut 0.2 3.2 
+pair_coeff 3 68 harmonic/cut 0.2 3.2 
+pair_coeff 3 69 harmonic/cut 0.2 3.2 
+pair_coeff 3 70 harmonic/cut 0.2 3.2 
+pair_coeff 3 71 harmonic/cut 0.2 3.2 
+pair_coeff 3 72 harmonic/cut 0.2 3.2 
+pair_coeff 3 49 harmonic/cut 0.2 3.2 
+pair_coeff 3 58 harmonic/cut 0.2 3.2 
+pair_coeff 3 67 harmonic/cut 0.2 3.2 
+pair_coeff 3 75 harmonic/cut 0.2 3.2 
+pair_coeff 3 78 harmonic/cut 0.2 3.2 
+pair_coeff 3 48 harmonic/cut 0.2 3.2 
+pair_coeff 3 54 harmonic/cut 0.2 3.2 
+pair_coeff 3 57 harmonic/cut 0.2 3.2 
+pair_coeff 3 81 harmonic/cut 0.2 3.2 
+pair_coeff 3 88 harmonic/cut 0.2 3.2 
+pair_coeff 3 44 harmonic/cut 0.2 3.2 
+pair_coeff 3 74 harmonic/cut 0.2 3.2 
+pair_coeff 3 76 harmonic/cut 0.2 3.2 
+pair_coeff 3 52 harmonic/cut 0.2 3.2 
+pair_coeff 3 66 harmonic/cut 0.2 3.2 
+pair_coeff 3 80 harmonic/cut 0.2 3.2 
+pair_coeff 3 87 harmonic/cut 0.2 3.2 
+pair_coeff 3 51 harmonic/cut 0.2 3.2 
+pair_coeff 3 53 harmonic/cut 0.2 3.2 
+pair_coeff 3 77 harmonic/cut 0.2 3.2 
+pair_coeff 3 43 harmonic/cut 0.2 3.2 
+pair_coeff 3 60 harmonic/cut 0.2 3.2 
+pair_coeff 3 73 harmonic/cut 0.2 3.2 
+pair_coeff 3 83 harmonic/cut 0.2 3.2 
+pair_coeff 3 55 harmonic/cut 0.2 3.2 
+pair_coeff 3 56 harmonic/cut 0.2 3.2 
+pair_coeff 3 46 harmonic/cut 0.2 3.2 
+pair_coeff 3 47 harmonic/cut 0.2 3.2 
+pair_coeff 3 79 harmonic/cut 0.2 3.2 
+pair_coeff 4 37 harmonic/cut 0.2 3.2 
+pair_coeff 4 38 harmonic/cut 0.2 3.2 
+pair_coeff 4 39 harmonic/cut 0.2 3.2 
+pair_coeff 4 40 harmonic/cut 0.2 3.2 
+pair_coeff 4 41 harmonic/cut 0.2 3.2 
+pair_coeff 4 42 harmonic/cut 0.2 3.2 
+pair_coeff 4 25 harmonic/cut 0.2 3.2 
+pair_coeff 4 26 harmonic/cut 0.2 3.2 
+pair_coeff 4 27 harmonic/cut 0.2 3.2 
+pair_coeff 4 28 harmonic/cut 0.2 3.2 
+pair_coeff 4 29 harmonic/cut 0.2 3.2 
+pair_coeff 4 30 harmonic/cut 0.2 3.2 
+pair_coeff 4 50 harmonic/cut 0.2 3.2 
+pair_coeff 4 59 harmonic/cut 0.2 3.2 
+pair_coeff 4 82 harmonic/cut 0.2 3.2 
+pair_coeff 4 84 harmonic/cut 0.2 3.2 
+pair_coeff 4 85 harmonic/cut 0.2 3.2 
+pair_coeff 4 86 harmonic/cut 0.2 3.2 
+pair_coeff 4 45 harmonic/cut 0.2 3.2 
+pair_coeff 4 61 harmonic/cut 0.2 3.2 
+pair_coeff 4 62 harmonic/cut 0.2 3.2 
+pair_coeff 4 63 harmonic/cut 0.2 3.2 
+pair_coeff 4 64 harmonic/cut 0.2 3.2 
+pair_coeff 4 65 harmonic/cut 0.2 3.2 
+pair_coeff 4 68 harmonic/cut 0.2 3.2 
+pair_coeff 4 69 harmonic/cut 0.2 3.2 
+pair_coeff 4 70 harmonic/cut 0.2 3.2 
+pair_coeff 4 71 harmonic/cut 0.2 3.2 
+pair_coeff 4 72 harmonic/cut 0.2 3.2 
+pair_coeff 4 49 harmonic/cut 0.2 3.2 
+pair_coeff 4 58 harmonic/cut 0.2 3.2 
+pair_coeff 4 67 harmonic/cut 0.2 3.2 
+pair_coeff 4 75 harmonic/cut 0.2 3.2 
+pair_coeff 4 78 harmonic/cut 0.2 3.2 
+pair_coeff 4 48 harmonic/cut 0.2 3.2 
+pair_coeff 4 54 harmonic/cut 0.2 3.2 
+pair_coeff 4 57 harmonic/cut 0.2 3.2 
+pair_coeff 4 81 harmonic/cut 0.2 3.2 
+pair_coeff 4 88 harmonic/cut 0.2 3.2 
+pair_coeff 4 44 harmonic/cut 0.2 3.2 
+pair_coeff 4 74 harmonic/cut 0.2 3.2 
+pair_coeff 4 76 harmonic/cut 0.2 3.2 
+pair_coeff 4 52 harmonic/cut 0.2 3.2 
+pair_coeff 4 66 harmonic/cut 0.2 3.2 
+pair_coeff 4 80 harmonic/cut 0.2 3.2 
+pair_coeff 4 87 harmonic/cut 0.2 3.2 
+pair_coeff 4 51 harmonic/cut 0.2 3.2 
+pair_coeff 4 53 harmonic/cut 0.2 3.2 
+pair_coeff 4 77 harmonic/cut 0.2 3.2 
+pair_coeff 4 43 harmonic/cut 0.2 3.2 
+pair_coeff 4 60 harmonic/cut 0.2 3.2 
+pair_coeff 4 73 harmonic/cut 0.2 3.2 
+pair_coeff 4 83 harmonic/cut 0.2 3.2 
+pair_coeff 4 55 harmonic/cut 0.2 3.2 
+pair_coeff 4 56 harmonic/cut 0.2 3.2 
+pair_coeff 4 46 harmonic/cut 0.2 3.2 
+pair_coeff 4 47 harmonic/cut 0.2 3.2 
+pair_coeff 4 79 harmonic/cut 0.2 3.2 
+pair_coeff 5 37 harmonic/cut 0.2 3.2 
+pair_coeff 5 38 harmonic/cut 0.2 3.2 
+pair_coeff 5 39 harmonic/cut 0.2 3.2 
+pair_coeff 5 40 harmonic/cut 0.2 3.2 
+pair_coeff 5 41 harmonic/cut 0.2 3.2 
+pair_coeff 5 42 harmonic/cut 0.2 3.2 
+pair_coeff 5 25 harmonic/cut 0.2 3.2 
+pair_coeff 5 26 harmonic/cut 0.2 3.2 
+pair_coeff 5 27 harmonic/cut 0.2 3.2 
+pair_coeff 5 28 harmonic/cut 0.2 3.2 
+pair_coeff 5 29 harmonic/cut 0.2 3.2 
+pair_coeff 5 30 harmonic/cut 0.2 3.2 
+pair_coeff 5 50 harmonic/cut 0.2 3.2 
+pair_coeff 5 59 harmonic/cut 0.2 3.2 
+pair_coeff 5 82 harmonic/cut 0.2 3.2 
+pair_coeff 5 84 harmonic/cut 0.2 3.2 
+pair_coeff 5 85 harmonic/cut 0.2 3.2 
+pair_coeff 5 86 harmonic/cut 0.2 3.2 
+pair_coeff 5 31 harmonic/cut 0.2 3.2 
+pair_coeff 5 32 harmonic/cut 0.2 3.2 
+pair_coeff 5 33 harmonic/cut 0.2 3.2 
+pair_coeff 5 34 harmonic/cut 0.2 3.2 
+pair_coeff 5 35 harmonic/cut 0.2 3.2 
+pair_coeff 5 36 harmonic/cut 0.2 3.2 
+pair_coeff 5 68 harmonic/cut 0.2 3.2 
+pair_coeff 5 69 harmonic/cut 0.2 3.2 
+pair_coeff 5 70 harmonic/cut 0.2 3.2 
+pair_coeff 5 71 harmonic/cut 0.2 3.2 
+pair_coeff 5 72 harmonic/cut 0.2 3.2 
+pair_coeff 5 49 harmonic/cut 0.2 3.2 
+pair_coeff 5 58 harmonic/cut 0.2 3.2 
+pair_coeff 5 67 harmonic/cut 0.2 3.2 
+pair_coeff 5 75 harmonic/cut 0.2 3.2 
+pair_coeff 5 78 harmonic/cut 0.2 3.2 
+pair_coeff 5 48 harmonic/cut 0.2 3.2 
+pair_coeff 5 54 harmonic/cut 0.2 3.2 
+pair_coeff 5 57 harmonic/cut 0.2 3.2 
+pair_coeff 5 81 harmonic/cut 0.2 3.2 
+pair_coeff 5 88 harmonic/cut 0.2 3.2 
+pair_coeff 5 44 harmonic/cut 0.2 3.2 
+pair_coeff 5 74 harmonic/cut 0.2 3.2 
+pair_coeff 5 76 harmonic/cut 0.2 3.2 
+pair_coeff 5 52 harmonic/cut 0.2 3.2 
+pair_coeff 5 66 harmonic/cut 0.2 3.2 
+pair_coeff 5 80 harmonic/cut 0.2 3.2 
+pair_coeff 5 87 harmonic/cut 0.2 3.2 
+pair_coeff 5 51 harmonic/cut 0.2 3.2 
+pair_coeff 5 53 harmonic/cut 0.2 3.2 
+pair_coeff 5 77 harmonic/cut 0.2 3.2 
+pair_coeff 5 43 harmonic/cut 0.2 3.2 
+pair_coeff 5 60 harmonic/cut 0.2 3.2 
+pair_coeff 5 73 harmonic/cut 0.2 3.2 
+pair_coeff 5 83 harmonic/cut 0.2 3.2 
+pair_coeff 5 55 harmonic/cut 0.2 3.2 
+pair_coeff 5 56 harmonic/cut 0.2 3.2 
+pair_coeff 5 46 harmonic/cut 0.2 3.2 
+pair_coeff 5 47 harmonic/cut 0.2 3.2 
+pair_coeff 5 79 harmonic/cut 0.2 3.2 
+pair_coeff 6 37 harmonic/cut 0.2 3.2 
+pair_coeff 6 38 harmonic/cut 0.2 3.2 
+pair_coeff 6 39 harmonic/cut 0.2 3.2 
+pair_coeff 6 40 harmonic/cut 0.2 3.2 
+pair_coeff 6 41 harmonic/cut 0.2 3.2 
+pair_coeff 6 42 harmonic/cut 0.2 3.2 
+pair_coeff 6 25 harmonic/cut 0.2 3.2 
+pair_coeff 6 26 harmonic/cut 0.2 3.2 
+pair_coeff 6 27 harmonic/cut 0.2 3.2 
+pair_coeff 6 28 harmonic/cut 0.2 3.2 
+pair_coeff 6 29 harmonic/cut 0.2 3.2 
+pair_coeff 6 30 harmonic/cut 0.2 3.2 
+pair_coeff 6 50 harmonic/cut 0.2 3.2 
+pair_coeff 6 59 harmonic/cut 0.2 3.2 
+pair_coeff 6 82 harmonic/cut 0.2 3.2 
+pair_coeff 6 84 harmonic/cut 0.2 3.2 
+pair_coeff 6 85 harmonic/cut 0.2 3.2 
+pair_coeff 6 86 harmonic/cut 0.2 3.2 
+pair_coeff 6 31 harmonic/cut 0.2 3.2 
+pair_coeff 6 32 harmonic/cut 0.2 3.2 
+pair_coeff 6 33 harmonic/cut 0.2 3.2 
+pair_coeff 6 34 harmonic/cut 0.2 3.2 
+pair_coeff 6 35 harmonic/cut 0.2 3.2 
+pair_coeff 6 36 harmonic/cut 0.2 3.2 
+pair_coeff 6 45 harmonic/cut 0.2 3.2 
+pair_coeff 6 62 harmonic/cut 0.2 3.2 
+pair_coeff 6 63 harmonic/cut 0.2 3.2 
+pair_coeff 6 64 harmonic/cut 0.2 3.2 
+pair_coeff 6 65 harmonic/cut 0.2 3.2 
+pair_coeff 6 49 harmonic/cut 0.2 3.2 
+pair_coeff 6 58 harmonic/cut 0.2 3.2 
+pair_coeff 6 67 harmonic/cut 0.2 3.2 
+pair_coeff 6 75 harmonic/cut 0.2 3.2 
+pair_coeff 6 78 harmonic/cut 0.2 3.2 
+pair_coeff 6 48 harmonic/cut 0.2 3.2 
+pair_coeff 6 54 harmonic/cut 0.2 3.2 
+pair_coeff 6 57 harmonic/cut 0.2 3.2 
+pair_coeff 6 81 harmonic/cut 0.2 3.2 
+pair_coeff 6 88 harmonic/cut 0.2 3.2 
+pair_coeff 6 44 harmonic/cut 0.2 3.2 
+pair_coeff 6 74 harmonic/cut 0.2 3.2 
+pair_coeff 6 76 harmonic/cut 0.2 3.2 
+pair_coeff 6 52 harmonic/cut 0.2 3.2 
+pair_coeff 6 66 harmonic/cut 0.2 3.2 
+pair_coeff 6 80 harmonic/cut 0.2 3.2 
+pair_coeff 6 87 harmonic/cut 0.2 3.2 
+pair_coeff 6 51 harmonic/cut 0.2 3.2 
+pair_coeff 6 53 harmonic/cut 0.2 3.2 
+pair_coeff 6 77 harmonic/cut 0.2 3.2 
+pair_coeff 6 43 harmonic/cut 0.2 3.2 
+pair_coeff 6 60 harmonic/cut 0.2 3.2 
+pair_coeff 6 73 harmonic/cut 0.2 3.2 
+pair_coeff 6 83 harmonic/cut 0.2 3.2 
+pair_coeff 6 55 harmonic/cut 0.2 3.2 
+pair_coeff 6 56 harmonic/cut 0.2 3.2 
+pair_coeff 6 46 harmonic/cut 0.2 3.2 
+pair_coeff 6 47 harmonic/cut 0.2 3.2 
+pair_coeff 6 79 harmonic/cut 0.2 3.2 
+pair_coeff 7 37 harmonic/cut 0.2 3.2 
+pair_coeff 7 38 harmonic/cut 0.2 3.2 
+pair_coeff 7 39 harmonic/cut 0.2 3.2 
+pair_coeff 7 40 harmonic/cut 0.2 3.2 
+pair_coeff 7 41 harmonic/cut 0.2 3.2 
+pair_coeff 7 42 harmonic/cut 0.2 3.2 
+pair_coeff 7 25 harmonic/cut 0.2 3.2 
+pair_coeff 7 26 harmonic/cut 0.2 3.2 
+pair_coeff 7 27 harmonic/cut 0.2 3.2 
+pair_coeff 7 28 harmonic/cut 0.2 3.2 
+pair_coeff 7 29 harmonic/cut 0.2 3.2 
+pair_coeff 7 30 harmonic/cut 0.2 3.2 
+pair_coeff 7 50 harmonic/cut 0.2 3.2 
+pair_coeff 7 59 harmonic/cut 0.2 3.2 
+pair_coeff 7 82 harmonic/cut 0.2 3.2 
+pair_coeff 7 84 harmonic/cut 0.2 3.2 
+pair_coeff 7 85 harmonic/cut 0.2 3.2 
+pair_coeff 7 86 harmonic/cut 0.2 3.2 
+pair_coeff 7 31 harmonic/cut 0.2 3.2 
+pair_coeff 7 32 harmonic/cut 0.2 3.2 
+pair_coeff 7 33 harmonic/cut 0.2 3.2 
+pair_coeff 7 34 harmonic/cut 0.2 3.2 
+pair_coeff 7 35 harmonic/cut 0.2 3.2 
+pair_coeff 7 45 harmonic/cut 0.2 3.2 
+pair_coeff 7 61 harmonic/cut 0.2 3.2 
+pair_coeff 7 62 harmonic/cut 0.2 3.2 
+pair_coeff 7 63 harmonic/cut 0.2 3.2 
+pair_coeff 7 64 harmonic/cut 0.2 3.2 
+pair_coeff 7 65 harmonic/cut 0.2 3.2 
+pair_coeff 7 68 harmonic/cut 0.2 3.2 
+pair_coeff 7 69 harmonic/cut 0.2 3.2 
+pair_coeff 7 70 harmonic/cut 0.2 3.2 
+pair_coeff 7 71 harmonic/cut 0.2 3.2 
+pair_coeff 7 72 harmonic/cut 0.2 3.2 
+pair_coeff 7 48 harmonic/cut 0.2 3.2 
+pair_coeff 7 54 harmonic/cut 0.2 3.2 
+pair_coeff 7 57 harmonic/cut 0.2 3.2 
+pair_coeff 7 81 harmonic/cut 0.2 3.2 
+pair_coeff 7 88 harmonic/cut 0.2 3.2 
+pair_coeff 7 44 harmonic/cut 0.2 3.2 
+pair_coeff 7 74 harmonic/cut 0.2 3.2 
+pair_coeff 7 76 harmonic/cut 0.2 3.2 
+pair_coeff 7 52 harmonic/cut 0.2 3.2 
+pair_coeff 7 66 harmonic/cut 0.2 3.2 
+pair_coeff 7 80 harmonic/cut 0.2 3.2 
+pair_coeff 7 87 harmonic/cut 0.2 3.2 
+pair_coeff 7 51 harmonic/cut 0.2 3.2 
+pair_coeff 7 53 harmonic/cut 0.2 3.2 
+pair_coeff 7 77 harmonic/cut 0.2 3.2 
+pair_coeff 7 43 harmonic/cut 0.2 3.2 
+pair_coeff 7 60 harmonic/cut 0.2 3.2 
+pair_coeff 7 73 harmonic/cut 0.2 3.2 
+pair_coeff 7 83 harmonic/cut 0.2 3.2 
+pair_coeff 7 55 harmonic/cut 0.2 3.2 
+pair_coeff 7 56 harmonic/cut 0.2 3.2 
+pair_coeff 7 46 harmonic/cut 0.2 3.2 
+pair_coeff 7 47 harmonic/cut 0.2 3.2 
+pair_coeff 7 79 harmonic/cut 0.2 3.2 
+pair_coeff 8 37 harmonic/cut 0.2 3.2 
+pair_coeff 8 38 harmonic/cut 0.2 3.2 
+pair_coeff 8 39 harmonic/cut 0.2 3.2 
+pair_coeff 8 40 harmonic/cut 0.2 3.2 
+pair_coeff 8 41 harmonic/cut 0.2 3.2 
+pair_coeff 8 42 harmonic/cut 0.2 3.2 
+pair_coeff 8 25 harmonic/cut 0.2 3.2 
+pair_coeff 8 26 harmonic/cut 0.2 3.2 
+pair_coeff 8 27 harmonic/cut 0.2 3.2 
+pair_coeff 8 28 harmonic/cut 0.2 3.2 
+pair_coeff 8 29 harmonic/cut 0.2 3.2 
+pair_coeff 8 30 harmonic/cut 0.2 3.2 
+pair_coeff 8 50 harmonic/cut 0.2 3.2 
+pair_coeff 8 59 harmonic/cut 0.2 3.2 
+pair_coeff 8 82 harmonic/cut 0.2 3.2 
+pair_coeff 8 84 harmonic/cut 0.2 3.2 
+pair_coeff 8 85 harmonic/cut 0.2 3.2 
+pair_coeff 8 86 harmonic/cut 0.2 3.2 
+pair_coeff 8 31 harmonic/cut 0.2 3.2 
+pair_coeff 8 32 harmonic/cut 0.2 3.2 
+pair_coeff 8 33 harmonic/cut 0.2 3.2 
+pair_coeff 8 34 harmonic/cut 0.2 3.2 
+pair_coeff 8 36 harmonic/cut 0.2 3.2 
+pair_coeff 8 45 harmonic/cut 0.2 3.2 
+pair_coeff 8 61 harmonic/cut 0.2 3.2 
+pair_coeff 8 62 harmonic/cut 0.2 3.2 
+pair_coeff 8 63 harmonic/cut 0.2 3.2 
+pair_coeff 8 64 harmonic/cut 0.2 3.2 
+pair_coeff 8 65 harmonic/cut 0.2 3.2 
+pair_coeff 8 68 harmonic/cut 0.2 3.2 
+pair_coeff 8 69 harmonic/cut 0.2 3.2 
+pair_coeff 8 70 harmonic/cut 0.2 3.2 
+pair_coeff 8 71 harmonic/cut 0.2 3.2 
+pair_coeff 8 72 harmonic/cut 0.2 3.2 
+pair_coeff 8 49 harmonic/cut 0.2 3.2 
+pair_coeff 8 58 harmonic/cut 0.2 3.2 
+pair_coeff 8 67 harmonic/cut 0.2 3.2 
+pair_coeff 8 75 harmonic/cut 0.2 3.2 
+pair_coeff 8 78 harmonic/cut 0.2 3.2 
+pair_coeff 8 44 harmonic/cut 0.2 3.2 
+pair_coeff 8 74 harmonic/cut 0.2 3.2 
+pair_coeff 8 76 harmonic/cut 0.2 3.2 
+pair_coeff 8 52 harmonic/cut 0.2 3.2 
+pair_coeff 8 66 harmonic/cut 0.2 3.2 
+pair_coeff 8 80 harmonic/cut 0.2 3.2 
+pair_coeff 8 87 harmonic/cut 0.2 3.2 
+pair_coeff 8 51 harmonic/cut 0.2 3.2 
+pair_coeff 8 53 harmonic/cut 0.2 3.2 
+pair_coeff 8 77 harmonic/cut 0.2 3.2 
+pair_coeff 8 43 harmonic/cut 0.2 3.2 
+pair_coeff 8 60 harmonic/cut 0.2 3.2 
+pair_coeff 8 73 harmonic/cut 0.2 3.2 
+pair_coeff 8 83 harmonic/cut 0.2 3.2 
+pair_coeff 8 55 harmonic/cut 0.2 3.2 
+pair_coeff 8 56 harmonic/cut 0.2 3.2 
+pair_coeff 8 46 harmonic/cut 0.2 3.2 
+pair_coeff 8 47 harmonic/cut 0.2 3.2 
+pair_coeff 8 79 harmonic/cut 0.2 3.2 
+pair_coeff 9 37 harmonic/cut 0.2 3.2 
+pair_coeff 9 38 harmonic/cut 0.2 3.2 
+pair_coeff 9 39 harmonic/cut 0.2 3.2 
+pair_coeff 9 40 harmonic/cut 0.2 3.2 
+pair_coeff 9 41 harmonic/cut 0.2 3.2 
+pair_coeff 9 42 harmonic/cut 0.2 3.2 
+pair_coeff 9 25 harmonic/cut 0.2 3.2 
+pair_coeff 9 26 harmonic/cut 0.2 3.2 
+pair_coeff 9 27 harmonic/cut 0.2 3.2 
+pair_coeff 9 28 harmonic/cut 0.2 3.2 
+pair_coeff 9 29 harmonic/cut 0.2 3.2 
+pair_coeff 9 30 harmonic/cut 0.2 3.2 
+pair_coeff 9 50 harmonic/cut 0.2 3.2 
+pair_coeff 9 59 harmonic/cut 0.2 3.2 
+pair_coeff 9 82 harmonic/cut 0.2 3.2 
+pair_coeff 9 84 harmonic/cut 0.2 3.2 
+pair_coeff 9 85 harmonic/cut 0.2 3.2 
+pair_coeff 9 86 harmonic/cut 0.2 3.2 
+pair_coeff 9 32 harmonic/cut 0.2 3.2 
+pair_coeff 9 33 harmonic/cut 0.2 3.2 
+pair_coeff 9 34 harmonic/cut 0.2 3.2 
+pair_coeff 9 35 harmonic/cut 0.2 3.2 
+pair_coeff 9 36 harmonic/cut 0.2 3.2 
+pair_coeff 9 45 harmonic/cut 0.2 3.2 
+pair_coeff 9 61 harmonic/cut 0.2 3.2 
+pair_coeff 9 62 harmonic/cut 0.2 3.2 
+pair_coeff 9 64 harmonic/cut 0.2 3.2 
+pair_coeff 9 65 harmonic/cut 0.2 3.2 
+pair_coeff 9 68 harmonic/cut 0.2 3.2 
+pair_coeff 9 69 harmonic/cut 0.2 3.2 
+pair_coeff 9 70 harmonic/cut 0.2 3.2 
+pair_coeff 9 72 harmonic/cut 0.2 3.2 
+pair_coeff 9 49 harmonic/cut 0.2 3.2 
+pair_coeff 9 58 harmonic/cut 0.2 3.2 
+pair_coeff 9 67 harmonic/cut 0.2 3.2 
+pair_coeff 9 75 harmonic/cut 0.2 3.2 
+pair_coeff 9 78 harmonic/cut 0.2 3.2 
+pair_coeff 9 48 harmonic/cut 0.2 3.2 
+pair_coeff 9 54 harmonic/cut 0.2 3.2 
+pair_coeff 9 57 harmonic/cut 0.2 3.2 
+pair_coeff 9 81 harmonic/cut 0.2 3.2 
+pair_coeff 9 88 harmonic/cut 0.2 3.2 
+pair_coeff 9 52 harmonic/cut 0.2 3.2 
+pair_coeff 9 66 harmonic/cut 0.2 3.2 
+pair_coeff 9 80 harmonic/cut 0.2 3.2 
+pair_coeff 9 87 harmonic/cut 0.2 3.2 
+pair_coeff 9 51 harmonic/cut 0.2 3.2 
+pair_coeff 9 53 harmonic/cut 0.2 3.2 
+pair_coeff 9 77 harmonic/cut 0.2 3.2 
+pair_coeff 9 43 harmonic/cut 0.2 3.2 
+pair_coeff 9 60 harmonic/cut 0.2 3.2 
+pair_coeff 9 73 harmonic/cut 0.2 3.2 
+pair_coeff 9 83 harmonic/cut 0.2 3.2 
+pair_coeff 9 55 harmonic/cut 0.2 3.2 
+pair_coeff 9 56 harmonic/cut 0.2 3.2 
+pair_coeff 9 46 harmonic/cut 0.2 3.2 
+pair_coeff 9 47 harmonic/cut 0.2 3.2 
+pair_coeff 9 79 harmonic/cut 0.2 3.2 
+pair_coeff 10 37 harmonic/cut 0.2 3.2 
+pair_coeff 10 38 harmonic/cut 0.2 3.2 
+pair_coeff 10 39 harmonic/cut 0.2 3.2 
+pair_coeff 10 40 harmonic/cut 0.2 3.2 
+pair_coeff 10 41 harmonic/cut 0.2 3.2 
+pair_coeff 10 25 harmonic/cut 0.2 3.2 
+pair_coeff 10 26 harmonic/cut 0.2 3.2 
+pair_coeff 10 27 harmonic/cut 0.2 3.2 
+pair_coeff 10 28 harmonic/cut 0.2 3.2 
+pair_coeff 10 29 harmonic/cut 0.2 3.2 
+pair_coeff 10 50 harmonic/cut 0.2 3.2 
+pair_coeff 10 59 harmonic/cut 0.2 3.2 
+pair_coeff 10 82 harmonic/cut 0.2 3.2 
+pair_coeff 10 84 harmonic/cut 0.2 3.2 
+pair_coeff 10 85 harmonic/cut 0.2 3.2 
+pair_coeff 10 86 harmonic/cut 0.2 3.2 
+pair_coeff 10 31 harmonic/cut 0.2 3.2 
+pair_coeff 10 32 harmonic/cut 0.2 3.2 
+pair_coeff 10 34 harmonic/cut 0.2 3.2 
+pair_coeff 10 35 harmonic/cut 0.2 3.2 
+pair_coeff 10 36 harmonic/cut 0.2 3.2 
+pair_coeff 10 45 harmonic/cut 0.2 3.2 
+pair_coeff 10 61 harmonic/cut 0.2 3.2 
+pair_coeff 10 62 harmonic/cut 0.2 3.2 
+pair_coeff 10 63 harmonic/cut 0.2 3.2 
+pair_coeff 10 65 harmonic/cut 0.2 3.2 
+pair_coeff 10 68 harmonic/cut 0.2 3.2 
+pair_coeff 10 70 harmonic/cut 0.2 3.2 
+pair_coeff 10 71 harmonic/cut 0.2 3.2 
+pair_coeff 10 72 harmonic/cut 0.2 3.2 
+pair_coeff 10 49 harmonic/cut 0.2 3.2 
+pair_coeff 10 58 harmonic/cut 0.2 3.2 
+pair_coeff 10 67 harmonic/cut 0.2 3.2 
+pair_coeff 10 75 harmonic/cut 0.2 3.2 
+pair_coeff 10 78 harmonic/cut 0.2 3.2 
+pair_coeff 10 48 harmonic/cut 0.2 3.2 
+pair_coeff 10 54 harmonic/cut 0.2 3.2 
+pair_coeff 10 57 harmonic/cut 0.2 3.2 
+pair_coeff 10 81 harmonic/cut 0.2 3.2 
+pair_coeff 10 88 harmonic/cut 0.2 3.2 
+pair_coeff 10 44 harmonic/cut 0.2 3.2 
+pair_coeff 10 74 harmonic/cut 0.2 3.2 
+pair_coeff 10 76 harmonic/cut 0.2 3.2 
+pair_coeff 10 66 harmonic/cut 0.2 3.2 
+pair_coeff 10 80 harmonic/cut 0.2 3.2 
+pair_coeff 10 87 harmonic/cut 0.2 3.2 
+pair_coeff 10 51 harmonic/cut 0.2 3.2 
+pair_coeff 10 53 harmonic/cut 0.2 3.2 
+pair_coeff 10 77 harmonic/cut 0.2 3.2 
+pair_coeff 10 43 harmonic/cut 0.2 3.2 
+pair_coeff 10 60 harmonic/cut 0.2 3.2 
+pair_coeff 10 73 harmonic/cut 0.2 3.2 
+pair_coeff 10 83 harmonic/cut 0.2 3.2 
+pair_coeff 10 55 harmonic/cut 0.2 3.2 
+pair_coeff 10 56 harmonic/cut 0.2 3.2 
+pair_coeff 10 46 harmonic/cut 0.2 3.2 
+pair_coeff 10 47 harmonic/cut 0.2 3.2 
+pair_coeff 10 79 harmonic/cut 0.2 3.2 
+pair_coeff 11 37 harmonic/cut 0.2 3.2 
+pair_coeff 11 38 harmonic/cut 0.2 3.2 
+pair_coeff 11 39 harmonic/cut 0.2 3.2 
+pair_coeff 11 40 harmonic/cut 0.2 3.2 
+pair_coeff 11 41 harmonic/cut 0.2 3.2 
+pair_coeff 11 42 harmonic/cut 0.2 3.2 
+pair_coeff 11 25 harmonic/cut 0.2 3.2 
+pair_coeff 11 26 harmonic/cut 0.2 3.2 
+pair_coeff 11 27 harmonic/cut 0.2 3.2 
+pair_coeff 11 28 harmonic/cut 0.2 3.2 
+pair_coeff 11 29 harmonic/cut 0.2 3.2 
+pair_coeff 11 30 harmonic/cut 0.2 3.2 
+pair_coeff 11 50 harmonic/cut 0.2 3.2 
+pair_coeff 11 59 harmonic/cut 0.2 3.2 
+pair_coeff 11 82 harmonic/cut 0.2 3.2 
+pair_coeff 11 84 harmonic/cut 0.2 3.2 
+pair_coeff 11 85 harmonic/cut 0.2 3.2 
+pair_coeff 11 86 harmonic/cut 0.2 3.2 
+pair_coeff 11 31 harmonic/cut 0.2 3.2 
+pair_coeff 11 33 harmonic/cut 0.2 3.2 
+pair_coeff 11 34 harmonic/cut 0.2 3.2 
+pair_coeff 11 35 harmonic/cut 0.2 3.2 
+pair_coeff 11 36 harmonic/cut 0.2 3.2 
+pair_coeff 11 45 harmonic/cut 0.2 3.2 
+pair_coeff 11 61 harmonic/cut 0.2 3.2 
+pair_coeff 11 63 harmonic/cut 0.2 3.2 
+pair_coeff 11 64 harmonic/cut 0.2 3.2 
+pair_coeff 11 65 harmonic/cut 0.2 3.2 
+pair_coeff 11 69 harmonic/cut 0.2 3.2 
+pair_coeff 11 70 harmonic/cut 0.2 3.2 
+pair_coeff 11 71 harmonic/cut 0.2 3.2 
+pair_coeff 11 72 harmonic/cut 0.2 3.2 
+pair_coeff 11 49 harmonic/cut 0.2 3.2 
+pair_coeff 11 58 harmonic/cut 0.2 3.2 
+pair_coeff 11 67 harmonic/cut 0.2 3.2 
+pair_coeff 11 75 harmonic/cut 0.2 3.2 
+pair_coeff 11 78 harmonic/cut 0.2 3.2 
+pair_coeff 11 48 harmonic/cut 0.2 3.2 
+pair_coeff 11 54 harmonic/cut 0.2 3.2 
+pair_coeff 11 57 harmonic/cut 0.2 3.2 
+pair_coeff 11 81 harmonic/cut 0.2 3.2 
+pair_coeff 11 88 harmonic/cut 0.2 3.2 
+pair_coeff 11 44 harmonic/cut 0.2 3.2 
+pair_coeff 11 74 harmonic/cut 0.2 3.2 
+pair_coeff 11 52 harmonic/cut 0.2 3.2 
+pair_coeff 11 87 harmonic/cut 0.2 3.2 
+pair_coeff 11 51 harmonic/cut 0.2 3.2 
+pair_coeff 11 53 harmonic/cut 0.2 3.2 
+pair_coeff 11 77 harmonic/cut 0.2 3.2 
+pair_coeff 11 43 harmonic/cut 0.2 3.2 
+pair_coeff 11 60 harmonic/cut 0.2 3.2 
+pair_coeff 11 73 harmonic/cut 0.2 3.2 
+pair_coeff 11 83 harmonic/cut 0.2 3.2 
+pair_coeff 11 55 harmonic/cut 0.2 3.2 
+pair_coeff 11 56 harmonic/cut 0.2 3.2 
+pair_coeff 11 46 harmonic/cut 0.2 3.2 
+pair_coeff 11 47 harmonic/cut 0.2 3.2 
+pair_coeff 11 79 harmonic/cut 0.2 3.2 
+pair_coeff 12 37 harmonic/cut 0.2 3.2 
+pair_coeff 12 38 harmonic/cut 0.2 3.2 
+pair_coeff 12 39 harmonic/cut 0.2 3.2 
+pair_coeff 12 40 harmonic/cut 0.2 3.2 
+pair_coeff 12 41 harmonic/cut 0.2 3.2 
+pair_coeff 12 42 harmonic/cut 0.2 3.2 
+pair_coeff 12 25 harmonic/cut 0.2 3.2 
+pair_coeff 12 26 harmonic/cut 0.2 3.2 
+pair_coeff 12 27 harmonic/cut 0.2 3.2 
+pair_coeff 12 28 harmonic/cut 0.2 3.2 
+pair_coeff 12 30 harmonic/cut 0.2 3.2 
+pair_coeff 12 50 harmonic/cut 0.2 3.2 
+pair_coeff 12 59 harmonic/cut 0.2 3.2 
+pair_coeff 12 82 harmonic/cut 0.2 3.2 
+pair_coeff 12 84 harmonic/cut 0.2 3.2 
+pair_coeff 12 85 harmonic/cut 0.2 3.2 
+pair_coeff 12 31 harmonic/cut 0.2 3.2 
+pair_coeff 12 32 harmonic/cut 0.2 3.2 
+pair_coeff 12 33 harmonic/cut 0.2 3.2 
+pair_coeff 12 35 harmonic/cut 0.2 3.2 
+pair_coeff 12 36 harmonic/cut 0.2 3.2 
+pair_coeff 12 45 harmonic/cut 0.2 3.2 
+pair_coeff 12 61 harmonic/cut 0.2 3.2 
+pair_coeff 12 62 harmonic/cut 0.2 3.2 
+pair_coeff 12 63 harmonic/cut 0.2 3.2 
+pair_coeff 12 64 harmonic/cut 0.2 3.2 
+pair_coeff 12 68 harmonic/cut 0.2 3.2 
+pair_coeff 12 69 harmonic/cut 0.2 3.2 
+pair_coeff 12 71 harmonic/cut 0.2 3.2 
+pair_coeff 12 72 harmonic/cut 0.2 3.2 
+pair_coeff 12 49 harmonic/cut 0.2 3.2 
+pair_coeff 12 58 harmonic/cut 0.2 3.2 
+pair_coeff 12 67 harmonic/cut 0.2 3.2 
+pair_coeff 12 75 harmonic/cut 0.2 3.2 
+pair_coeff 12 78 harmonic/cut 0.2 3.2 
+pair_coeff 12 48 harmonic/cut 0.2 3.2 
+pair_coeff 12 54 harmonic/cut 0.2 3.2 
+pair_coeff 12 57 harmonic/cut 0.2 3.2 
+pair_coeff 12 81 harmonic/cut 0.2 3.2 
+pair_coeff 12 88 harmonic/cut 0.2 3.2 
+pair_coeff 12 44 harmonic/cut 0.2 3.2 
+pair_coeff 12 74 harmonic/cut 0.2 3.2 
+pair_coeff 12 76 harmonic/cut 0.2 3.2 
+pair_coeff 12 52 harmonic/cut 0.2 3.2 
+pair_coeff 12 66 harmonic/cut 0.2 3.2 
+pair_coeff 12 80 harmonic/cut 0.2 3.2 
+pair_coeff 12 51 harmonic/cut 0.2 3.2 
+pair_coeff 12 53 harmonic/cut 0.2 3.2 
+pair_coeff 12 77 harmonic/cut 0.2 3.2 
+pair_coeff 12 43 harmonic/cut 0.2 3.2 
+pair_coeff 12 60 harmonic/cut 0.2 3.2 
+pair_coeff 12 73 harmonic/cut 0.2 3.2 
+pair_coeff 12 83 harmonic/cut 0.2 3.2 
+pair_coeff 12 55 harmonic/cut 0.2 3.2 
+pair_coeff 12 56 harmonic/cut 0.2 3.2 
+pair_coeff 12 46 harmonic/cut 0.2 3.2 
+pair_coeff 12 47 harmonic/cut 0.2 3.2 
+pair_coeff 12 79 harmonic/cut 0.2 3.2 
+pair_coeff 13 37 harmonic/cut 0.2 3.2 
+pair_coeff 13 38 harmonic/cut 0.2 3.2 
+pair_coeff 13 39 harmonic/cut 0.2 3.2 
+pair_coeff 13 40 harmonic/cut 0.2 3.2 
+pair_coeff 13 42 harmonic/cut 0.2 3.2 
+pair_coeff 13 25 harmonic/cut 0.2 3.2 
+pair_coeff 13 26 harmonic/cut 0.2 3.2 
+pair_coeff 13 27 harmonic/cut 0.2 3.2 
+pair_coeff 13 28 harmonic/cut 0.2 3.2 
+pair_coeff 13 29 harmonic/cut 0.2 3.2 
+pair_coeff 13 30 harmonic/cut 0.2 3.2 
+pair_coeff 13 50 harmonic/cut 0.2 3.2 
+pair_coeff 13 59 harmonic/cut 0.2 3.2 
+pair_coeff 13 82 harmonic/cut 0.2 3.2 
+pair_coeff 13 85 harmonic/cut 0.2 3.2 
+pair_coeff 13 86 harmonic/cut 0.2 3.2 
+pair_coeff 13 31 harmonic/cut 0.2 3.2 
+pair_coeff 13 32 harmonic/cut 0.2 3.2 
+pair_coeff 13 33 harmonic/cut 0.2 3.2 
+pair_coeff 13 34 harmonic/cut 0.2 3.2 
+pair_coeff 13 35 harmonic/cut 0.2 3.2 
+pair_coeff 13 36 harmonic/cut 0.2 3.2 
+pair_coeff 13 45 harmonic/cut 0.2 3.2 
+pair_coeff 13 61 harmonic/cut 0.2 3.2 
+pair_coeff 13 62 harmonic/cut 0.2 3.2 
+pair_coeff 13 63 harmonic/cut 0.2 3.2 
+pair_coeff 13 64 harmonic/cut 0.2 3.2 
+pair_coeff 13 65 harmonic/cut 0.2 3.2 
+pair_coeff 13 68 harmonic/cut 0.2 3.2 
+pair_coeff 13 69 harmonic/cut 0.2 3.2 
+pair_coeff 13 70 harmonic/cut 0.2 3.2 
+pair_coeff 13 71 harmonic/cut 0.2 3.2 
+pair_coeff 13 72 harmonic/cut 0.2 3.2 
+pair_coeff 13 49 harmonic/cut 0.2 3.2 
+pair_coeff 13 58 harmonic/cut 0.2 3.2 
+pair_coeff 13 67 harmonic/cut 0.2 3.2 
+pair_coeff 13 75 harmonic/cut 0.2 3.2 
+pair_coeff 13 78 harmonic/cut 0.2 3.2 
+pair_coeff 13 48 harmonic/cut 0.2 3.2 
+pair_coeff 13 54 harmonic/cut 0.2 3.2 
+pair_coeff 13 57 harmonic/cut 0.2 3.2 
+pair_coeff 13 81 harmonic/cut 0.2 3.2 
+pair_coeff 13 44 harmonic/cut 0.2 3.2 
+pair_coeff 13 74 harmonic/cut 0.2 3.2 
+pair_coeff 13 76 harmonic/cut 0.2 3.2 
+pair_coeff 13 52 harmonic/cut 0.2 3.2 
+pair_coeff 13 66 harmonic/cut 0.2 3.2 
+pair_coeff 13 80 harmonic/cut 0.2 3.2 
+pair_coeff 13 87 harmonic/cut 0.2 3.2 
+pair_coeff 13 43 harmonic/cut 0.2 3.2 
+pair_coeff 13 60 harmonic/cut 0.2 3.2 
+pair_coeff 13 73 harmonic/cut 0.2 3.2 
+pair_coeff 13 83 harmonic/cut 0.2 3.2 
+pair_coeff 13 55 harmonic/cut 0.2 3.2 
+pair_coeff 13 56 harmonic/cut 0.2 3.2 
+pair_coeff 13 46 harmonic/cut 0.2 3.2 
+pair_coeff 13 47 harmonic/cut 0.2 3.2 
+pair_coeff 13 79 harmonic/cut 0.2 3.2 
+pair_coeff 14 37 harmonic/cut 0.2 3.2 
+pair_coeff 14 38 harmonic/cut 0.2 3.2 
+pair_coeff 14 39 harmonic/cut 0.2 3.2 
+pair_coeff 14 40 harmonic/cut 0.2 3.2 
+pair_coeff 14 41 harmonic/cut 0.2 3.2 
+pair_coeff 14 42 harmonic/cut 0.2 3.2 
+pair_coeff 14 25 harmonic/cut 0.2 3.2 
+pair_coeff 14 26 harmonic/cut 0.2 3.2 
+pair_coeff 14 27 harmonic/cut 0.2 3.2 
+pair_coeff 14 28 harmonic/cut 0.2 3.2 
+pair_coeff 14 29 harmonic/cut 0.2 3.2 
+pair_coeff 14 30 harmonic/cut 0.2 3.2 
+pair_coeff 14 50 harmonic/cut 0.2 3.2 
+pair_coeff 14 59 harmonic/cut 0.2 3.2 
+pair_coeff 14 84 harmonic/cut 0.2 3.2 
+pair_coeff 14 85 harmonic/cut 0.2 3.2 
+pair_coeff 14 86 harmonic/cut 0.2 3.2 
+pair_coeff 14 31 harmonic/cut 0.2 3.2 
+pair_coeff 14 32 harmonic/cut 0.2 3.2 
+pair_coeff 14 33 harmonic/cut 0.2 3.2 
+pair_coeff 14 34 harmonic/cut 0.2 3.2 
+pair_coeff 14 35 harmonic/cut 0.2 3.2 
+pair_coeff 14 36 harmonic/cut 0.2 3.2 
+pair_coeff 14 45 harmonic/cut 0.2 3.2 
+pair_coeff 14 61 harmonic/cut 0.2 3.2 
+pair_coeff 14 62 harmonic/cut 0.2 3.2 
+pair_coeff 14 63 harmonic/cut 0.2 3.2 
+pair_coeff 14 64 harmonic/cut 0.2 3.2 
+pair_coeff 14 65 harmonic/cut 0.2 3.2 
+pair_coeff 14 68 harmonic/cut 0.2 3.2 
+pair_coeff 14 69 harmonic/cut 0.2 3.2 
+pair_coeff 14 70 harmonic/cut 0.2 3.2 
+pair_coeff 14 71 harmonic/cut 0.2 3.2 
+pair_coeff 14 72 harmonic/cut 0.2 3.2 
+pair_coeff 14 49 harmonic/cut 0.2 3.2 
+pair_coeff 14 58 harmonic/cut 0.2 3.2 
+pair_coeff 14 67 harmonic/cut 0.2 3.2 
+pair_coeff 14 75 harmonic/cut 0.2 3.2 
+pair_coeff 14 78 harmonic/cut 0.2 3.2 
+pair_coeff 14 48 harmonic/cut 0.2 3.2 
+pair_coeff 14 54 harmonic/cut 0.2 3.2 
+pair_coeff 14 57 harmonic/cut 0.2 3.2 
+pair_coeff 14 88 harmonic/cut 0.2 3.2 
+pair_coeff 14 44 harmonic/cut 0.2 3.2 
+pair_coeff 14 74 harmonic/cut 0.2 3.2 
+pair_coeff 14 76 harmonic/cut 0.2 3.2 
+pair_coeff 14 52 harmonic/cut 0.2 3.2 
+pair_coeff 14 66 harmonic/cut 0.2 3.2 
+pair_coeff 14 80 harmonic/cut 0.2 3.2 
+pair_coeff 14 87 harmonic/cut 0.2 3.2 
+pair_coeff 14 51 harmonic/cut 0.2 3.2 
+pair_coeff 14 53 harmonic/cut 0.2 3.2 
+pair_coeff 14 77 harmonic/cut 0.2 3.2 
+pair_coeff 14 55 harmonic/cut 0.2 3.2 
+pair_coeff 14 56 harmonic/cut 0.2 3.2 
+pair_coeff 14 46 harmonic/cut 0.2 3.2 
+pair_coeff 14 47 harmonic/cut 0.2 3.2 
+pair_coeff 14 79 harmonic/cut 0.2 3.2 
+pair_coeff 15 37 harmonic/cut 0.2 3.2 
+pair_coeff 15 38 harmonic/cut 0.2 3.2 
+pair_coeff 15 39 harmonic/cut 0.2 3.2 
+pair_coeff 15 40 harmonic/cut 0.2 3.2 
+pair_coeff 15 41 harmonic/cut 0.2 3.2 
+pair_coeff 15 42 harmonic/cut 0.2 3.2 
+pair_coeff 15 25 harmonic/cut 0.2 3.2 
+pair_coeff 15 26 harmonic/cut 0.2 3.2 
+pair_coeff 15 27 harmonic/cut 0.2 3.2 
+pair_coeff 15 28 harmonic/cut 0.2 3.2 
+pair_coeff 15 29 harmonic/cut 0.2 3.2 
+pair_coeff 15 30 harmonic/cut 0.2 3.2 
+pair_coeff 15 50 harmonic/cut 0.2 3.2 
+pair_coeff 15 82 harmonic/cut 0.2 3.2 
+pair_coeff 15 84 harmonic/cut 0.2 3.2 
+pair_coeff 15 85 harmonic/cut 0.2 3.2 
+pair_coeff 15 86 harmonic/cut 0.2 3.2 
+pair_coeff 15 31 harmonic/cut 0.2 3.2 
+pair_coeff 15 32 harmonic/cut 0.2 3.2 
+pair_coeff 15 33 harmonic/cut 0.2 3.2 
+pair_coeff 15 34 harmonic/cut 0.2 3.2 
+pair_coeff 15 35 harmonic/cut 0.2 3.2 
+pair_coeff 15 36 harmonic/cut 0.2 3.2 
+pair_coeff 15 45 harmonic/cut 0.2 3.2 
+pair_coeff 15 61 harmonic/cut 0.2 3.2 
+pair_coeff 15 62 harmonic/cut 0.2 3.2 
+pair_coeff 15 63 harmonic/cut 0.2 3.2 
+pair_coeff 15 64 harmonic/cut 0.2 3.2 
+pair_coeff 15 65 harmonic/cut 0.2 3.2 
+pair_coeff 15 68 harmonic/cut 0.2 3.2 
+pair_coeff 15 69 harmonic/cut 0.2 3.2 
+pair_coeff 15 70 harmonic/cut 0.2 3.2 
+pair_coeff 15 71 harmonic/cut 0.2 3.2 
+pair_coeff 15 72 harmonic/cut 0.2 3.2 
+pair_coeff 15 49 harmonic/cut 0.2 3.2 
+pair_coeff 15 67 harmonic/cut 0.2 3.2 
+pair_coeff 15 75 harmonic/cut 0.2 3.2 
+pair_coeff 15 78 harmonic/cut 0.2 3.2 
+pair_coeff 15 48 harmonic/cut 0.2 3.2 
+pair_coeff 15 54 harmonic/cut 0.2 3.2 
+pair_coeff 15 81 harmonic/cut 0.2 3.2 
+pair_coeff 15 88 harmonic/cut 0.2 3.2 
+pair_coeff 15 44 harmonic/cut 0.2 3.2 
+pair_coeff 15 74 harmonic/cut 0.2 3.2 
+pair_coeff 15 76 harmonic/cut 0.2 3.2 
+pair_coeff 15 52 harmonic/cut 0.2 3.2 
+pair_coeff 15 66 harmonic/cut 0.2 3.2 
+pair_coeff 15 80 harmonic/cut 0.2 3.2 
+pair_coeff 15 87 harmonic/cut 0.2 3.2 
+pair_coeff 15 51 harmonic/cut 0.2 3.2 
+pair_coeff 15 53 harmonic/cut 0.2 3.2 
+pair_coeff 15 77 harmonic/cut 0.2 3.2 
+pair_coeff 15 43 harmonic/cut 0.2 3.2 
+pair_coeff 15 73 harmonic/cut 0.2 3.2 
+pair_coeff 15 83 harmonic/cut 0.2 3.2 
+pair_coeff 15 46 harmonic/cut 0.2 3.2 
+pair_coeff 15 47 harmonic/cut 0.2 3.2 
+pair_coeff 15 79 harmonic/cut 0.2 3.2 
+pair_coeff 16 37 harmonic/cut 0.2 3.2 
+pair_coeff 16 38 harmonic/cut 0.2 3.2 
+pair_coeff 16 39 harmonic/cut 0.2 3.2 
+pair_coeff 16 40 harmonic/cut 0.2 3.2 
+pair_coeff 16 41 harmonic/cut 0.2 3.2 
+pair_coeff 16 42 harmonic/cut 0.2 3.2 
+pair_coeff 16 25 harmonic/cut 0.2 3.2 
+pair_coeff 16 26 harmonic/cut 0.2 3.2 
+pair_coeff 16 27 harmonic/cut 0.2 3.2 
+pair_coeff 16 28 harmonic/cut 0.2 3.2 
+pair_coeff 16 29 harmonic/cut 0.2 3.2 
+pair_coeff 16 30 harmonic/cut 0.2 3.2 
+pair_coeff 16 59 harmonic/cut 0.2 3.2 
+pair_coeff 16 82 harmonic/cut 0.2 3.2 
+pair_coeff 16 84 harmonic/cut 0.2 3.2 
+pair_coeff 16 85 harmonic/cut 0.2 3.2 
+pair_coeff 16 86 harmonic/cut 0.2 3.2 
+pair_coeff 16 31 harmonic/cut 0.2 3.2 
+pair_coeff 16 32 harmonic/cut 0.2 3.2 
+pair_coeff 16 33 harmonic/cut 0.2 3.2 
+pair_coeff 16 34 harmonic/cut 0.2 3.2 
+pair_coeff 16 35 harmonic/cut 0.2 3.2 
+pair_coeff 16 36 harmonic/cut 0.2 3.2 
+pair_coeff 16 45 harmonic/cut 0.2 3.2 
+pair_coeff 16 61 harmonic/cut 0.2 3.2 
+pair_coeff 16 62 harmonic/cut 0.2 3.2 
+pair_coeff 16 63 harmonic/cut 0.2 3.2 
+pair_coeff 16 64 harmonic/cut 0.2 3.2 
+pair_coeff 16 65 harmonic/cut 0.2 3.2 
+pair_coeff 16 68 harmonic/cut 0.2 3.2 
+pair_coeff 16 69 harmonic/cut 0.2 3.2 
+pair_coeff 16 70 harmonic/cut 0.2 3.2 
+pair_coeff 16 71 harmonic/cut 0.2 3.2 
+pair_coeff 16 72 harmonic/cut 0.2 3.2 
+pair_coeff 16 58 harmonic/cut 0.2 3.2 
+pair_coeff 16 67 harmonic/cut 0.2 3.2 
+pair_coeff 16 75 harmonic/cut 0.2 3.2 
+pair_coeff 16 78 harmonic/cut 0.2 3.2 
+pair_coeff 16 54 harmonic/cut 0.2 3.2 
+pair_coeff 16 57 harmonic/cut 0.2 3.2 
+pair_coeff 16 81 harmonic/cut 0.2 3.2 
+pair_coeff 16 88 harmonic/cut 0.2 3.2 
+pair_coeff 16 44 harmonic/cut 0.2 3.2 
+pair_coeff 16 74 harmonic/cut 0.2 3.2 
+pair_coeff 16 76 harmonic/cut 0.2 3.2 
+pair_coeff 16 52 harmonic/cut 0.2 3.2 
+pair_coeff 16 66 harmonic/cut 0.2 3.2 
+pair_coeff 16 80 harmonic/cut 0.2 3.2 
+pair_coeff 16 87 harmonic/cut 0.2 3.2 
+pair_coeff 16 53 harmonic/cut 0.2 3.2 
+pair_coeff 16 77 harmonic/cut 0.2 3.2 
+pair_coeff 16 43 harmonic/cut 0.2 3.2 
+pair_coeff 16 60 harmonic/cut 0.2 3.2 
+pair_coeff 16 73 harmonic/cut 0.2 3.2 
+pair_coeff 16 83 harmonic/cut 0.2 3.2 
+pair_coeff 16 55 harmonic/cut 0.2 3.2 
+pair_coeff 16 56 harmonic/cut 0.2 3.2 
+pair_coeff 16 79 harmonic/cut 0.2 3.2 
+pair_coeff 17 37 harmonic/cut 0.2 3.2 
+pair_coeff 17 39 harmonic/cut 0.2 3.2 
+pair_coeff 17 40 harmonic/cut 0.2 3.2 
+pair_coeff 17 41 harmonic/cut 0.2 3.2 
+pair_coeff 17 42 harmonic/cut 0.2 3.2 
+pair_coeff 17 25 harmonic/cut 0.2 3.2 
+pair_coeff 17 26 harmonic/cut 0.2 3.2 
+pair_coeff 17 27 harmonic/cut 0.2 3.2 
+pair_coeff 17 28 harmonic/cut 0.2 3.2 
+pair_coeff 17 29 harmonic/cut 0.2 3.2 
+pair_coeff 17 30 harmonic/cut 0.2 3.2 
+pair_coeff 17 50 harmonic/cut 0.2 3.2 
+pair_coeff 17 59 harmonic/cut 0.2 3.2 
+pair_coeff 17 82 harmonic/cut 0.2 3.2 
+pair_coeff 17 84 harmonic/cut 0.2 3.2 
+pair_coeff 17 85 harmonic/cut 0.2 3.2 
+pair_coeff 17 86 harmonic/cut 0.2 3.2 
+pair_coeff 17 31 harmonic/cut 0.2 3.2 
+pair_coeff 17 32 harmonic/cut 0.2 3.2 
+pair_coeff 17 33 harmonic/cut 0.2 3.2 
+pair_coeff 17 34 harmonic/cut 0.2 3.2 
+pair_coeff 17 35 harmonic/cut 0.2 3.2 
+pair_coeff 17 36 harmonic/cut 0.2 3.2 
+pair_coeff 17 45 harmonic/cut 0.2 3.2 
+pair_coeff 17 61 harmonic/cut 0.2 3.2 
+pair_coeff 17 62 harmonic/cut 0.2 3.2 
+pair_coeff 17 63 harmonic/cut 0.2 3.2 
+pair_coeff 17 64 harmonic/cut 0.2 3.2 
+pair_coeff 17 65 harmonic/cut 0.2 3.2 
+pair_coeff 17 68 harmonic/cut 0.2 3.2 
+pair_coeff 17 69 harmonic/cut 0.2 3.2 
+pair_coeff 17 70 harmonic/cut 0.2 3.2 
+pair_coeff 17 71 harmonic/cut 0.2 3.2 
+pair_coeff 17 72 harmonic/cut 0.2 3.2 
+pair_coeff 17 49 harmonic/cut 0.2 3.2 
+pair_coeff 17 58 harmonic/cut 0.2 3.2 
+pair_coeff 17 75 harmonic/cut 0.2 3.2 
+pair_coeff 17 78 harmonic/cut 0.2 3.2 
+pair_coeff 17 48 harmonic/cut 0.2 3.2 
+pair_coeff 17 54 harmonic/cut 0.2 3.2 
+pair_coeff 17 57 harmonic/cut 0.2 3.2 
+pair_coeff 17 81 harmonic/cut 0.2 3.2 
+pair_coeff 17 88 harmonic/cut 0.2 3.2 
+pair_coeff 17 44 harmonic/cut 0.2 3.2 
+pair_coeff 17 74 harmonic/cut 0.2 3.2 
+pair_coeff 17 76 harmonic/cut 0.2 3.2 
+pair_coeff 17 52 harmonic/cut 0.2 3.2 
+pair_coeff 17 80 harmonic/cut 0.2 3.2 
+pair_coeff 17 87 harmonic/cut 0.2 3.2 
+pair_coeff 17 51 harmonic/cut 0.2 3.2 
+pair_coeff 17 53 harmonic/cut 0.2 3.2 
+pair_coeff 17 77 harmonic/cut 0.2 3.2 
+pair_coeff 17 43 harmonic/cut 0.2 3.2 
+pair_coeff 17 60 harmonic/cut 0.2 3.2 
+pair_coeff 17 73 harmonic/cut 0.2 3.2 
+pair_coeff 17 83 harmonic/cut 0.2 3.2 
+pair_coeff 17 55 harmonic/cut 0.2 3.2 
+pair_coeff 17 56 harmonic/cut 0.2 3.2 
+pair_coeff 17 46 harmonic/cut 0.2 3.2 
+pair_coeff 17 79 harmonic/cut 0.2 3.2 
+pair_coeff 18 37 harmonic/cut 0.2 3.2 
+pair_coeff 18 38 harmonic/cut 0.2 3.2 
+pair_coeff 18 40 harmonic/cut 0.2 3.2 
+pair_coeff 18 41 harmonic/cut 0.2 3.2 
+pair_coeff 18 42 harmonic/cut 0.2 3.2 
+pair_coeff 18 25 harmonic/cut 0.2 3.2 
+pair_coeff 18 26 harmonic/cut 0.2 3.2 
+pair_coeff 18 27 harmonic/cut 0.2 3.2 
+pair_coeff 18 28 harmonic/cut 0.2 3.2 
+pair_coeff 18 29 harmonic/cut 0.2 3.2 
+pair_coeff 18 30 harmonic/cut 0.2 3.2 
+pair_coeff 18 50 harmonic/cut 0.2 3.2 
+pair_coeff 18 59 harmonic/cut 0.2 3.2 
+pair_coeff 18 82 harmonic/cut 0.2 3.2 
+pair_coeff 18 84 harmonic/cut 0.2 3.2 
+pair_coeff 18 85 harmonic/cut 0.2 3.2 
+pair_coeff 18 86 harmonic/cut 0.2 3.2 
+pair_coeff 18 31 harmonic/cut 0.2 3.2 
+pair_coeff 18 32 harmonic/cut 0.2 3.2 
+pair_coeff 18 33 harmonic/cut 0.2 3.2 
+pair_coeff 18 34 harmonic/cut 0.2 3.2 
+pair_coeff 18 35 harmonic/cut 0.2 3.2 
+pair_coeff 18 36 harmonic/cut 0.2 3.2 
+pair_coeff 18 45 harmonic/cut 0.2 3.2 
+pair_coeff 18 61 harmonic/cut 0.2 3.2 
+pair_coeff 18 62 harmonic/cut 0.2 3.2 
+pair_coeff 18 63 harmonic/cut 0.2 3.2 
+pair_coeff 18 64 harmonic/cut 0.2 3.2 
+pair_coeff 18 65 harmonic/cut 0.2 3.2 
+pair_coeff 18 68 harmonic/cut 0.2 3.2 
+pair_coeff 18 69 harmonic/cut 0.2 3.2 
+pair_coeff 18 70 harmonic/cut 0.2 3.2 
+pair_coeff 18 71 harmonic/cut 0.2 3.2 
+pair_coeff 18 49 harmonic/cut 0.2 3.2 
+pair_coeff 18 58 harmonic/cut 0.2 3.2 
+pair_coeff 18 67 harmonic/cut 0.2 3.2 
+pair_coeff 18 75 harmonic/cut 0.2 3.2 
+pair_coeff 18 78 harmonic/cut 0.2 3.2 
+pair_coeff 18 48 harmonic/cut 0.2 3.2 
+pair_coeff 18 54 harmonic/cut 0.2 3.2 
+pair_coeff 18 57 harmonic/cut 0.2 3.2 
+pair_coeff 18 81 harmonic/cut 0.2 3.2 
+pair_coeff 18 88 harmonic/cut 0.2 3.2 
+pair_coeff 18 44 harmonic/cut 0.2 3.2 
+pair_coeff 18 74 harmonic/cut 0.2 3.2 
+pair_coeff 18 76 harmonic/cut 0.2 3.2 
+pair_coeff 18 52 harmonic/cut 0.2 3.2 
+pair_coeff 18 66 harmonic/cut 0.2 3.2 
+pair_coeff 18 80 harmonic/cut 0.2 3.2 
+pair_coeff 18 87 harmonic/cut 0.2 3.2 
+pair_coeff 18 51 harmonic/cut 0.2 3.2 
+pair_coeff 18 53 harmonic/cut 0.2 3.2 
+pair_coeff 18 77 harmonic/cut 0.2 3.2 
+pair_coeff 18 43 harmonic/cut 0.2 3.2 
+pair_coeff 18 60 harmonic/cut 0.2 3.2 
+pair_coeff 18 73 harmonic/cut 0.2 3.2 
+pair_coeff 18 83 harmonic/cut 0.2 3.2 
+pair_coeff 18 56 harmonic/cut 0.2 3.2 
+pair_coeff 18 46 harmonic/cut 0.2 3.2 
+pair_coeff 18 47 harmonic/cut 0.2 3.2 
+pair_coeff 19 37 harmonic/cut 0.2 3.2 
+pair_coeff 19 38 harmonic/cut 0.2 3.2 
+pair_coeff 19 39 harmonic/cut 0.2 3.2 
+pair_coeff 19 40 harmonic/cut 0.2 3.2 
+pair_coeff 19 41 harmonic/cut 0.2 3.2 
+pair_coeff 19 42 harmonic/cut 0.2 3.2 
+pair_coeff 19 26 harmonic/cut 0.2 3.2 
+pair_coeff 19 27 harmonic/cut 0.2 3.2 
+pair_coeff 19 28 harmonic/cut 0.2 3.2 
+pair_coeff 19 29 harmonic/cut 0.2 3.2 
+pair_coeff 19 30 harmonic/cut 0.2 3.2 
+pair_coeff 19 50 harmonic/cut 0.2 3.2 
+pair_coeff 19 59 harmonic/cut 0.2 3.2 
+pair_coeff 19 82 harmonic/cut 0.2 3.2 
+pair_coeff 19 84 harmonic/cut 0.2 3.2 
+pair_coeff 19 85 harmonic/cut 0.2 3.2 
+pair_coeff 19 86 harmonic/cut 0.2 3.2 
+pair_coeff 19 31 harmonic/cut 0.2 3.2 
+pair_coeff 19 32 harmonic/cut 0.2 3.2 
+pair_coeff 19 33 harmonic/cut 0.2 3.2 
+pair_coeff 19 34 harmonic/cut 0.2 3.2 
+pair_coeff 19 35 harmonic/cut 0.2 3.2 
+pair_coeff 19 36 harmonic/cut 0.2 3.2 
+pair_coeff 19 45 harmonic/cut 0.2 3.2 
+pair_coeff 19 61 harmonic/cut 0.2 3.2 
+pair_coeff 19 62 harmonic/cut 0.2 3.2 
+pair_coeff 19 63 harmonic/cut 0.2 3.2 
+pair_coeff 19 64 harmonic/cut 0.2 3.2 
+pair_coeff 19 65 harmonic/cut 0.2 3.2 
+pair_coeff 19 68 harmonic/cut 0.2 3.2 
+pair_coeff 19 69 harmonic/cut 0.2 3.2 
+pair_coeff 19 70 harmonic/cut 0.2 3.2 
+pair_coeff 19 71 harmonic/cut 0.2 3.2 
+pair_coeff 19 72 harmonic/cut 0.2 3.2 
+pair_coeff 19 49 harmonic/cut 0.2 3.2 
+pair_coeff 19 58 harmonic/cut 0.2 3.2 
+pair_coeff 19 67 harmonic/cut 0.2 3.2 
+pair_coeff 19 75 harmonic/cut 0.2 3.2 
+pair_coeff 19 78 harmonic/cut 0.2 3.2 
+pair_coeff 19 48 harmonic/cut 0.2 3.2 
+pair_coeff 19 57 harmonic/cut 0.2 3.2 
+pair_coeff 19 81 harmonic/cut 0.2 3.2 
+pair_coeff 19 88 harmonic/cut 0.2 3.2 
+pair_coeff 19 44 harmonic/cut 0.2 3.2 
+pair_coeff 19 74 harmonic/cut 0.2 3.2 
+pair_coeff 19 76 harmonic/cut 0.2 3.2 
+pair_coeff 19 66 harmonic/cut 0.2 3.2 
+pair_coeff 19 80 harmonic/cut 0.2 3.2 
+pair_coeff 19 87 harmonic/cut 0.2 3.2 
+pair_coeff 19 51 harmonic/cut 0.2 3.2 
+pair_coeff 19 77 harmonic/cut 0.2 3.2 
+pair_coeff 19 43 harmonic/cut 0.2 3.2 
+pair_coeff 19 60 harmonic/cut 0.2 3.2 
+pair_coeff 19 73 harmonic/cut 0.2 3.2 
+pair_coeff 19 83 harmonic/cut 0.2 3.2 
+pair_coeff 19 55 harmonic/cut 0.2 3.2 
+pair_coeff 19 56 harmonic/cut 0.2 3.2 
+pair_coeff 19 46 harmonic/cut 0.2 3.2 
+pair_coeff 19 47 harmonic/cut 0.2 3.2 
+pair_coeff 19 79 harmonic/cut 0.2 3.2 
+pair_coeff 20 37 harmonic/cut 0.2 3.2 
+pair_coeff 20 38 harmonic/cut 0.2 3.2 
+pair_coeff 20 39 harmonic/cut 0.2 3.2 
+pair_coeff 20 40 harmonic/cut 0.2 3.2 
+pair_coeff 20 41 harmonic/cut 0.2 3.2 
+pair_coeff 20 42 harmonic/cut 0.2 3.2 
+pair_coeff 20 25 harmonic/cut 0.2 3.2 
+pair_coeff 20 26 harmonic/cut 0.2 3.2 
+pair_coeff 20 27 harmonic/cut 0.2 3.2 
+pair_coeff 20 29 harmonic/cut 0.2 3.2 
+pair_coeff 20 30 harmonic/cut 0.2 3.2 
+pair_coeff 20 50 harmonic/cut 0.2 3.2 
+pair_coeff 20 59 harmonic/cut 0.2 3.2 
+pair_coeff 20 82 harmonic/cut 0.2 3.2 
+pair_coeff 20 84 harmonic/cut 0.2 3.2 
+pair_coeff 20 85 harmonic/cut 0.2 3.2 
+pair_coeff 20 86 harmonic/cut 0.2 3.2 
+pair_coeff 20 31 harmonic/cut 0.2 3.2 
+pair_coeff 20 32 harmonic/cut 0.2 3.2 
+pair_coeff 20 33 harmonic/cut 0.2 3.2 
+pair_coeff 20 34 harmonic/cut 0.2 3.2 
+pair_coeff 20 35 harmonic/cut 0.2 3.2 
+pair_coeff 20 36 harmonic/cut 0.2 3.2 
+pair_coeff 20 61 harmonic/cut 0.2 3.2 
+pair_coeff 20 62 harmonic/cut 0.2 3.2 
+pair_coeff 20 63 harmonic/cut 0.2 3.2 
+pair_coeff 20 64 harmonic/cut 0.2 3.2 
+pair_coeff 20 65 harmonic/cut 0.2 3.2 
+pair_coeff 20 68 harmonic/cut 0.2 3.2 
+pair_coeff 20 69 harmonic/cut 0.2 3.2 
+pair_coeff 20 70 harmonic/cut 0.2 3.2 
+pair_coeff 20 71 harmonic/cut 0.2 3.2 
+pair_coeff 20 72 harmonic/cut 0.2 3.2 
+pair_coeff 20 49 harmonic/cut 0.2 3.2 
+pair_coeff 20 58 harmonic/cut 0.2 3.2 
+pair_coeff 20 67 harmonic/cut 0.2 3.2 
+pair_coeff 20 75 harmonic/cut 0.2 3.2 
+pair_coeff 20 78 harmonic/cut 0.2 3.2 
+pair_coeff 20 48 harmonic/cut 0.2 3.2 
+pair_coeff 20 54 harmonic/cut 0.2 3.2 
+pair_coeff 20 57 harmonic/cut 0.2 3.2 
+pair_coeff 20 81 harmonic/cut 0.2 3.2 
+pair_coeff 20 88 harmonic/cut 0.2 3.2 
+pair_coeff 20 74 harmonic/cut 0.2 3.2 
+pair_coeff 20 76 harmonic/cut 0.2 3.2 
+pair_coeff 20 52 harmonic/cut 0.2 3.2 
+pair_coeff 20 66 harmonic/cut 0.2 3.2 
+pair_coeff 20 80 harmonic/cut 0.2 3.2 
+pair_coeff 20 87 harmonic/cut 0.2 3.2 
+pair_coeff 20 51 harmonic/cut 0.2 3.2 
+pair_coeff 20 53 harmonic/cut 0.2 3.2 
+pair_coeff 20 77 harmonic/cut 0.2 3.2 
+pair_coeff 20 60 harmonic/cut 0.2 3.2 
+pair_coeff 20 73 harmonic/cut 0.2 3.2 
+pair_coeff 20 83 harmonic/cut 0.2 3.2 
+pair_coeff 20 55 harmonic/cut 0.2 3.2 
+pair_coeff 20 56 harmonic/cut 0.2 3.2 
+pair_coeff 20 46 harmonic/cut 0.2 3.2 
+pair_coeff 20 47 harmonic/cut 0.2 3.2 
+pair_coeff 20 79 harmonic/cut 0.2 3.2 
+pair_coeff 21 37 harmonic/cut 0.2 3.2 
+pair_coeff 21 38 harmonic/cut 0.2 3.2 
+pair_coeff 21 39 harmonic/cut 0.2 3.2 
+pair_coeff 21 41 harmonic/cut 0.2 3.2 
+pair_coeff 21 42 harmonic/cut 0.2 3.2 
+pair_coeff 21 25 harmonic/cut 0.2 3.2 
+pair_coeff 21 26 harmonic/cut 0.2 3.2 
+pair_coeff 21 27 harmonic/cut 0.2 3.2 
+pair_coeff 21 28 harmonic/cut 0.2 3.2 
+pair_coeff 21 29 harmonic/cut 0.2 3.2 
+pair_coeff 21 30 harmonic/cut 0.2 3.2 
+pair_coeff 21 50 harmonic/cut 0.2 3.2 
+pair_coeff 21 59 harmonic/cut 0.2 3.2 
+pair_coeff 21 82 harmonic/cut 0.2 3.2 
+pair_coeff 21 84 harmonic/cut 0.2 3.2 
+pair_coeff 21 85 harmonic/cut 0.2 3.2 
+pair_coeff 21 86 harmonic/cut 0.2 3.2 
+pair_coeff 21 31 harmonic/cut 0.2 3.2 
+pair_coeff 21 32 harmonic/cut 0.2 3.2 
+pair_coeff 21 33 harmonic/cut 0.2 3.2 
+pair_coeff 21 34 harmonic/cut 0.2 3.2 
+pair_coeff 21 35 harmonic/cut 0.2 3.2 
+pair_coeff 21 36 harmonic/cut 0.2 3.2 
+pair_coeff 21 45 harmonic/cut 0.2 3.2 
+pair_coeff 21 61 harmonic/cut 0.2 3.2 
+pair_coeff 21 62 harmonic/cut 0.2 3.2 
+pair_coeff 21 63 harmonic/cut 0.2 3.2 
+pair_coeff 21 64 harmonic/cut 0.2 3.2 
+pair_coeff 21 65 harmonic/cut 0.2 3.2 
+pair_coeff 21 68 harmonic/cut 0.2 3.2 
+pair_coeff 21 69 harmonic/cut 0.2 3.2 
+pair_coeff 21 70 harmonic/cut 0.2 3.2 
+pair_coeff 21 71 harmonic/cut 0.2 3.2 
+pair_coeff 21 72 harmonic/cut 0.2 3.2 
+pair_coeff 21 49 harmonic/cut 0.2 3.2 
+pair_coeff 21 58 harmonic/cut 0.2 3.2 
+pair_coeff 21 67 harmonic/cut 0.2 3.2 
+pair_coeff 21 78 harmonic/cut 0.2 3.2 
+pair_coeff 21 48 harmonic/cut 0.2 3.2 
+pair_coeff 21 54 harmonic/cut 0.2 3.2 
+pair_coeff 21 57 harmonic/cut 0.2 3.2 
+pair_coeff 21 81 harmonic/cut 0.2 3.2 
+pair_coeff 21 88 harmonic/cut 0.2 3.2 
+pair_coeff 21 44 harmonic/cut 0.2 3.2 
+pair_coeff 21 76 harmonic/cut 0.2 3.2 
+pair_coeff 21 52 harmonic/cut 0.2 3.2 
+pair_coeff 21 66 harmonic/cut 0.2 3.2 
+pair_coeff 21 80 harmonic/cut 0.2 3.2 
+pair_coeff 21 87 harmonic/cut 0.2 3.2 
+pair_coeff 21 51 harmonic/cut 0.2 3.2 
+pair_coeff 21 53 harmonic/cut 0.2 3.2 
+pair_coeff 21 77 harmonic/cut 0.2 3.2 
+pair_coeff 21 43 harmonic/cut 0.2 3.2 
+pair_coeff 21 60 harmonic/cut 0.2 3.2 
+pair_coeff 21 83 harmonic/cut 0.2 3.2 
+pair_coeff 21 55 harmonic/cut 0.2 3.2 
+pair_coeff 21 56 harmonic/cut 0.2 3.2 
+pair_coeff 21 46 harmonic/cut 0.2 3.2 
+pair_coeff 21 47 harmonic/cut 0.2 3.2 
+pair_coeff 21 79 harmonic/cut 0.2 3.2 
+pair_coeff 22 38 harmonic/cut 0.2 3.2 
+pair_coeff 22 39 harmonic/cut 0.2 3.2 
+pair_coeff 22 40 harmonic/cut 0.2 3.2 
+pair_coeff 22 41 harmonic/cut 0.2 3.2 
+pair_coeff 22 42 harmonic/cut 0.2 3.2 
+pair_coeff 22 25 harmonic/cut 0.2 3.2 
+pair_coeff 22 26 harmonic/cut 0.2 3.2 
+pair_coeff 22 27 harmonic/cut 0.2 3.2 
+pair_coeff 22 28 harmonic/cut 0.2 3.2 
+pair_coeff 22 29 harmonic/cut 0.2 3.2 
+pair_coeff 22 30 harmonic/cut 0.2 3.2 
+pair_coeff 22 50 harmonic/cut 0.2 3.2 
+pair_coeff 22 59 harmonic/cut 0.2 3.2 
+pair_coeff 22 82 harmonic/cut 0.2 3.2 
+pair_coeff 22 84 harmonic/cut 0.2 3.2 
+pair_coeff 22 85 harmonic/cut 0.2 3.2 
+pair_coeff 22 86 harmonic/cut 0.2 3.2 
+pair_coeff 22 31 harmonic/cut 0.2 3.2 
+pair_coeff 22 32 harmonic/cut 0.2 3.2 
+pair_coeff 22 33 harmonic/cut 0.2 3.2 
+pair_coeff 22 34 harmonic/cut 0.2 3.2 
+pair_coeff 22 35 harmonic/cut 0.2 3.2 
+pair_coeff 22 36 harmonic/cut 0.2 3.2 
+pair_coeff 22 45 harmonic/cut 0.2 3.2 
+pair_coeff 22 61 harmonic/cut 0.2 3.2 
+pair_coeff 22 62 harmonic/cut 0.2 3.2 
+pair_coeff 22 63 harmonic/cut 0.2 3.2 
+pair_coeff 22 64 harmonic/cut 0.2 3.2 
+pair_coeff 22 65 harmonic/cut 0.2 3.2 
+pair_coeff 22 68 harmonic/cut 0.2 3.2 
+pair_coeff 22 69 harmonic/cut 0.2 3.2 
+pair_coeff 22 70 harmonic/cut 0.2 3.2 
+pair_coeff 22 71 harmonic/cut 0.2 3.2 
+pair_coeff 22 72 harmonic/cut 0.2 3.2 
+pair_coeff 22 49 harmonic/cut 0.2 3.2 
+pair_coeff 22 58 harmonic/cut 0.2 3.2 
+pair_coeff 22 67 harmonic/cut 0.2 3.2 
+pair_coeff 22 75 harmonic/cut 0.2 3.2 
+pair_coeff 22 48 harmonic/cut 0.2 3.2 
+pair_coeff 22 54 harmonic/cut 0.2 3.2 
+pair_coeff 22 57 harmonic/cut 0.2 3.2 
+pair_coeff 22 81 harmonic/cut 0.2 3.2 
+pair_coeff 22 88 harmonic/cut 0.2 3.2 
+pair_coeff 22 44 harmonic/cut 0.2 3.2 
+pair_coeff 22 74 harmonic/cut 0.2 3.2 
+pair_coeff 22 76 harmonic/cut 0.2 3.2 
+pair_coeff 22 52 harmonic/cut 0.2 3.2 
+pair_coeff 22 66 harmonic/cut 0.2 3.2 
+pair_coeff 22 80 harmonic/cut 0.2 3.2 
+pair_coeff 22 87 harmonic/cut 0.2 3.2 
+pair_coeff 22 51 harmonic/cut 0.2 3.2 
+pair_coeff 22 53 harmonic/cut 0.2 3.2 
+pair_coeff 22 43 harmonic/cut 0.2 3.2 
+pair_coeff 22 60 harmonic/cut 0.2 3.2 
+pair_coeff 22 73 harmonic/cut 0.2 3.2 
+pair_coeff 22 83 harmonic/cut 0.2 3.2 
+pair_coeff 22 55 harmonic/cut 0.2 3.2 
+pair_coeff 22 56 harmonic/cut 0.2 3.2 
+pair_coeff 22 46 harmonic/cut 0.2 3.2 
+pair_coeff 22 47 harmonic/cut 0.2 3.2 
+pair_coeff 23 37 harmonic/cut 0.2 3.2 
+pair_coeff 23 38 harmonic/cut 0.2 3.2 
+pair_coeff 23 39 harmonic/cut 0.2 3.2 
+pair_coeff 23 40 harmonic/cut 0.2 3.2 
+pair_coeff 23 41 harmonic/cut 0.2 3.2 
+pair_coeff 23 42 harmonic/cut 0.2 3.2 
+pair_coeff 23 25 harmonic/cut 0.2 3.2 
+pair_coeff 23 27 harmonic/cut 0.2 3.2 
+pair_coeff 23 28 harmonic/cut 0.2 3.2 
+pair_coeff 23 29 harmonic/cut 0.2 3.2 
+pair_coeff 23 30 harmonic/cut 0.2 3.2 
+pair_coeff 23 50 harmonic/cut 0.2 3.2 
+pair_coeff 23 59 harmonic/cut 0.2 3.2 
+pair_coeff 23 82 harmonic/cut 0.2 3.2 
+pair_coeff 23 84 harmonic/cut 0.2 3.2 
+pair_coeff 23 86 harmonic/cut 0.2 3.2 
+pair_coeff 23 31 harmonic/cut 0.2 3.2 
+pair_coeff 23 32 harmonic/cut 0.2 3.2 
+pair_coeff 23 33 harmonic/cut 0.2 3.2 
+pair_coeff 23 34 harmonic/cut 0.2 3.2 
+pair_coeff 23 35 harmonic/cut 0.2 3.2 
+pair_coeff 23 36 harmonic/cut 0.2 3.2 
+pair_coeff 23 45 harmonic/cut 0.2 3.2 
+pair_coeff 23 61 harmonic/cut 0.2 3.2 
+pair_coeff 23 62 harmonic/cut 0.2 3.2 
+pair_coeff 23 63 harmonic/cut 0.2 3.2 
+pair_coeff 23 64 harmonic/cut 0.2 3.2 
+pair_coeff 23 65 harmonic/cut 0.2 3.2 
+pair_coeff 23 68 harmonic/cut 0.2 3.2 
+pair_coeff 23 69 harmonic/cut 0.2 3.2 
+pair_coeff 23 70 harmonic/cut 0.2 3.2 
+pair_coeff 23 71 harmonic/cut 0.2 3.2 
+pair_coeff 23 72 harmonic/cut 0.2 3.2 
+pair_coeff 23 49 harmonic/cut 0.2 3.2 
+pair_coeff 23 58 harmonic/cut 0.2 3.2 
+pair_coeff 23 67 harmonic/cut 0.2 3.2 
+pair_coeff 23 75 harmonic/cut 0.2 3.2 
+pair_coeff 23 78 harmonic/cut 0.2 3.2 
+pair_coeff 23 48 harmonic/cut 0.2 3.2 
+pair_coeff 23 54 harmonic/cut 0.2 3.2 
+pair_coeff 23 57 harmonic/cut 0.2 3.2 
+pair_coeff 23 81 harmonic/cut 0.2 3.2 
+pair_coeff 23 88 harmonic/cut 0.2 3.2 
+pair_coeff 23 44 harmonic/cut 0.2 3.2 
+pair_coeff 23 74 harmonic/cut 0.2 3.2 
+pair_coeff 23 76 harmonic/cut 0.2 3.2 
+pair_coeff 23 52 harmonic/cut 0.2 3.2 
+pair_coeff 23 66 harmonic/cut 0.2 3.2 
+pair_coeff 23 80 harmonic/cut 0.2 3.2 
+pair_coeff 23 51 harmonic/cut 0.2 3.2 
+pair_coeff 23 53 harmonic/cut 0.2 3.2 
+pair_coeff 23 77 harmonic/cut 0.2 3.2 
+pair_coeff 23 43 harmonic/cut 0.2 3.2 
+pair_coeff 23 60 harmonic/cut 0.2 3.2 
+pair_coeff 23 73 harmonic/cut 0.2 3.2 
+pair_coeff 23 83 harmonic/cut 0.2 3.2 
+pair_coeff 23 55 harmonic/cut 0.2 3.2 
+pair_coeff 23 46 harmonic/cut 0.2 3.2 
+pair_coeff 23 47 harmonic/cut 0.2 3.2 
+pair_coeff 23 79 harmonic/cut 0.2 3.2 
+pair_coeff 24 37 harmonic/cut 0.2 3.2 
+pair_coeff 24 38 harmonic/cut 0.2 3.2 
+pair_coeff 24 39 harmonic/cut 0.2 3.2 
+pair_coeff 24 40 harmonic/cut 0.2 3.2 
+pair_coeff 24 41 harmonic/cut 0.2 3.2 
+pair_coeff 24 42 harmonic/cut 0.2 3.2 
+pair_coeff 24 25 harmonic/cut 0.2 3.2 
+pair_coeff 24 26 harmonic/cut 0.2 3.2 
+pair_coeff 24 28 harmonic/cut 0.2 3.2 
+pair_coeff 24 29 harmonic/cut 0.2 3.2 
+pair_coeff 24 30 harmonic/cut 0.2 3.2 
+pair_coeff 24 50 harmonic/cut 0.2 3.2 
+pair_coeff 24 59 harmonic/cut 0.2 3.2 
+pair_coeff 24 82 harmonic/cut 0.2 3.2 
+pair_coeff 24 84 harmonic/cut 0.2 3.2 
+pair_coeff 24 85 harmonic/cut 0.2 3.2 
+pair_coeff 24 86 harmonic/cut 0.2 3.2 
+pair_coeff 24 31 harmonic/cut 0.2 3.2 
+pair_coeff 24 32 harmonic/cut 0.2 3.2 
+pair_coeff 24 33 harmonic/cut 0.2 3.2 
+pair_coeff 24 34 harmonic/cut 0.2 3.2 
+pair_coeff 24 35 harmonic/cut 0.2 3.2 
+pair_coeff 24 36 harmonic/cut 0.2 3.2 
+pair_coeff 24 45 harmonic/cut 0.2 3.2 
+pair_coeff 24 61 harmonic/cut 0.2 3.2 
+pair_coeff 24 62 harmonic/cut 0.2 3.2 
+pair_coeff 24 63 harmonic/cut 0.2 3.2 
+pair_coeff 24 64 harmonic/cut 0.2 3.2 
+pair_coeff 24 65 harmonic/cut 0.2 3.2 
+pair_coeff 24 68 harmonic/cut 0.2 3.2 
+pair_coeff 24 69 harmonic/cut 0.2 3.2 
+pair_coeff 24 70 harmonic/cut 0.2 3.2 
+pair_coeff 24 71 harmonic/cut 0.2 3.2 
+pair_coeff 24 72 harmonic/cut 0.2 3.2 
+pair_coeff 24 49 harmonic/cut 0.2 3.2 
+pair_coeff 24 58 harmonic/cut 0.2 3.2 
+pair_coeff 24 67 harmonic/cut 0.2 3.2 
+pair_coeff 24 75 harmonic/cut 0.2 3.2 
+pair_coeff 24 78 harmonic/cut 0.2 3.2 
+pair_coeff 24 48 harmonic/cut 0.2 3.2 
+pair_coeff 24 54 harmonic/cut 0.2 3.2 
+pair_coeff 24 57 harmonic/cut 0.2 3.2 
+pair_coeff 24 81 harmonic/cut 0.2 3.2 
+pair_coeff 24 88 harmonic/cut 0.2 3.2 
+pair_coeff 24 44 harmonic/cut 0.2 3.2 
+pair_coeff 24 74 harmonic/cut 0.2 3.2 
+pair_coeff 24 76 harmonic/cut 0.2 3.2 
+pair_coeff 24 52 harmonic/cut 0.2 3.2 
+pair_coeff 24 66 harmonic/cut 0.2 3.2 
+pair_coeff 24 87 harmonic/cut 0.2 3.2 
+pair_coeff 24 51 harmonic/cut 0.2 3.2 
+pair_coeff 24 53 harmonic/cut 0.2 3.2 
+pair_coeff 24 77 harmonic/cut 0.2 3.2 
+pair_coeff 24 43 harmonic/cut 0.2 3.2 
+pair_coeff 24 60 harmonic/cut 0.2 3.2 
+pair_coeff 24 73 harmonic/cut 0.2 3.2 
+pair_coeff 24 55 harmonic/cut 0.2 3.2 
+pair_coeff 24 56 harmonic/cut 0.2 3.2 
+pair_coeff 24 47 harmonic/cut 0.2 3.2 
+pair_coeff 24 79 harmonic/cut 0.2 3.2 
+
+pair_coeff 1*16 1*16    harmonic/cut 0.2 3.1
+pair_coeff 1*16 17*24   harmonic/cut 0.2 3.37
+pair_coeff 17*24 17*24  harmonic/cut 0.2 2.8 
+pair_coeff 25*88 25*88  harmonic/cut 0.5 2.5
+
+minimize 0.0 2.0e-1 1000 10000000
+
+fix F1 all box/relax tri 0.0 vmax 0.00001
+minimize 0.0 2.0e-3 2000 10000000
+
+unfix F1
+fix F2 all box/relax tri 0.0 vmax 0.001
+minimize 0.0 2.0e-3 2000 10000000
+
+unfix F2
+fix F3 all box/relax tri 0.0 vmax 0.01
+minimize 0.0 2.0e-3 2000 10000000
+
+write_data coo_out
+
+

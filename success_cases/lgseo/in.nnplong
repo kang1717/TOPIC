@@ -1,0 +1,35 @@
+boundary p p p
+units metal
+atom_modify map yes
+neighbor 2.0 bin
+neigh_modify every 1 delay 0 check yes
+
+read_data coo_out3
+
+pair_style nn/intel
+pair_coeff * * potentiallong Ta P O
+
+mass * 1
+
+atom_modify sort 0 0.0
+
+thermo 1
+thermo_style custom step temp pe evdwl ecoul vol press spcpu
+
+
+
+minimize 0.0 2.0e-1 250  10000000
+
+fix F1 all box/relax tri 0.0 vmax 0.00001
+minimize 0.0 5.0e-4 250 10000000
+
+unfix F1
+fix F2 all box/relax tri 0.0 vmax 0.001
+minimize 0.0 4.0e-5 250 10000000
+
+unfix F2
+fix F3 all box/relax tri 0.0 vmax 0.01
+minimize 0.0 3.0e-5 250 10000000
+
+write_data coo_nnp2
+

@@ -1,0 +1,1097 @@
+*** Error in `/home/sung.w.kang/anaconda3/bin/python3': double free or corruption (!prev): 0x0000000003378640 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x81489)[0x2b48f101d489]
+/home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so(_ZN9LAMMPS_NS6MyPageIiED1Ev+0x71)[0x2b49d20b2971]
+/home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so(_ZN9LAMMPS_NS9NeighListD1Ev+0xde)[0x2b49d1a192ae]
+/home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so(_ZN9LAMMPS_NS9NeighListD0Ev+0xa)[0x2b49d1a191ba]
+/home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so(_ZN9LAMMPS_NS8NeighborD1Ev+0x100)[0x2b49d1c13c00]
+/home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so(_ZN9LAMMPS_NS8NeighborD0Ev+0xa)[0x2b49d1c13aea]
+/home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so(_ZN9LAMMPS_NS6LAMMPS7destroyEv+0x2e)[0x2b49d215d83e]
+/home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so(_ZN9LAMMPS_NS6LAMMPSD1Ev+0x40)[0x2b49d215cf40]
+/home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so(lammps_close+0x12)[0x2b49d1faee52]
+/home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/../../libffi.so.8(+0xa052)[0x2b48fac95052]
+/home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/../../libffi.so.8(+0x8925)[0x2b48fac93925]
+/home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/../../libffi.so.8(ffi_call+0xde)[0x2b48fac9406e]
+/home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_ctypes.cpython-311-x86_64-linux-gnu.so(+0x92e4)[0x2b48fac732e4]
+/home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_ctypes.cpython-311-x86_64-linux-gnu.so(+0x124ce)[0x2b48fac7c4ce]
+/home/sung.w.kang/anaconda3/bin/python3(_PyObject_MakeTpCall+0x254)[0x502d54]
+/home/sung.w.kang/anaconda3/bin/python3(_PyEval_EvalFrameDefault+0x755)[0x50f025]
+/home/sung.w.kang/anaconda3/bin/python3(_PyFunction_Vectorcall+0x173)[0x535103]
+/home/sung.w.kang/anaconda3/bin/python3(PyObject_CallOneArg+0x53)[0x53a263]
+/home/sung.w.kang/anaconda3/bin/python3[0x60d72e]
+/home/sung.w.kang/anaconda3/bin/python3(PyObject_CallFinalizerFromDealloc+0x3b)[0x55408b]
+/home/sung.w.kang/anaconda3/bin/python3[0x55b3bb]
+/home/sung.w.kang/anaconda3/bin/python3[0x51f608]
+/home/sung.w.kang/anaconda3/bin/python3(_PyEval_EvalFrameDefault+0x2b0)[0x50eb80]
+/home/sung.w.kang/anaconda3/bin/python3[0x5c82ce]
+/home/sung.w.kang/anaconda3/bin/python3(PyEval_EvalCode+0x9f)[0x5c79cf]
+/home/sung.w.kang/anaconda3/bin/python3[0x5e8807]
+/home/sung.w.kang/anaconda3/bin/python3[0x5e4e40]
+/home/sung.w.kang/anaconda3/bin/python3[0x5f9132]
+/home/sung.w.kang/anaconda3/bin/python3(_PyRun_SimpleFileObject+0x19f)[0x5f871f]
+/home/sung.w.kang/anaconda3/bin/python3(_PyRun_AnyFileObject+0x43)[0x5f8473]
+/home/sung.w.kang/anaconda3/bin/python3(Py_RunMain+0x2ee)[0x5f2fee]
+/home/sung.w.kang/anaconda3/bin/python3(Py_BytesMain+0x39)[0x5b6e19]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x2b48f0fbe3d5]
+/home/sung.w.kang/anaconda3/bin/python3[0x5b6c6f]
+======= Memory map: ========
+00400000-0041f000 r--p 00000000 00:25 19379270169                        /home/sung.w.kang/anaconda3/bin/python3.11
+0041f000-00652000 r-xp 0001f000 00:25 19379270169                        /home/sung.w.kang/anaconda3/bin/python3.11
+00652000-00770000 r--p 00252000 00:25 19379270169                        /home/sung.w.kang/anaconda3/bin/python3.11
+00771000-00772000 r--p 00370000 00:25 19379270169                        /home/sung.w.kang/anaconda3/bin/python3.11
+00772000-008a2000 rw-p 00371000 00:25 19379270169                        /home/sung.w.kang/anaconda3/bin/python3.11
+008a2000-008e5000 rw-p 00000000 00:00 0 
+014dd000-21b02000 rw-p 00000000 00:00 0                                  [heap]
+2b48f0453000-2b48f0475000 r-xp 00000000 08:04 33613768                   /usr/lib64/ld-2.17.so
+2b48f0475000-2b48f0476000 rw-p 00000000 00:00 0 
+2b48f0476000-2b48f047d000 r--s 00000000 08:04 635085                     /usr/lib64/gconv/gconv-modules.cache
+2b48f047d000-2b48f05e8000 rw-p 00000000 00:00 0 
+2b48f05e8000-2b48f05ea000 r--p 00000000 00:25 47274924548                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/fcntl.cpython-311-x86_64-linux-gnu.so
+2b48f05ea000-2b48f05ec000 r-xp 00002000 00:25 47274924548                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/fcntl.cpython-311-x86_64-linux-gnu.so
+2b48f05ec000-2b48f05ee000 r--p 00004000 00:25 47274924548                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/fcntl.cpython-311-x86_64-linux-gnu.so
+2b48f05ee000-2b48f05ef000 r--p 00005000 00:25 47274924548                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/fcntl.cpython-311-x86_64-linux-gnu.so
+2b48f05ef000-2b48f05f0000 rw-p 00006000 00:25 47274924548                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/fcntl.cpython-311-x86_64-linux-gnu.so
+2b48f05f0000-2b48f05f2000 r--p 00000000 00:25 47274924563                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_posixsubprocess.cpython-311-x86_64-linux-gnu.so
+2b48f05f2000-2b48f05f5000 r-xp 00002000 00:25 47274924563                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_posixsubprocess.cpython-311-x86_64-linux-gnu.so
+2b48f05f5000-2b48f05f6000 r--p 00005000 00:25 47274924563                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_posixsubprocess.cpython-311-x86_64-linux-gnu.so
+2b48f05f6000-2b48f05f7000 r--p 00005000 00:25 47274924563                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_posixsubprocess.cpython-311-x86_64-linux-gnu.so
+2b48f05f7000-2b48f05f8000 rw-p 00006000 00:25 47274924563                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_posixsubprocess.cpython-311-x86_64-linux-gnu.so
+2b48f05f8000-2b48f05fb000 r--p 00000000 00:25 47274924571                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/select.cpython-311-x86_64-linux-gnu.so
+2b48f05fb000-2b48f05fe000 r-xp 00003000 00:25 47274924571                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/select.cpython-311-x86_64-linux-gnu.so
+2b48f05fe000-2b48f0600000 r--p 00006000 00:25 47274924571                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/select.cpython-311-x86_64-linux-gnu.so
+2b48f0600000-2b48f0601000 ---p 00008000 00:25 47274924571                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/select.cpython-311-x86_64-linux-gnu.so
+2b48f0601000-2b48f0602000 r--p 00008000 00:25 47274924571                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/select.cpython-311-x86_64-linux-gnu.so
+2b48f0602000-2b48f0603000 rw-p 00009000 00:25 47274924571                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/select.cpython-311-x86_64-linux-gnu.so
+2b48f0603000-2b48f0607000 r--p 00000000 00:25 47274924608                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/math.cpython-311-x86_64-linux-gnu.so
+2b48f0607000-2b48f060f000 r-xp 00004000 00:25 47274924608                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/math.cpython-311-x86_64-linux-gnu.so
+2b48f060f000-2b48f0614000 r--p 0000c000 00:25 47274924608                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/math.cpython-311-x86_64-linux-gnu.so
+2b48f0614000-2b48f0615000 r--p 00010000 00:25 47274924608                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/math.cpython-311-x86_64-linux-gnu.so
+2b48f0615000-2b48f0616000 rw-p 00011000 00:25 47274924608                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/math.cpython-311-x86_64-linux-gnu.so
+2b48f0616000-2b48f0619000 r--p 00000000 00:25 47274924576                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/zlib.cpython-311-x86_64-linux-gnu.so
+2b48f0619000-2b48f061d000 r-xp 00003000 00:25 47274924576                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/zlib.cpython-311-x86_64-linux-gnu.so
+2b48f061d000-2b48f0620000 r--p 00007000 00:25 47274924576                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/zlib.cpython-311-x86_64-linux-gnu.so
+2b48f0620000-2b48f0621000 r--p 00009000 00:25 47274924576                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/zlib.cpython-311-x86_64-linux-gnu.so
+2b48f0621000-2b48f0622000 rw-p 0000a000 00:25 47274924576                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/zlib.cpython-311-x86_64-linux-gnu.so
+2b48f0622000-2b48f0625000 r--p 00000000 00:25 43076151425                /home/sung.w.kang/anaconda3/lib/libz.so.1.2.13
+2b48f0625000-2b48f0637000 r-xp 00003000 00:25 43076151425                /home/sung.w.kang/anaconda3/lib/libz.so.1.2.13
+2b48f0637000-2b48f063e000 r--p 00015000 00:25 43076151425                /home/sung.w.kang/anaconda3/lib/libz.so.1.2.13
+2b48f063e000-2b48f063f000 r--p 0001b000 00:25 43076151425                /home/sung.w.kang/anaconda3/lib/libz.so.1.2.13
+2b48f063f000-2b48f0640000 rw-p 0001c000 00:25 43076151425                /home/sung.w.kang/anaconda3/lib/libz.so.1.2.13
+2b48f0640000-2b48f0642000 r--p 00000000 00:25 47274924564                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bz2.cpython-311-x86_64-linux-gnu.so
+2b48f0642000-2b48f0644000 r-xp 00002000 00:25 47274924564                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bz2.cpython-311-x86_64-linux-gnu.so
+2b48f0644000-2b48f0646000 r--p 00004000 00:25 47274924564                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bz2.cpython-311-x86_64-linux-gnu.so
+2b48f0646000-2b48f0647000 r--p 00005000 00:25 47274924564                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bz2.cpython-311-x86_64-linux-gnu.so
+2b48f0647000-2b48f0648000 rw-p 00006000 00:25 47274924564                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bz2.cpython-311-x86_64-linux-gnu.so
+2b48f0648000-2b48f064a000 r--p 00000000 00:25 11067620445                /home/sung.w.kang/anaconda3/lib/libbz2.so.1.0.8
+2b48f064a000-2b48f0658000 r-xp 00002000 00:25 11067620445                /home/sung.w.kang/anaconda3/lib/libbz2.so.1.0.8
+2b48f0658000-2b48f065a000 r--p 00010000 00:25 11067620445                /home/sung.w.kang/anaconda3/lib/libbz2.so.1.0.8
+2b48f065a000-2b48f065b000 r--p 00011000 00:25 11067620445                /home/sung.w.kang/anaconda3/lib/libbz2.so.1.0.8
+2b48f065b000-2b48f065c000 rw-p 00012000 00:25 11067620445                /home/sung.w.kang/anaconda3/lib/libbz2.so.1.0.8
+2b48f065c000-2b48f065f000 r--p 00000000 00:25 47274924582                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_lzma.cpython-311-x86_64-linux-gnu.so
+2b48f065f000-2b48f0663000 r-xp 00003000 00:25 47274924582                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_lzma.cpython-311-x86_64-linux-gnu.so
+2b48f0663000-2b48f0666000 r--p 00007000 00:25 47274924582                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_lzma.cpython-311-x86_64-linux-gnu.so
+2b48f0666000-2b48f0667000 r--p 00009000 00:25 47274924582                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_lzma.cpython-311-x86_64-linux-gnu.so
+2b48f0667000-2b48f0668000 rw-p 0000a000 00:25 47274924582                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_lzma.cpython-311-x86_64-linux-gnu.so
+2b48f0668000-2b48f0669000 r--p 00000000 00:25 47274924089                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_contextvars.cpython-311-x86_64-linux-gnu.so
+2b48f0669000-2b48f066a000 r-xp 00001000 00:25 47274924089                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_contextvars.cpython-311-x86_64-linux-gnu.so
+2b48f066a000-2b48f066b000 r--p 00002000 00:25 47274924089                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_contextvars.cpython-311-x86_64-linux-gnu.so
+2b48f066b000-2b48f066c000 r--p 00002000 00:25 47274924089                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_contextvars.cpython-311-x86_64-linux-gnu.so
+2b48f066c000-2b48f066d000 rw-p 00003000 00:25 47274924089                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_contextvars.cpython-311-x86_64-linux-gnu.so
+2b48f066d000-2b48f066e000 r--p 00000000 00:25 47274924087                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_typing.cpython-311-x86_64-linux-gnu.so
+2b48f066e000-2b48f066f000 r-xp 00001000 00:25 47274924087                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_typing.cpython-311-x86_64-linux-gnu.so
+2b48f066f000-2b48f0670000 r--p 00002000 00:25 47274924087                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_typing.cpython-311-x86_64-linux-gnu.so
+2b48f0670000-2b48f0671000 r--p 00002000 00:25 47274924087                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_typing.cpython-311-x86_64-linux-gnu.so
+2b48f0671000-2b48f0672000 rw-p 00003000 00:25 47274924087                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_typing.cpython-311-x86_64-linux-gnu.so
+2b48f0672000-2b48f0673000 r--s dabbad0003130000 00:05 64192              /dev/hfi1_0
+2b48f0673000-2b48f0674000 r--s ffffaf55f8863000 00:05 64192              /dev/hfi1_0
+2b48f0674000-2b48f0675000 r--p 00021000 08:04 33613768                   /usr/lib64/ld-2.17.so
+2b48f0675000-2b48f0676000 rw-p 00022000 08:04 33613768                   /usr/lib64/ld-2.17.so
+2b48f0676000-2b48f0677000 rw-p 00000000 00:00 0 
+2b48f0677000-2b48f068e000 r-xp 00000000 08:04 33619989                   /usr/lib64/libpthread-2.17.so
+2b48f068e000-2b48f088d000 ---p 00017000 08:04 33619989                   /usr/lib64/libpthread-2.17.so
+2b48f088d000-2b48f088e000 r--p 00016000 08:04 33619989                   /usr/lib64/libpthread-2.17.so
+2b48f088e000-2b48f088f000 rw-p 00017000 08:04 33619989                   /usr/lib64/libpthread-2.17.so
+2b48f088f000-2b48f0893000 rw-p 00000000 00:00 0 
+2b48f0893000-2b48f0895000 r-xp 00000000 08:04 33619942                   /usr/lib64/libdl-2.17.so
+2b48f0895000-2b48f0a95000 ---p 00002000 08:04 33619942                   /usr/lib64/libdl-2.17.so
+2b48f0a95000-2b48f0a96000 r--p 00002000 08:04 33619942                   /usr/lib64/libdl-2.17.so
+2b48f0a96000-2b48f0a97000 rw-p 00003000 08:04 33619942                   /usr/lib64/libdl-2.17.so
+2b48f0a97000-2b48f0a99000 r-xp 00000000 08:04 33613746                   /usr/lib64/libutil-2.17.so
+2b48f0a99000-2b48f0c98000 ---p 00002000 08:04 33613746                   /usr/lib64/libutil-2.17.so
+2b48f0c98000-2b48f0c99000 r--p 00001000 08:04 33613746                   /usr/lib64/libutil-2.17.so
+2b48f0c99000-2b48f0c9a000 rw-p 00002000 08:04 33613746                   /usr/lib64/libutil-2.17.so
+2b48f0c9a000-2b48f0d9b000 r-xp 00000000 08:04 33619946                   /usr/lib64/libm-2.17.so
+2b48f0d9b000-2b48f0f9a000 ---p 00101000 08:04 33619946                   /usr/lib64/libm-2.17.so
+2b48f0f9a000-2b48f0f9b000 r--p 00100000 08:04 33619946                   /usr/lib64/libm-2.17.so
+2b48f0f9b000-2b48f0f9c000 rw-p 00101000 08:04 33619946                   /usr/lib64/libm-2.17.so
+2b48f0f9c000-2b48f115e000 r-xp 00000000 08:04 33613786                   /usr/lib64/libc-2.17.so
+2b48f115e000-2b48f135e000 ---p 001c2000 08:04 33613786                   /usr/lib64/libc-2.17.so
+2b48f135e000-2b48f1362000 r--p 001c2000 08:04 33613786                   /usr/lib64/libc-2.17.so
+2b48f1362000-2b48f1364000 rw-p 001c6000 08:04 33613786                   /usr/lib64/libc-2.17.so
+2b48f1364000-2b48f1369000 rw-p 00000000 00:00 0 
+2b48f1369000-2b48f7893000 r--p 00000000 08:04 67168712                   /usr/lib/locale/locale-archive
+2b48f7893000-2b48f7a93000 rw-p 00000000 00:00 0 
+2b48f7a93000-2b48f7a97000 r--p 00000000 00:25 73088906434                /home/sung.w.kang/anaconda3/lib/liblzma.so.5.4.2
+2b48f7a97000-2b48f7ab4000 r-xp 00004000 00:25 73088906434                /home/sung.w.kang/anaconda3/lib/liblzma.so.5.4.2
+2b48f7ab4000-2b48f7ac0000 r--p 00021000 00:25 73088906434                /home/sung.w.kang/anaconda3/lib/liblzma.so.5.4.2
+2b48f7ac0000-2b48f7ac1000 ---p 0002d000 00:25 73088906434                /home/sung.w.kang/anaconda3/lib/liblzma.so.5.4.2
+2b48f7ac1000-2b48f7ac2000 r--p 0002d000 00:25 73088906434                /home/sung.w.kang/anaconda3/lib/liblzma.so.5.4.2
+2b48f7ac2000-2b48f7ac3000 rw-p 0002e000 00:25 73088906434                /home/sung.w.kang/anaconda3/lib/liblzma.so.5.4.2
+2b48f7ac3000-2b48f7aee000 r--p 00000000 00:25 83824459791                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_umath.cpython-311-x86_64-linux-gnu.so
+2b48f7aee000-2b48f7fcc000 r-xp 0002b000 00:25 83824459791                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_umath.cpython-311-x86_64-linux-gnu.so
+2b48f7fcc000-2b48f8140000 r--p 00509000 00:25 83824459791                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_umath.cpython-311-x86_64-linux-gnu.so
+2b48f8140000-2b48f8141000 ---p 0067d000 00:25 83824459791                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_umath.cpython-311-x86_64-linux-gnu.so
+2b48f8141000-2b48f8143000 r--p 0067d000 00:25 83824459791                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_umath.cpython-311-x86_64-linux-gnu.so
+2b48f8143000-2b48f8166000 rw-p 0067f000 00:25 83824459791                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_umath.cpython-311-x86_64-linux-gnu.so
+2b48f8166000-2b48f8186000 rw-p 00000000 00:00 0 
+2b48f8186000-2b48f8191000 rw-p 0070b000 00:25 83824459791                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_umath.cpython-311-x86_64-linux-gnu.so
+2b48f8191000-2b48f829b000 r--p 00000000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48f829b000-2b48f82a3000 r-xp 0010a000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48f82a3000-2b48f82a9000 ---p 00112000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48f82a9000-2b48f9f2a000 r-xp 00118000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48f9f2a000-2b48fa13a000 r--p 01d99000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48fa13a000-2b48fa13b000 ---p 01fa9000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48fa13b000-2b48fa141000 r--p 01fa9000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48fa141000-2b48fa158000 rw-p 01faf000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48fa158000-2b48fa164000 rw-p 00000000 00:00 0 
+2b48fa164000-2b48fa210000 rw-p 020d4000 00:25 38701771822                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+2b48fa210000-2b48fa213000 r--p 00000000 00:25 73088906334                /home/sung.w.kang/anaconda3/lib/libgcc_s.so.1
+2b48fa213000-2b48fa225000 r-xp 00003000 00:25 73088906334                /home/sung.w.kang/anaconda3/lib/libgcc_s.so.1
+2b48fa225000-2b48fa228000 r--p 00015000 00:25 73088906334                /home/sung.w.kang/anaconda3/lib/libgcc_s.so.1
+2b48fa228000-2b48fa229000 r--p 00017000 00:25 73088906334                /home/sung.w.kang/anaconda3/lib/libgcc_s.so.1
+2b48fa229000-2b48fa22a000 rw-p 00018000 00:25 73088906334                /home/sung.w.kang/anaconda3/lib/libgcc_s.so.1
+2b48fa22a000-2b48fa4a0000 r-xp 00000000 00:25 38701771824                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0
+2b48fa4a0000-2b48fa69f000 ---p 00276000 00:25 38701771824                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0
+2b48fa69f000-2b48fa6a0000 r--p 00275000 00:25 38701771824                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0
+2b48fa6a0000-2b48fa6a2000 rw-p 00276000 00:25 38701771824                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0
+2b48fa6a2000-2b48fa6b7000 rw-p 0027b000 00:25 38701771824                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libgfortran-040039e1.so.5.0.0
+2b48fa6b7000-2b48fa6f2000 r-xp 00000000 00:25 38701771823                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libquadmath-96973f99.so.0.0.0
+2b48fa6f2000-2b48fa8f1000 ---p 0003b000 00:25 38701771823                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libquadmath-96973f99.so.0.0.0
+2b48fa8f1000-2b48fa8f2000 r--p 0003a000 00:25 38701771823                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libquadmath-96973f99.so.0.0.0
+2b48fa8f2000-2b48fa8f4000 rw-p 0003b000 00:25 38701771823                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy.libs/libquadmath-96973f99.so.0.0.0
+2b48fa8f4000-2b48fa9f4000 rw-p 00000000 00:00 0 
+2b48fa9f4000-2b48fa9f9000 r--p 00000000 00:25 47274924617                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_datetime.cpython-311-x86_64-linux-gnu.so
+2b48fa9f9000-2b48faa0a000 r-xp 00005000 00:25 47274924617                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_datetime.cpython-311-x86_64-linux-gnu.so
+2b48faa0a000-2b48faa10000 r--p 00016000 00:25 47274924617                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_datetime.cpython-311-x86_64-linux-gnu.so
+2b48faa10000-2b48faa11000 r--p 0001b000 00:25 47274924617                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_datetime.cpython-311-x86_64-linux-gnu.so
+2b48faa11000-2b48faa13000 rw-p 0001c000 00:25 47274924617                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_datetime.cpython-311-x86_64-linux-gnu.so
+2b48faa13000-2b48fab13000 rw-p 00000000 00:00 0 
+2b48fab13000-2b48fab17000 r--p 00000000 00:25 47274924594                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_struct.cpython-311-x86_64-linux-gnu.so
+2b48fab17000-2b48fab1c000 r-xp 00004000 00:25 47274924594                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_struct.cpython-311-x86_64-linux-gnu.so
+2b48fab1c000-2b48fab20000 r--p 00009000 00:25 47274924594                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_struct.cpython-311-x86_64-linux-gnu.so
+2b48fab20000-2b48fab21000 r--p 0000c000 00:25 47274924594                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_struct.cpython-311-x86_64-linux-gnu.so
+2b48fab21000-2b48fab22000 rw-p 0000d000 00:25 47274924594                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_struct.cpython-311-x86_64-linux-gnu.so
+2b48fab22000-2b48fab27000 r--p 00000000 00:25 47274924615                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_pickle.cpython-311-x86_64-linux-gnu.so
+2b48fab27000-2b48fab3a000 r-xp 00005000 00:25 47274924615                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_pickle.cpython-311-x86_64-linux-gnu.so
+2b48fab3a000-2b48fab40000 r--p 00018000 00:25 47274924615                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_pickle.cpython-311-x86_64-linux-gnu.so
+2b48fab40000-2b48fab41000 ---p 0001e000 00:25 47274924615                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_pickle.cpython-311-x86_64-linux-gnu.so
+2b48fab41000-2b48fab42000 r--p 0001e000 00:25 47274924615                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_pickle.cpython-311-x86_64-linux-gnu.so
+2b48fab42000-2b48fab43000 rw-p 0001f000 00:25 47274924615                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_pickle.cpython-311-x86_64-linux-gnu.so
+2b48fab43000-2b48fac43000 rw-p 00000000 00:00 0 
+2b48fac43000-2b48fac4a000 r--p 00000000 00:25 83824455739                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_tests.cpython-311-x86_64-linux-gnu.so
+2b48fac4a000-2b48fac61000 r-xp 00007000 00:25 83824455739                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_tests.cpython-311-x86_64-linux-gnu.so
+2b48fac61000-2b48fac67000 r--p 0001e000 00:25 83824455739                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_tests.cpython-311-x86_64-linux-gnu.so
+2b48fac67000-2b48fac68000 r--p 00023000 00:25 83824455739                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_tests.cpython-311-x86_64-linux-gnu.so
+2b48fac68000-2b48fac6a000 rw-p 00024000 00:25 83824455739                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/core/_multiarray_tests.cpython-311-x86_64-linux-gnu.so
+2b48fac6a000-2b48fac71000 r--p 00000000 00:25 47274924616                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_ctypes.cpython-311-x86_64-linux-gnu.so
+2b48fac71000-2b48fac7f000 r-xp 00007000 00:25 47274924616                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_ctypes.cpython-311-x86_64-linux-gnu.so
+2b48fac7f000-2b48fac85000 r--p 00015000 00:25 47274924616                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_ctypes.cpython-311-x86_64-linux-gnu.so
+2b48fac85000-2b48fac86000 ---p 0001b000 00:25 47274924616                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_ctypes.cpython-311-x86_64-linux-gnu.so
+2b48fac86000-2b48fac87000 r--p 0001b000 00:25 47274924616                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_ctypes.cpython-311-x86_64-linux-gnu.so
+2b48fac87000-2b48fac8b000 rw-p 0001c000 00:25 47274924616                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_ctypes.cpython-311-x86_64-linux-gnu.so
+2b48fac8b000-2b48fac8e000 r--p 00000000 00:25 71043046119                /home/sung.w.kang/anaconda3/lib/libffi.so.8.1.2
+2b48fac8e000-2b48fac98000 r-xp 00003000 00:25 71043046119                /home/sung.w.kang/anaconda3/lib/libffi.so.8.1.2
+2b48fac98000-2b48fac9a000 r--p 0000d000 00:25 71043046119                /home/sung.w.kang/anaconda3/lib/libffi.so.8.1.2
+2b48fac9a000-2b48fac9b000 r--p 0000e000 00:25 71043046119                /home/sung.w.kang/anaconda3/lib/libffi.so.8.1.2
+2b48fac9b000-2b48fac9c000 rw-p 0000f000 00:25 71043046119                /home/sung.w.kang/anaconda3/lib/libffi.so.8.1.2
+2b48fac9c000-2b48fad9c000 rw-p 00000000 00:00 0 
+2b48fad9c000-2b48fada2000 r--p 00000000 00:25 58142132762                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/linalg/_umath_linalg.cpython-311-x86_64-linux-gnu.so
+2b48fada2000-2b48fadc2000 r-xp 00006000 00:25 58142132762                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/linalg/_umath_linalg.cpython-311-x86_64-linux-gnu.so
+2b48fadc2000-2b48fadc7000 r--p 00026000 00:25 58142132762                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/linalg/_umath_linalg.cpython-311-x86_64-linux-gnu.so
+2b48fadc7000-2b48fadc8000 r--p 0002a000 00:25 58142132762                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/linalg/_umath_linalg.cpython-311-x86_64-linux-gnu.so
+2b48fadc8000-2b48fadc9000 rw-p 0002b000 00:25 58142132762                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/linalg/_umath_linalg.cpython-311-x86_64-linux-gnu.so
+2b48fadc9000-2b48fadca000 rw-p 00000000 00:00 0 
+2b48fadca000-2b48fadcd000 rw-p 00032000 00:25 58142132762                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/linalg/_umath_linalg.cpython-311-x86_64-linux-gnu.so
+2b48fadcd000-2b48faecd000 rw-p 00000000 00:00 0 
+2b48faecd000-2b48faece000 r--p 00000000 00:25 51582282290                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/fft/_pocketfft_internal.cpython-311-x86_64-linux-gnu.so
+2b48faece000-2b48faee1000 r-xp 00001000 00:25 51582282290                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/fft/_pocketfft_internal.cpython-311-x86_64-linux-gnu.so
+2b48faee1000-2b48faee3000 r--p 00014000 00:25 51582282290                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/fft/_pocketfft_internal.cpython-311-x86_64-linux-gnu.so
+2b48faee3000-2b48faee4000 r--p 00015000 00:25 51582282290                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/fft/_pocketfft_internal.cpython-311-x86_64-linux-gnu.so
+2b48faee4000-2b48faee5000 rw-p 00016000 00:25 51582282290                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/fft/_pocketfft_internal.cpython-311-x86_64-linux-gnu.so
+2b48faee5000-2b48faeea000 r--p 00000000 00:25 66864620570                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/mtrand.cpython-311-x86_64-linux-gnu.so
+2b48faeea000-2b48faf43000 r-xp 00005000 00:25 66864620570                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/mtrand.cpython-311-x86_64-linux-gnu.so
+2b48faf43000-2b48faf93000 r--p 0005e000 00:25 66864620570                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/mtrand.cpython-311-x86_64-linux-gnu.so
+2b48faf93000-2b48faf94000 ---p 000ae000 00:25 66864620570                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/mtrand.cpython-311-x86_64-linux-gnu.so
+2b48faf94000-2b48faf95000 r--p 000ae000 00:25 66864620570                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/mtrand.cpython-311-x86_64-linux-gnu.so
+2b48faf95000-2b48faf96000 rw-p 000af000 00:25 66864620570                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/mtrand.cpython-311-x86_64-linux-gnu.so
+2b48faf96000-2b48faf98000 rw-p 00000000 00:00 0 
+2b48faf98000-2b48faf9d000 r--p 00000000 00:25 66864620559                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/bit_generator.cpython-311-x86_64-linux-gnu.so
+2b48faf9d000-2b48fafbf000 r-xp 00005000 00:25 66864620559                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/bit_generator.cpython-311-x86_64-linux-gnu.so
+2b48fafbf000-2b48fafc9000 r--p 00027000 00:25 66864620559                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/bit_generator.cpython-311-x86_64-linux-gnu.so
+2b48fafc9000-2b48fafca000 r--p 00030000 00:25 66864620559                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/bit_generator.cpython-311-x86_64-linux-gnu.so
+2b48fafca000-2b48fafcc000 rw-p 00031000 00:25 66864620559                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/bit_generator.cpython-311-x86_64-linux-gnu.so
+2b48fafcc000-2b48fafcd000 rw-p 00000000 00:00 0 
+2b48fafcd000-2b48fafd1000 r--p 00000000 00:25 66864620568                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_common.cpython-311-x86_64-linux-gnu.so
+2b48fafd1000-2b48fb002000 r-xp 00004000 00:25 66864620568                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_common.cpython-311-x86_64-linux-gnu.so
+2b48fb002000-2b48fb006000 r--p 00035000 00:25 66864620568                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_common.cpython-311-x86_64-linux-gnu.so
+2b48fb006000-2b48fb007000 ---p 00039000 00:25 66864620568                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_common.cpython-311-x86_64-linux-gnu.so
+2b48fb007000-2b48fb008000 r--p 00039000 00:25 66864620568                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_common.cpython-311-x86_64-linux-gnu.so
+2b48fb008000-2b48fb009000 rw-p 0003a000 00:25 66864620568                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_common.cpython-311-x86_64-linux-gnu.so
+2b48fb009000-2b48fb00a000 rw-p 00000000 00:00 0 
+2b48fb00a000-2b48fb00c000 r--p 00000000 00:25 47274924577                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/binascii.cpython-311-x86_64-linux-gnu.so
+2b48fb00c000-2b48fb010000 r-xp 00002000 00:25 47274924577                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/binascii.cpython-311-x86_64-linux-gnu.so
+2b48fb010000-2b48fb012000 r--p 00006000 00:25 47274924577                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/binascii.cpython-311-x86_64-linux-gnu.so
+2b48fb012000-2b48fb013000 r--p 00007000 00:25 47274924577                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/binascii.cpython-311-x86_64-linux-gnu.so
+2b48fb013000-2b48fb014000 rw-p 00008000 00:25 47274924577                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/binascii.cpython-311-x86_64-linux-gnu.so
+2b48fb014000-2b48fb018000 r--p 00000000 00:25 47274924590                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_hashlib.cpython-311-x86_64-linux-gnu.so
+2b48fb018000-2b48fb01e000 r-xp 00004000 00:25 47274924590                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_hashlib.cpython-311-x86_64-linux-gnu.so
+2b48fb01e000-2b48fb022000 r--p 0000a000 00:25 47274924590                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_hashlib.cpython-311-x86_64-linux-gnu.so
+2b48fb022000-2b48fb023000 ---p 0000e000 00:25 47274924590                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_hashlib.cpython-311-x86_64-linux-gnu.so
+2b48fb023000-2b48fb024000 r--p 0000e000 00:25 47274924590                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_hashlib.cpython-311-x86_64-linux-gnu.so
+2b48fb024000-2b48fb025000 rw-p 0000f000 00:25 47274924590                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_hashlib.cpython-311-x86_64-linux-gnu.so
+2b48fb025000-2b48fb0dd000 r--p 00000000 00:25 34468496421                /home/sung.w.kang/anaconda3/lib/libcrypto.so.3
+2b48fb0dd000-2b48fb32a000 r-xp 000b8000 00:25 34468496421                /home/sung.w.kang/anaconda3/lib/libcrypto.so.3
+2b48fb32a000-2b48fb401000 r--p 00305000 00:25 34468496421                /home/sung.w.kang/anaconda3/lib/libcrypto.so.3
+2b48fb401000-2b48fb402000 ---p 003dc000 00:25 34468496421                /home/sung.w.kang/anaconda3/lib/libcrypto.so.3
+2b48fb402000-2b48fb45d000 r--p 003dc000 00:25 34468496421                /home/sung.w.kang/anaconda3/lib/libcrypto.so.3
+2b48fb45d000-2b48fb460000 rw-p 00437000 00:25 34468496421                /home/sung.w.kang/anaconda3/lib/libcrypto.so.3
+2b48fb460000-2b48fb463000 rw-p 00000000 00:00 0 
+2b48fb463000-2b48fb465000 r--p 00000000 00:25 47274924603                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_blake2.cpython-311-x86_64-linux-gnu.so
+2b48fb465000-2b48fb46d000 r-xp 00002000 00:25 47274924603                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_blake2.cpython-311-x86_64-linux-gnu.so
+2b48fb46d000-2b48fb46f000 r--p 0000a000 00:25 47274924603                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_blake2.cpython-311-x86_64-linux-gnu.so
+2b48fb46f000-2b48fb470000 r--p 0000b000 00:25 47274924603                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_blake2.cpython-311-x86_64-linux-gnu.so
+2b48fb470000-2b48fb471000 rw-p 0000c000 00:25 47274924603                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_blake2.cpython-311-x86_64-linux-gnu.so
+2b48fb471000-2b48fb473000 r--p 00000000 00:25 47274924553                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bisect.cpython-311-x86_64-linux-gnu.so
+2b48fb473000-2b48fb475000 r-xp 00002000 00:25 47274924553                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bisect.cpython-311-x86_64-linux-gnu.so
+2b48fb475000-2b48fb476000 r--p 00004000 00:25 47274924553                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bisect.cpython-311-x86_64-linux-gnu.so
+2b48fb476000-2b48fb477000 r--p 00004000 00:25 47274924553                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bisect.cpython-311-x86_64-linux-gnu.so
+2b48fb477000-2b48fb478000 rw-p 00005000 00:25 47274924553                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_bisect.cpython-311-x86_64-linux-gnu.so
+2b48fb478000-2b48fb47a000 r--p 00000000 00:25 47274924554                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_random.cpython-311-x86_64-linux-gnu.so
+2b48fb47a000-2b48fb47c000 r-xp 00002000 00:25 47274924554                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_random.cpython-311-x86_64-linux-gnu.so
+2b48fb47c000-2b48fb47d000 r--p 00004000 00:25 47274924554                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_random.cpython-311-x86_64-linux-gnu.so
+2b48fb47d000-2b48fb47e000 r--p 00004000 00:25 47274924554                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_random.cpython-311-x86_64-linux-gnu.so
+2b48fb47e000-2b48fb47f000 rw-p 00005000 00:25 47274924554                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_random.cpython-311-x86_64-linux-gnu.so
+2b48fb47f000-2b48fb481000 r--p 00000000 00:25 47274924567                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sha512.cpython-311-x86_64-linux-gnu.so
+2b48fb481000-2b48fb486000 r-xp 00002000 00:25 47274924567                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sha512.cpython-311-x86_64-linux-gnu.so
+2b48fb486000-2b48fb487000 r--p 00007000 00:25 47274924567                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sha512.cpython-311-x86_64-linux-gnu.so
+2b48fb487000-2b48fb488000 r--p 00007000 00:25 47274924567                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sha512.cpython-311-x86_64-linux-gnu.so
+2b48fb488000-2b48fb489000 rw-p 00008000 00:25 47274924567                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sha512.cpython-311-x86_64-linux-gnu.so
+2b48fb489000-2b48fb48d000 r--p 00000000 00:25 66864620563                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_bounded_integers.cpython-311-x86_64-linux-gnu.so
+2b48fb48d000-2b48fb4d2000 r-xp 00004000 00:25 66864620563                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_bounded_integers.cpython-311-x86_64-linux-gnu.so
+2b48fb4d2000-2b48fb4db000 r--p 00049000 00:25 66864620563                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_bounded_integers.cpython-311-x86_64-linux-gnu.so
+2b48fb4db000-2b48fb4dc000 r--p 00051000 00:25 66864620563                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_bounded_integers.cpython-311-x86_64-linux-gnu.so
+2b48fb4dc000-2b48fb4dd000 rw-p 00052000 00:25 66864620563                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_bounded_integers.cpython-311-x86_64-linux-gnu.so
+2b48fb4dd000-2b48fb4de000 rw-p 00000000 00:00 0 
+2b48fb4de000-2b48fb4e1000 r--p 00000000 00:25 66864620560                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_mt19937.cpython-311-x86_64-linux-gnu.so
+2b48fb4e1000-2b48fb4f2000 r-xp 00003000 00:25 66864620560                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_mt19937.cpython-311-x86_64-linux-gnu.so
+2b48fb4f2000-2b48fb4f7000 r--p 00014000 00:25 66864620560                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_mt19937.cpython-311-x86_64-linux-gnu.so
+2b48fb4f7000-2b48fb4f8000 r--p 00018000 00:25 66864620560                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_mt19937.cpython-311-x86_64-linux-gnu.so
+2b48fb4f8000-2b48fb4f9000 rw-p 00019000 00:25 66864620560                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_mt19937.cpython-311-x86_64-linux-gnu.so
+2b48fb4f9000-2b48fb4fc000 r--p 00000000 00:25 66864620564                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_philox.cpython-311-x86_64-linux-gnu.so
+2b48fb4fc000-2b48fb50b000 r-xp 00003000 00:25 66864620564                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_philox.cpython-311-x86_64-linux-gnu.so
+2b48fb50b000-2b48fb50f000 r--p 00012000 00:25 66864620564                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_philox.cpython-311-x86_64-linux-gnu.so
+2b48fb50f000-2b48fb510000 r--p 00015000 00:25 66864620564                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_philox.cpython-311-x86_64-linux-gnu.so
+2b48fb510000-2b48fb511000 rw-p 00016000 00:25 66864620564                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_philox.cpython-311-x86_64-linux-gnu.so
+2b48fb511000-2b48fb514000 r--p 00000000 00:25 66864620579                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_pcg64.cpython-311-x86_64-linux-gnu.so
+2b48fb514000-2b48fb526000 r-xp 00003000 00:25 66864620579                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_pcg64.cpython-311-x86_64-linux-gnu.so
+2b48fb526000-2b48fb52b000 r--p 00015000 00:25 66864620579                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_pcg64.cpython-311-x86_64-linux-gnu.so
+2b48fb52b000-2b48fb52c000 r--p 00019000 00:25 66864620579                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_pcg64.cpython-311-x86_64-linux-gnu.so
+2b48fb52c000-2b48fb52d000 rw-p 0001a000 00:25 66864620579                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_pcg64.cpython-311-x86_64-linux-gnu.so
+2b48fb52d000-2b48fb530000 r--p 00000000 00:25 66864620558                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_sfc64.cpython-311-x86_64-linux-gnu.so
+2b48fb530000-2b48fb539000 r-xp 00003000 00:25 66864620558                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_sfc64.cpython-311-x86_64-linux-gnu.so
+2b48fb539000-2b48fb53c000 r--p 0000c000 00:25 66864620558                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_sfc64.cpython-311-x86_64-linux-gnu.so
+2b48fb53c000-2b48fb53d000 r--p 0000e000 00:25 66864620558                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_sfc64.cpython-311-x86_64-linux-gnu.so
+2b48fb53d000-2b48fb53e000 rw-p 0000f000 00:25 66864620558                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_sfc64.cpython-311-x86_64-linux-gnu.so
+2b48fb53e000-2b48fb545000 r--p 00000000 00:25 66864620576                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_generator.cpython-311-x86_64-linux-gnu.so
+2b48fb545000-2b48fb5c6000 r-xp 00007000 00:25 66864620576                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_generator.cpython-311-x86_64-linux-gnu.so
+2b48fb5c6000-2b48fb61a000 r--p 00088000 00:25 66864620576                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_generator.cpython-311-x86_64-linux-gnu.so
+2b48fb61a000-2b48fb61b000 r--p 000db000 00:25 66864620576                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_generator.cpython-311-x86_64-linux-gnu.so
+2b48fb61b000-2b48fb61d000 rw-p 000dc000 00:25 66864620576                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/numpy/random/_generator.cpython-311-x86_64-linux-gnu.so
+2b48fb61d000-2b48fb71f000 rw-p 00000000 00:00 0 
+2b48fb71f000-2b48fb720000 r--p 00000000 00:25 47274924091                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_opcode.cpython-311-x86_64-linux-gnu.so
+2b48fb720000-2b48fb721000 r-xp 00001000 00:25 47274924091                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_opcode.cpython-311-x86_64-linux-gnu.so
+2b48fb721000-2b48fb722000 r--p 00002000 00:25 47274924091                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_opcode.cpython-311-x86_64-linux-gnu.so
+2b48fb722000-2b48fb723000 r--p 00002000 00:25 47274924091                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_opcode.cpython-311-x86_64-linux-gnu.so
+2b48fb723000-2b48fb724000 rw-p 00003000 00:25 47274924091                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_opcode.cpython-311-x86_64-linux-gnu.so
+2b48fb724000-2b48fb824000 rw-p 00000000 00:00 0 
+2b48fb824000-2b48fb82b000 r--p 00000000 00:25 21518893093                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/yaml/_yaml.cpython-311-x86_64-linux-gnu.so
+2b48fb82b000-2b48fb852000 r-xp 00007000 00:25 21518893093                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/yaml/_yaml.cpython-311-x86_64-linux-gnu.so
+2b48fb852000-2b48fb856000 r--p 0002e000 00:25 21518893093                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/yaml/_yaml.cpython-311-x86_64-linux-gnu.so
+2b48fb856000-2b48fb857000 r--p 00031000 00:25 21518893093                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/yaml/_yaml.cpython-311-x86_64-linux-gnu.so
+2b48fb857000-2b48fb85a000 rw-p 00032000 00:25 21518893093                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/yaml/_yaml.cpython-311-x86_64-linux-gnu.so
+2b48fb85a000-2b48fb85b000 rw-p 00000000 00:00 0 
+2b48fb85b000-2b48fb85d000 r--p 00000000 00:25 53733467765                /home/sung.w.kang/anaconda3/lib/libyaml-0.so.2.0.9
+2b48fb85d000-2b48fb873000 r-xp 00002000 00:25 53733467765                /home/sung.w.kang/anaconda3/lib/libyaml-0.so.2.0.9
+2b48fb873000-2b48fb876000 r--p 00018000 00:25 53733467765                /home/sung.w.kang/anaconda3/lib/libyaml-0.so.2.0.9
+2b48fb876000-2b48fb877000 ---p 0001b000 00:25 53733467765                /home/sung.w.kang/anaconda3/lib/libyaml-0.so.2.0.9
+2b48fb877000-2b48fb878000 r--p 0001b000 00:25 53733467765                /home/sung.w.kang/anaconda3/lib/libyaml-0.so.2.0.9
+2b48fb878000-2b48fb879000 rw-p 0001c000 00:25 53733467765                /home/sung.w.kang/anaconda3/lib/libyaml-0.so.2.0.9
+2b48fb879000-2b48fb87c000 r--p 00000000 00:25 47274924578                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_csv.cpython-311-x86_64-linux-gnu.so
+2b48fb87c000-2b48fb881000 r-xp 00003000 00:25 47274924578                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_csv.cpython-311-x86_64-linux-gnu.so
+2b48fb881000-2b48fb884000 r--p 00008000 00:25 47274924578                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_csv.cpython-311-x86_64-linux-gnu.so
+2b48fb884000-2b48fb885000 r--p 0000a000 00:25 47274924578                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_csv.cpython-311-x86_64-linux-gnu.so
+2b48fb885000-2b48fb886000 rw-p 0000b000 00:25 47274924578                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_csv.cpython-311-x86_64-linux-gnu.so
+2b48fb886000-2b48fb88b000 r--p 00000000 00:25 47274924606                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_socket.cpython-311-x86_64-linux-gnu.so
+2b48fb88b000-2b48fb894000 r-xp 00005000 00:25 47274924606                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_socket.cpython-311-x86_64-linux-gnu.so
+2b48fb894000-2b48fb89c000 r--p 0000e000 00:25 47274924606                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_socket.cpython-311-x86_64-linux-gnu.so
+2b48fb89c000-2b48fb89d000 ---p 00016000 00:25 47274924606                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_socket.cpython-311-x86_64-linux-gnu.so
+2b48fb89d000-2b48fb89e000 r--p 00016000 00:25 47274924606                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_socket.cpython-311-x86_64-linux-gnu.so
+2b48fb89e000-2b48fb89f000 rw-p 00017000 00:25 47274924606                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_socket.cpython-311-x86_64-linux-gnu.so
+2b48fb89f000-2b48fb8a3000 r--p 00000000 00:25 47274924604                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/array.cpython-311-x86_64-linux-gnu.so
+2b48fb8a3000-2b48fb8aa000 r-xp 00004000 00:25 47274924604                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/array.cpython-311-x86_64-linux-gnu.so
+2b48fb8aa000-2b48fb8ae000 r--p 0000b000 00:25 47274924604                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/array.cpython-311-x86_64-linux-gnu.so
+2b48fb8ae000-2b48fb8af000 ---p 0000f000 00:25 47274924604                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/array.cpython-311-x86_64-linux-gnu.so
+2b48fb8af000-2b48fb8b0000 r--p 0000f000 00:25 47274924604                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/array.cpython-311-x86_64-linux-gnu.so
+2b48fb8b0000-2b48fb8b1000 rw-p 00010000 00:25 47274924604                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/array.cpython-311-x86_64-linux-gnu.so
+2b48fb8b1000-2b48fbab1000 rw-p 00000000 00:00 0 
+2b48fbab1000-2b48fbab4000 r--p 00000000 00:25 47274924596                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_json.cpython-311-x86_64-linux-gnu.so
+2b48fbab4000-2b48fbaba000 r-xp 00003000 00:25 47274924596                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_json.cpython-311-x86_64-linux-gnu.so
+2b48fbaba000-2b48fbabc000 r--p 00009000 00:25 47274924596                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_json.cpython-311-x86_64-linux-gnu.so
+2b48fbabc000-2b48fbabd000 r--p 0000a000 00:25 47274924596                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_json.cpython-311-x86_64-linux-gnu.so
+2b48fbabd000-2b48fbabe000 rw-p 0000b000 00:25 47274924596                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_json.cpython-311-x86_64-linux-gnu.so
+2b48fbabe000-2b48fbabf000 r--p 00000000 00:25 47274924088                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_uuid.cpython-311-x86_64-linux-gnu.so
+2b48fbabf000-2b48fbac0000 r-xp 00001000 00:25 47274924088                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_uuid.cpython-311-x86_64-linux-gnu.so
+2b48fbac0000-2b48fbac1000 r--p 00002000 00:25 47274924088                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_uuid.cpython-311-x86_64-linux-gnu.so
+2b48fbac1000-2b48fbac2000 r--p 00002000 00:25 47274924088                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_uuid.cpython-311-x86_64-linux-gnu.so
+2b48fbac2000-2b48fbac3000 rw-p 00003000 00:25 47274924088                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_uuid.cpython-311-x86_64-linux-gnu.so
+2b48fbac3000-2b48fbac5000 r--p 00000000 00:25 25808402507                /home/sung.w.kang/anaconda3/lib/libuuid.so.1.3.0
+2b48fbac5000-2b48fbac9000 r-xp 00002000 00:25 25808402507                /home/sung.w.kang/anaconda3/lib/libuuid.so.1.3.0
+2b48fbac9000-2b48fbaca000 r--p 00006000 00:25 25808402507                /home/sung.w.kang/anaconda3/lib/libuuid.so.1.3.0
+2b48fbaca000-2b48fbacb000 r--p 00006000 00:25 25808402507                /home/sung.w.kang/anaconda3/lib/libuuid.so.1.3.0
+2b48fbacb000-2b48fbacc000 rw-p 00007000 00:25 25808402507                /home/sung.w.kang/anaconda3/lib/libuuid.so.1.3.0
+2b48fbacc000-2b48fbad0000 r--p 00000000 00:25 443748399                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/__init__.cpython-311-x86_64-linux-gnu.so
+2b48fbad0000-2b48fbad3000 r-xp 00004000 00:25 443748399                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/__init__.cpython-311-x86_64-linux-gnu.so
+2b48fbad3000-2b48fbad4000 r--p 00007000 00:25 443748399                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/__init__.cpython-311-x86_64-linux-gnu.so
+2b48fbad4000-2b48fbad5000 ---p 00008000 00:25 443748399                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/__init__.cpython-311-x86_64-linux-gnu.so
+2b48fbad5000-2b48fbad6000 r--p 00008000 00:25 443748399                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/__init__.cpython-311-x86_64-linux-gnu.so
+2b48fbad6000-2b48fbad8000 rw-p 00009000 00:25 443748399                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/__init__.cpython-311-x86_64-linux-gnu.so
+2b48fbad8000-2b48fbae0000 r--p 00000000 00:25 443757056                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/dataclasses.cpython-311-x86_64-linux-gnu.so
+2b48fbae0000-2b48fbb09000 r-xp 00008000 00:25 443757056                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/dataclasses.cpython-311-x86_64-linux-gnu.so
+2b48fbb09000-2b48fbb0f000 r--p 00031000 00:25 443757056                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/dataclasses.cpython-311-x86_64-linux-gnu.so
+2b48fbb0f000-2b48fbb10000 r--p 00036000 00:25 443757056                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/dataclasses.cpython-311-x86_64-linux-gnu.so
+2b48fbb10000-2b48fbb15000 rw-p 00037000 00:25 443757056                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/dataclasses.cpython-311-x86_64-linux-gnu.so
+2b48fbb15000-2b48fbc16000 rw-p 00000000 00:00 0 
+2b48fbc16000-2b48fbc1e000 r--p 00000000 00:25 443757058                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/class_validators.cpython-311-x86_64-linux-gnu.so
+2b48fbc1e000-2b48fbc47000 r-xp 00008000 00:25 443757058                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/class_validators.cpython-311-x86_64-linux-gnu.so
+2b48fbc47000-2b48fbc4d000 r--p 00031000 00:25 443757058                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/class_validators.cpython-311-x86_64-linux-gnu.so
+2b48fbc4d000-2b48fbc4e000 ---p 00037000 00:25 443757058                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/class_validators.cpython-311-x86_64-linux-gnu.so
+2b48fbc4e000-2b48fbc4f000 r--p 00037000 00:25 443757058                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/class_validators.cpython-311-x86_64-linux-gnu.so
+2b48fbc4f000-2b48fbc54000 rw-p 00038000 00:25 443757058                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/class_validators.cpython-311-x86_64-linux-gnu.so
+2b48fbc54000-2b48fbc55000 rw-p 00000000 00:00 0 
+2b48fbc55000-2b48fbc5f000 r--p 00000000 00:25 443757062                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/errors.cpython-311-x86_64-linux-gnu.so
+2b48fbc5f000-2b48fbc81000 r-xp 0000a000 00:25 443757062                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/errors.cpython-311-x86_64-linux-gnu.so
+2b48fbc81000-2b48fbc87000 r--p 0002c000 00:25 443757062                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/errors.cpython-311-x86_64-linux-gnu.so
+2b48fbc87000-2b48fbc88000 ---p 00032000 00:25 443757062                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/errors.cpython-311-x86_64-linux-gnu.so
+2b48fbc88000-2b48fbc89000 r--p 00032000 00:25 443757062                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/errors.cpython-311-x86_64-linux-gnu.so
+2b48fbc89000-2b48fbc8f000 rw-p 00033000 00:25 443757062                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/errors.cpython-311-x86_64-linux-gnu.so
+2b48fbc8f000-2b48fbc91000 rw-p 00000000 00:00 0 
+2b48fbc91000-2b48fbc98000 r--p 00000000 00:25 47274924622                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_decimal.cpython-311-x86_64-linux-gnu.so
+2b48fbc98000-2b48fbcc9000 r-xp 00007000 00:25 47274924622                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_decimal.cpython-311-x86_64-linux-gnu.so
+2b48fbcc9000-2b48fbcd9000 r--p 00038000 00:25 47274924622                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_decimal.cpython-311-x86_64-linux-gnu.so
+2b48fbcd9000-2b48fbcda000 ---p 00048000 00:25 47274924622                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_decimal.cpython-311-x86_64-linux-gnu.so
+2b48fbcda000-2b48fbcdb000 r--p 00048000 00:25 47274924622                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_decimal.cpython-311-x86_64-linux-gnu.so
+2b48fbcdb000-2b48fbcde000 rw-p 00049000 00:25 47274924622                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_decimal.cpython-311-x86_64-linux-gnu.so
+2b48fbcde000-2b48fbce6000 r--p 00000000 00:25 443757064                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/typing.cpython-311-x86_64-linux-gnu.so
+2b48fbce6000-2b48fbd0f000 r-xp 00008000 00:25 443757064                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/typing.cpython-311-x86_64-linux-gnu.so
+2b48fbd0f000-2b48fbd14000 r--p 00031000 00:25 443757064                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/typing.cpython-311-x86_64-linux-gnu.so
+2b48fbd14000-2b48fbd15000 r--p 00035000 00:25 443757064                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/typing.cpython-311-x86_64-linux-gnu.so
+2b48fbd15000-2b48fbd1a000 rw-p 00036000 00:25 443757064                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/typing.cpython-311-x86_64-linux-gnu.so
+2b48fbd1a000-2b48fbd1c000 rw-p 00000000 00:00 0 
+2b48fbd1c000-2b48fbd28000 r--p 00000000 00:25 443757068                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/utils.cpython-311-x86_64-linux-gnu.so
+2b48fbd28000-2b48fbd69000 r-xp 0000c000 00:25 443757068                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/utils.cpython-311-x86_64-linux-gnu.so
+2b48fbd69000-2b48fbd72000 r--p 0004d000 00:25 443757068                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/utils.cpython-311-x86_64-linux-gnu.so
+2b48fbd72000-2b48fbd73000 r--p 00055000 00:25 443757068                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/utils.cpython-311-x86_64-linux-gnu.so
+2b48fbd73000-2b48fbd7c000 rw-p 00056000 00:25 443757068                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/utils.cpython-311-x86_64-linux-gnu.so
+2b48fbd7c000-2b48fbd7e000 rw-p 00000000 00:00 0 
+2b48fbd7e000-2b48fbd82000 r--p 00000000 00:25 443748402                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/version.cpython-311-x86_64-linux-gnu.so
+2b48fbd82000-2b48fbd8a000 r-xp 00004000 00:25 443748402                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/version.cpython-311-x86_64-linux-gnu.so
+2b48fbd8a000-2b48fbd8c000 r--p 0000c000 00:25 443748402                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/version.cpython-311-x86_64-linux-gnu.so
+2b48fbd8c000-2b48fbd8d000 ---p 0000e000 00:25 443748402                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/version.cpython-311-x86_64-linux-gnu.so
+2b48fbd8d000-2b48fbd8e000 r--p 0000e000 00:25 443748402                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/version.cpython-311-x86_64-linux-gnu.so
+2b48fbd8e000-2b48fbd90000 rw-p 0000f000 00:25 443748402                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/version.cpython-311-x86_64-linux-gnu.so
+2b48fbd90000-2b48fbd96000 r--p 00000000 00:25 443748406                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/config.cpython-311-x86_64-linux-gnu.so
+2b48fbd96000-2b48fbda3000 r-xp 00006000 00:25 443748406                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/config.cpython-311-x86_64-linux-gnu.so
+2b48fbda3000-2b48fbda6000 r--p 00013000 00:25 443748406                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/config.cpython-311-x86_64-linux-gnu.so
+2b48fbda6000-2b48fbda7000 r--p 00015000 00:25 443748406                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/config.cpython-311-x86_64-linux-gnu.so
+2b48fbda7000-2b48fbda9000 rw-p 00016000 00:25 443748406                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/config.cpython-311-x86_64-linux-gnu.so
+2b48fbda9000-2b48fbdaa000 rw-p 00000000 00:00 0 
+2b48fbdaa000-2b48fbdb1000 r--p 00000000 00:25 443748409                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/error_wrappers.cpython-311-x86_64-linux-gnu.so
+2b48fbdb1000-2b48fbdc6000 r-xp 00007000 00:25 443748409                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/error_wrappers.cpython-311-x86_64-linux-gnu.so
+2b48fbdc6000-2b48fbdca000 r--p 0001c000 00:25 443748409                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/error_wrappers.cpython-311-x86_64-linux-gnu.so
+2b48fbdca000-2b48fbdcb000 ---p 00020000 00:25 443748409                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/error_wrappers.cpython-311-x86_64-linux-gnu.so
+2b48fbdcb000-2b48fbdcc000 r--p 00020000 00:25 443748409                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/error_wrappers.cpython-311-x86_64-linux-gnu.so
+2b48fbdcc000-2b48fbdcf000 rw-p 00021000 00:25 443748409                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/error_wrappers.cpython-311-x86_64-linux-gnu.so
+2b48fbdcf000-2b48fbdd0000 rw-p 00000000 00:00 0 
+2b48fbdd0000-2b48fbdd5000 r--p 00000000 00:25 443748405                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/json.cpython-311-x86_64-linux-gnu.so
+2b48fbdd5000-2b48fbde1000 r-xp 00005000 00:25 443748405                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/json.cpython-311-x86_64-linux-gnu.so
+2b48fbde1000-2b48fbde3000 r--p 00011000 00:25 443748405                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/json.cpython-311-x86_64-linux-gnu.so
+2b48fbde3000-2b48fbde4000 ---p 00013000 00:25 443748405                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/json.cpython-311-x86_64-linux-gnu.so
+2b48fbde4000-2b48fbde5000 r--p 00013000 00:25 443748405                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/json.cpython-311-x86_64-linux-gnu.so
+2b48fbde5000-2b48fbde7000 rw-p 00014000 00:25 443748405                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/json.cpython-311-x86_64-linux-gnu.so
+2b48fbde7000-2b48fbde8000 rw-p 00000000 00:00 0 
+2b48fbde8000-2b48fbdf2000 r--p 00000000 00:25 443757065                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/color.cpython-311-x86_64-linux-gnu.so
+2b48fbdf2000-2b48fbe22000 r-xp 0000a000 00:25 443757065                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/color.cpython-311-x86_64-linux-gnu.so
+2b48fbe22000-2b48fbe28000 r--p 0003a000 00:25 443757065                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/color.cpython-311-x86_64-linux-gnu.so
+2b48fbe28000-2b48fbe29000 r--p 0003f000 00:25 443757065                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/color.cpython-311-x86_64-linux-gnu.so
+2b48fbe29000-2b48fbe30000 rw-p 00040000 00:25 443757065                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/color.cpython-311-x86_64-linux-gnu.so
+2b48fbe30000-2b48fbe32000 rw-p 00000000 00:00 0 
+2b48fbe32000-2b48fbe3c000 r--p 00000000 00:25 443757066                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/networks.cpython-311-x86_64-linux-gnu.so
+2b48fbe3c000-2b48fbe72000 r-xp 0000a000 00:25 443757066                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/networks.cpython-311-x86_64-linux-gnu.so
+2b48fbe72000-2b48fbe79000 r--p 00040000 00:25 443757066                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/networks.cpython-311-x86_64-linux-gnu.so
+2b48fbe79000-2b48fbe7a000 r--p 00046000 00:25 443757066                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/networks.cpython-311-x86_64-linux-gnu.so
+2b48fbe7a000-2b48fbe80000 rw-p 00047000 00:25 443757066                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/networks.cpython-311-x86_64-linux-gnu.so
+2b48fbe80000-2b48fbe82000 rw-p 00000000 00:00 0 
+2b48fbe82000-2b48fbe8c000 r--p 00000000 00:25 443757072                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/validators.cpython-311-x86_64-linux-gnu.so
+2b48fbe8c000-2b48fbee8000 r-xp 0000a000 00:25 443757072                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/validators.cpython-311-x86_64-linux-gnu.so
+2b48fbee8000-2b48fbeef000 r--p 00066000 00:25 443757072                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/validators.cpython-311-x86_64-linux-gnu.so
+2b48fbeef000-2b48fbef0000 ---p 0006d000 00:25 443757072                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/validators.cpython-311-x86_64-linux-gnu.so
+2b48fbef0000-2b48fbef1000 r--p 0006d000 00:25 443757072                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/validators.cpython-311-x86_64-linux-gnu.so
+2b48fbef1000-2b48fbef7000 rw-p 0006e000 00:25 443757072                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/validators.cpython-311-x86_64-linux-gnu.so
+2b48fbef7000-2b48fbef9000 rw-p 00000000 00:00 0 
+2b48fbef9000-2b48fbefe000 r--p 00000000 00:25 443748408                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/datetime_parse.cpython-311-x86_64-linux-gnu.so
+2b48fbefe000-2b48fbf12000 r-xp 00005000 00:25 443748408                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/datetime_parse.cpython-311-x86_64-linux-gnu.so
+2b48fbf12000-2b48fbf15000 r--p 00019000 00:25 443748408                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/datetime_parse.cpython-311-x86_64-linux-gnu.so
+2b48fbf15000-2b48fbf16000 r--p 0001b000 00:25 443748408                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/datetime_parse.cpython-311-x86_64-linux-gnu.so
+2b48fbf16000-2b48fbf18000 rw-p 0001c000 00:25 443748408                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/datetime_parse.cpython-311-x86_64-linux-gnu.so
+2b48fbf18000-2b48fbf19000 rw-p 00000000 00:00 0 
+2b48fbf19000-2b48fbf26000 r--p 00000000 00:25 443757073                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/types.cpython-311-x86_64-linux-gnu.so
+2b48fbf26000-2b48fbf73000 r-xp 0000d000 00:25 443757073                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/types.cpython-311-x86_64-linux-gnu.so
+2b48fbf73000-2b48fbf7e000 r--p 0005a000 00:25 443757073                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/types.cpython-311-x86_64-linux-gnu.so
+2b48fbf7e000-2b48fbf7f000 ---p 00065000 00:25 443757073                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/types.cpython-311-x86_64-linux-gnu.so
+2b48fbf7f000-2b48fbf80000 r--p 00065000 00:25 443757073                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/types.cpython-311-x86_64-linux-gnu.so
+2b48fbf80000-2b48fbf8a000 rw-p 00066000 00:25 443757073                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/types.cpython-311-x86_64-linux-gnu.so
+2b48fbf8a000-2b48fbf8d000 rw-p 00000000 00:00 0 
+2b48fbf8d000-2b48fbf99000 r--p 00000000 00:25 443757074                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/fields.cpython-311-x86_64-linux-gnu.so
+2b48fbf99000-2b48fbffd000 r-xp 0000c000 00:25 443757074                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/fields.cpython-311-x86_64-linux-gnu.so
+2b48fbffd000-2b48fc005000 r--p 00070000 00:25 443757074                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/fields.cpython-311-x86_64-linux-gnu.so
+2b48fc005000-2b48fc006000 r--p 00077000 00:25 443757074                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/fields.cpython-311-x86_64-linux-gnu.so
+2b48fc006000-2b48fc00f000 rw-p 00078000 00:25 443757074                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/fields.cpython-311-x86_64-linux-gnu.so
+2b48fc00f000-2b48fc012000 rw-p 00000000 00:00 0 
+2b48fc012000-2b48fc01e000 r--p 00000000 00:25 443757075                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/main.cpython-311-x86_64-linux-gnu.so
+2b48fc01e000-2b48fc094000 r-xp 0000c000 00:25 443757075                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/main.cpython-311-x86_64-linux-gnu.so
+2b48fc094000-2b48fc09c000 r--p 00082000 00:25 443757075                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/main.cpython-311-x86_64-linux-gnu.so
+2b48fc09c000-2b48fc09d000 ---p 0008a000 00:25 443757075                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/main.cpython-311-x86_64-linux-gnu.so
+2b48fc09d000-2b48fc09e000 r--p 0008a000 00:25 443757075                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/main.cpython-311-x86_64-linux-gnu.so
+2b48fc09e000-2b48fc0a6000 rw-p 0008b000 00:25 443757075                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/main.cpython-311-x86_64-linux-gnu.so
+2b48fc0a6000-2b48fc0a9000 rw-p 00000000 00:00 0 
+2b48fc0a9000-2b48fc0ad000 r--p 00000000 00:25 443748401                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/parse.cpython-311-x86_64-linux-gnu.so
+2b48fc0ad000-2b48fc0b5000 r-xp 00004000 00:25 443748401                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/parse.cpython-311-x86_64-linux-gnu.so
+2b48fc0b5000-2b48fc0b7000 r--p 0000c000 00:25 443748401                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/parse.cpython-311-x86_64-linux-gnu.so
+2b48fc0b7000-2b48fc0b8000 r--p 0000d000 00:25 443748401                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/parse.cpython-311-x86_64-linux-gnu.so
+2b48fc0b8000-2b48fc0b9000 rw-p 0000e000 00:25 443748401                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/parse.cpython-311-x86_64-linux-gnu.so
+2b48fc0b9000-2b48fc0ba000 rw-p 00000000 00:00 0 
+2b48fc0ba000-2b48fc0c5000 r--p 00000000 00:25 443757076                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/schema.cpython-311-x86_64-linux-gnu.so
+2b48fc0c5000-2b48fc13d000 r-xp 0000b000 00:25 443757076                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/schema.cpython-311-x86_64-linux-gnu.so
+2b48fc13d000-2b48fc144000 r--p 00083000 00:25 443757076                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/schema.cpython-311-x86_64-linux-gnu.so
+2b48fc144000-2b48fc145000 ---p 0008a000 00:25 443757076                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/schema.cpython-311-x86_64-linux-gnu.so
+2b48fc145000-2b48fc146000 r--p 0008a000 00:25 443757076                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/schema.cpython-311-x86_64-linux-gnu.so
+2b48fc146000-2b48fc14f000 rw-p 0008b000 00:25 443757076                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/schema.cpython-311-x86_64-linux-gnu.so
+2b48fc14f000-2b48fc252000 rw-p 00000000 00:00 0 
+2b48fc252000-2b48fc257000 r--p 00000000 00:25 443748404                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/annotated_types.cpython-311-x86_64-linux-gnu.so
+2b48fc257000-2b48fc262000 r-xp 00005000 00:25 443748404                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/annotated_types.cpython-311-x86_64-linux-gnu.so
+2b48fc262000-2b48fc265000 r--p 00010000 00:25 443748404                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/annotated_types.cpython-311-x86_64-linux-gnu.so
+2b48fc265000-2b48fc266000 r--p 00012000 00:25 443748404                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/annotated_types.cpython-311-x86_64-linux-gnu.so
+2b48fc266000-2b48fc268000 rw-p 00013000 00:25 443748404                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/annotated_types.cpython-311-x86_64-linux-gnu.so
+2b48fc268000-2b48fc26f000 r--p 00000000 00:25 443748411                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/decorator.cpython-311-x86_64-linux-gnu.so
+2b48fc26f000-2b48fc28e000 r-xp 00007000 00:25 443748411                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/decorator.cpython-311-x86_64-linux-gnu.so
+2b48fc28e000-2b48fc292000 r--p 00026000 00:25 443748411                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/decorator.cpython-311-x86_64-linux-gnu.so
+2b48fc292000-2b48fc293000 r--p 00029000 00:25 443748411                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/decorator.cpython-311-x86_64-linux-gnu.so
+2b48fc293000-2b48fc296000 rw-p 0002a000 00:25 443748411                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/decorator.cpython-311-x86_64-linux-gnu.so
+2b48fc296000-2b48fc297000 rw-p 00000000 00:00 0 
+2b48fc297000-2b48fc29f000 r--p 00000000 00:25 443748414                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/env_settings.cpython-311-x86_64-linux-gnu.so
+2b48fc29f000-2b48fc2c6000 r-xp 00008000 00:25 443748414                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/env_settings.cpython-311-x86_64-linux-gnu.so
+2b48fc2c6000-2b48fc2cb000 r--p 0002f000 00:25 443748414                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/env_settings.cpython-311-x86_64-linux-gnu.so
+2b48fc2cb000-2b48fc2cc000 ---p 00034000 00:25 443748414                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/env_settings.cpython-311-x86_64-linux-gnu.so
+2b48fc2cc000-2b48fc2cd000 r--p 00034000 00:25 443748414                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/env_settings.cpython-311-x86_64-linux-gnu.so
+2b48fc2cd000-2b48fc2d1000 rw-p 00035000 00:25 443748414                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/env_settings.cpython-311-x86_64-linux-gnu.so
+2b48fc2d1000-2b48fc2d2000 rw-p 00000000 00:00 0 
+2b48fc2d2000-2b48fc2d6000 r--p 00000000 00:25 443748403                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/tools.cpython-311-x86_64-linux-gnu.so
+2b48fc2d6000-2b48fc2e1000 r-xp 00004000 00:25 443748403                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/tools.cpython-311-x86_64-linux-gnu.so
+2b48fc2e1000-2b48fc2e3000 r--p 0000f000 00:25 443748403                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/tools.cpython-311-x86_64-linux-gnu.so
+2b48fc2e3000-2b48fc2e4000 ---p 00011000 00:25 443748403                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/tools.cpython-311-x86_64-linux-gnu.so
+2b48fc2e4000-2b48fc2e5000 r--p 00011000 00:25 443748403                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/tools.cpython-311-x86_64-linux-gnu.so
+2b48fc2e5000-2b48fc2e7000 rw-p 00012000 00:25 443748403                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pydantic/tools.cpython-311-x86_64-linux-gnu.so
+2b48fc2e7000-2b48fc2e9000 r--p 00000000 00:25 47274924566                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/mmap.cpython-311-x86_64-linux-gnu.so
+2b48fc2e9000-2b48fc2ec000 r-xp 00002000 00:25 47274924566                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/mmap.cpython-311-x86_64-linux-gnu.so
+2b48fc2ec000-2b48fc2ee000 r--p 00005000 00:25 47274924566                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/mmap.cpython-311-x86_64-linux-gnu.so
+2b48fc2ee000-2b48fc2ef000 r--p 00006000 00:25 47274924566                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/mmap.cpython-311-x86_64-linux-gnu.so
+2b48fc2ef000-2b48fc2f0000 rw-p 00007000 00:25 47274924566                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/mmap.cpython-311-x86_64-linux-gnu.so
+2b48fc2f0000-2b48fc2f4000 r--p 00000000 00:25 51581973710                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/_ccallback_c.cpython-311-x86_64-linux-gnu.so
+2b48fc2f4000-2b48fc2fc000 r-xp 00004000 00:25 51581973710                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/_ccallback_c.cpython-311-x86_64-linux-gnu.so
+2b48fc2fc000-2b48fc2fe000 r--p 0000c000 00:25 51581973710                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/_ccallback_c.cpython-311-x86_64-linux-gnu.so
+2b48fc2fe000-2b48fc2ff000 r--p 0000d000 00:25 51581973710                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/_ccallback_c.cpython-311-x86_64-linux-gnu.so
+2b48fc2ff000-2b48fc300000 rw-p 0000e000 00:25 51581973710                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/_ccallback_c.cpython-311-x86_64-linux-gnu.so
+2b48fc300000-2b48fc501000 rw-p 00000000 00:00 0 
+2b48fc501000-2b48fc50b000 r--p 00000000 00:25 15114361963                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_ckdtree.cpython-311-x86_64-linux-gnu.so
+2b48fc50b000-2b48fc57f000 r-xp 0000a000 00:25 15114361963                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_ckdtree.cpython-311-x86_64-linux-gnu.so
+2b48fc57f000-2b48fc594000 r--p 0007e000 00:25 15114361963                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_ckdtree.cpython-311-x86_64-linux-gnu.so
+2b48fc594000-2b48fc595000 ---p 00093000 00:25 15114361963                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_ckdtree.cpython-311-x86_64-linux-gnu.so
+2b48fc595000-2b48fc596000 r--p 00093000 00:25 15114361963                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_ckdtree.cpython-311-x86_64-linux-gnu.so
+2b48fc596000-2b48fc5a1000 rw-p 00094000 00:25 15114361963                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_ckdtree.cpython-311-x86_64-linux-gnu.so
+2b48fc5a1000-2b48fc5a2000 rw-p 00000000 00:00 0 
+2b48fc5a2000-2b48fc643000 r--p 00000000 00:25 6524225569                 /home/sung.w.kang/anaconda3/lib/libstdc++.so.6.0.29
+2b48fc643000-2b48fc738000 r-xp 000a1000 00:25 6524225569                 /home/sung.w.kang/anaconda3/lib/libstdc++.so.6.0.29
+2b48fc738000-2b48fc7a4000 r--p 00196000 00:25 6524225569                 /home/sung.w.kang/anaconda3/lib/libstdc++.so.6.0.29
+2b48fc7a4000-2b48fc7a5000 ---p 00202000 00:25 6524225569                 /home/sung.w.kang/anaconda3/lib/libstdc++.so.6.0.29
+2b48fc7a5000-2b48fc7b0000 r--p 00202000 00:25 6524225569                 /home/sung.w.kang/anaconda3/lib/libstdc++.so.6.0.29
+2b48fc7b0000-2b48fc7b3000 rw-p 0020d000 00:25 6524225569                 /home/sung.w.kang/anaconda3/lib/libstdc++.so.6.0.29
+2b48fc7b3000-2b48fc8b6000 rw-p 00000000 00:00 0 
+2b48fc8b6000-2b48fc8b9000 r--p 00000000 00:25 8674692811                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_sparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fc8b9000-2b48fcbd5000 r-xp 00003000 00:25 8674692811                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_sparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fcbd5000-2b48fcc39000 r--p 0031f000 00:25 8674692811                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_sparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fcc39000-2b48fcc3a000 ---p 00383000 00:25 8674692811                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_sparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fcc3a000-2b48fcc3b000 r--p 00383000 00:25 8674692811                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_sparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fcc3b000-2b48fcc3c000 rw-p 00384000 00:25 8674692811                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_sparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fcc3c000-2b48fcc47000 r--p 00000000 00:25 8674692807                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_csparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fcc47000-2b48fccb9000 r-xp 0000b000 00:25 8674692807                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_csparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fccb9000-2b48fccc6000 r--p 0007d000 00:25 8674692807                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_csparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fccc6000-2b48fccc7000 ---p 0008a000 00:25 8674692807                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_csparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fccc7000-2b48fccc8000 r--p 0008a000 00:25 8674692807                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_csparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fccc8000-2b48fccce000 rw-p 0008b000 00:25 8674692807                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/_csparsetools.cpython-311-x86_64-linux-gnu.so
+2b48fccce000-2b48fccd0000 rw-p 00000000 00:00 0 
+2b48fccd0000-2b48fccd5000 r--p 00000000 00:25 64590665792                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_isolve/_iterative.cpython-311-x86_64-linux-gnu.so
+2b48fccd5000-2b48fccf8000 r-xp 00005000 00:25 64590665792                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_isolve/_iterative.cpython-311-x86_64-linux-gnu.so
+2b48fccf8000-2b48fcd02000 r--p 00028000 00:25 64590665792                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_isolve/_iterative.cpython-311-x86_64-linux-gnu.so
+2b48fcd02000-2b48fcd03000 r--p 00031000 00:25 64590665792                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_isolve/_iterative.cpython-311-x86_64-linux-gnu.so
+2b48fcd03000-2b48fcd0a000 rw-p 00032000 00:25 64590665792                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_isolve/_iterative.cpython-311-x86_64-linux-gnu.so
+2b48fcd0a000-2b48fcd0b000 rw-p 00000000 00:00 0 
+2b48fcd0b000-2b48fd007000 r--p 00000000 00:25 25808713833                /home/sung.w.kang/anaconda3/lib/libmkl_rt.so.2
+2b48fd007000-2b48fd525000 r-xp 002fc000 00:25 25808713833                /home/sung.w.kang/anaconda3/lib/libmkl_rt.so.2
+2b48fd525000-2b48fd7ea000 r--p 0081a000 00:25 25808713833                /home/sung.w.kang/anaconda3/lib/libmkl_rt.so.2
+2b48fd7ea000-2b48fd7f0000 r--p 00ade000 00:25 25808713833                /home/sung.w.kang/anaconda3/lib/libmkl_rt.so.2
+2b48fd7f0000-2b48fd7f2000 rw-p 00ae4000 00:25 25808713833                /home/sung.w.kang/anaconda3/lib/libmkl_rt.so.2
+2b48fd7f2000-2b48fd81a000 rw-p 00000000 00:00 0 
+2b48fd81a000-2b48fd94a000 rw-p 00de7000 00:25 25808713833                /home/sung.w.kang/anaconda3/lib/libmkl_rt.so.2
+2b48fd94a000-2b48fd959000 r--p 00000000 00:25 6525217382                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_fblas.cpython-311-x86_64-linux-gnu.so
+2b48fd959000-2b48fd99f000 r-xp 0000f000 00:25 6525217382                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_fblas.cpython-311-x86_64-linux-gnu.so
+2b48fd99f000-2b48fd9bf000 r--p 00055000 00:25 6525217382                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_fblas.cpython-311-x86_64-linux-gnu.so
+2b48fd9bf000-2b48fd9c0000 ---p 00075000 00:25 6525217382                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_fblas.cpython-311-x86_64-linux-gnu.so
+2b48fd9c0000-2b48fd9c1000 r--p 00075000 00:25 6525217382                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_fblas.cpython-311-x86_64-linux-gnu.so
+2b48fd9c1000-2b48fd9e7000 rw-p 00076000 00:25 6525217382                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_fblas.cpython-311-x86_64-linux-gnu.so
+2b48fd9e7000-2b48fda0f000 r--p 00000000 00:25 6525217393                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flapack.cpython-311-x86_64-linux-gnu.so
+2b48fda0f000-2b48fdb15000 r-xp 00028000 00:25 6525217393                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flapack.cpython-311-x86_64-linux-gnu.so
+2b48fdb15000-2b48fdb82000 r--p 0012e000 00:25 6525217393                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flapack.cpython-311-x86_64-linux-gnu.so
+2b48fdb82000-2b48fdb83000 r--p 0019a000 00:25 6525217393                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flapack.cpython-311-x86_64-linux-gnu.so
+2b48fdb83000-2b48fdc0b000 rw-p 0019b000 00:25 6525217393                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flapack.cpython-311-x86_64-linux-gnu.so
+2b48fdc0b000-2b48fdc14000 r--p 00000000 00:25 6525217379                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_cythonized_array_utils.cpython-311-x86_64-linux-gnu.so
+2b48fdc14000-2b48fdc57000 r-xp 00009000 00:25 6525217379                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_cythonized_array_utils.cpython-311-x86_64-linux-gnu.so
+2b48fdc57000-2b48fdc64000 r--p 0004c000 00:25 6525217379                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_cythonized_array_utils.cpython-311-x86_64-linux-gnu.so
+2b48fdc64000-2b48fdc65000 r--p 00058000 00:25 6525217379                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_cythonized_array_utils.cpython-311-x86_64-linux-gnu.so
+2b48fdc65000-2b48fdc6b000 rw-p 00059000 00:25 6525217379                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_cythonized_array_utils.cpython-311-x86_64-linux-gnu.so
+2b48fdc6b000-2b48fdc6c000 rw-p 00000000 00:00 0 
+2b48fdc6c000-2b48fdc86000 r--p 00000000 00:25 6525217385                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_lapack.cpython-311-x86_64-linux-gnu.so
+2b48fdc86000-2b48fdc9d000 r-xp 0001a000 00:25 6525217385                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_lapack.cpython-311-x86_64-linux-gnu.so
+2b48fdc9d000-2b48fdcf6000 r--p 00031000 00:25 6525217385                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_lapack.cpython-311-x86_64-linux-gnu.so
+2b48fdcf6000-2b48fdcfa000 r--p 00089000 00:25 6525217385                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_lapack.cpython-311-x86_64-linux-gnu.so
+2b48fdcfa000-2b48fdcfb000 rw-p 0008d000 00:25 6525217385                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_lapack.cpython-311-x86_64-linux-gnu.so
+2b48fdcfb000-2b48fddfb000 rw-p 00000000 00:00 0 
+2b48fddfb000-2b48fde02000 r--p 00000000 00:25 6525217357                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_solve_toeplitz.cpython-311-x86_64-linux-gnu.so
+2b48fde02000-2b48fde22000 r-xp 00007000 00:25 6525217357                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_solve_toeplitz.cpython-311-x86_64-linux-gnu.so
+2b48fde22000-2b48fde29000 r--p 00027000 00:25 6525217357                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_solve_toeplitz.cpython-311-x86_64-linux-gnu.so
+2b48fde29000-2b48fde2a000 r--p 0002d000 00:25 6525217357                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_solve_toeplitz.cpython-311-x86_64-linux-gnu.so
+2b48fde2a000-2b48fde2e000 rw-p 0002e000 00:25 6525217357                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_solve_toeplitz.cpython-311-x86_64-linux-gnu.so
+2b48fde2e000-2b48fde34000 r--p 00000000 00:25 6525217351                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_lu_cython.cpython-311-x86_64-linux-gnu.so
+2b48fde34000-2b48fde51000 r-xp 00006000 00:25 6525217351                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_lu_cython.cpython-311-x86_64-linux-gnu.so
+2b48fde51000-2b48fde57000 r--p 00023000 00:25 6525217351                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_lu_cython.cpython-311-x86_64-linux-gnu.so
+2b48fde57000-2b48fde58000 ---p 00029000 00:25 6525217351                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_lu_cython.cpython-311-x86_64-linux-gnu.so
+2b48fde58000-2b48fde59000 r--p 00029000 00:25 6525217351                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_lu_cython.cpython-311-x86_64-linux-gnu.so
+2b48fde59000-2b48fde5c000 rw-p 0002a000 00:25 6525217351                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_lu_cython.cpython-311-x86_64-linux-gnu.so
+2b48fde5c000-2b48fde63000 r--p 00000000 00:25 6525217354                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_sqrtm_triu.cpython-311-x86_64-linux-gnu.so
+2b48fde63000-2b48fde7f000 r-xp 00007000 00:25 6525217354                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_sqrtm_triu.cpython-311-x86_64-linux-gnu.so
+2b48fde7f000-2b48fde86000 r--p 00023000 00:25 6525217354                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_sqrtm_triu.cpython-311-x86_64-linux-gnu.so
+2b48fde86000-2b48fde87000 r--p 00029000 00:25 6525217354                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_sqrtm_triu.cpython-311-x86_64-linux-gnu.so
+2b48fde87000-2b48fde8a000 rw-p 0002a000 00:25 6525217354                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_sqrtm_triu.cpython-311-x86_64-linux-gnu.so
+2b48fde8a000-2b48fde8b000 rw-p 00000000 00:00 0 
+2b48fde8b000-2b48fde93000 r--p 00000000 00:25 6525217373                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_expm.cpython-311-x86_64-linux-gnu.so
+2b48fde93000-2b48fded0000 r-xp 00008000 00:25 6525217373                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_expm.cpython-311-x86_64-linux-gnu.so
+2b48fded0000-2b48fdedb000 r--p 00045000 00:25 6525217373                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_expm.cpython-311-x86_64-linux-gnu.so
+2b48fdedb000-2b48fdedc000 r--p 0004f000 00:25 6525217373                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_expm.cpython-311-x86_64-linux-gnu.so
+2b48fdedc000-2b48fdee0000 rw-p 00050000 00:25 6525217373                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_matfuncs_expm.cpython-311-x86_64-linux-gnu.so
+2b48fdee0000-2b48fdee1000 rw-p 00000000 00:00 0 
+2b48fdee1000-2b48fdeea000 r--p 00000000 00:25 6525217360                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_blas.cpython-311-x86_64-linux-gnu.so
+2b48fdeea000-2b48fdf06000 r-xp 00009000 00:25 6525217360                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_blas.cpython-311-x86_64-linux-gnu.so
+2b48fdf06000-2b48fdf13000 r--p 00025000 00:25 6525217360                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_blas.cpython-311-x86_64-linux-gnu.so
+2b48fdf13000-2b48fdf14000 r--p 00031000 00:25 6525217360                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_blas.cpython-311-x86_64-linux-gnu.so
+2b48fdf14000-2b48fdf17000 rw-p 00032000 00:25 6525217360                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/cython_blas.cpython-311-x86_64-linux-gnu.so
+2b48fdf17000-2b48fdf1c000 r--p 00000000 00:25 6525217365                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_update.cpython-311-x86_64-linux-gnu.so
+2b48fdf1c000-2b48fdf4c000 r-xp 00005000 00:25 6525217365                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_update.cpython-311-x86_64-linux-gnu.so
+2b48fdf4c000-2b48fdf58000 r--p 00035000 00:25 6525217365                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_update.cpython-311-x86_64-linux-gnu.so
+2b48fdf58000-2b48fdf59000 r--p 00040000 00:25 6525217365                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_update.cpython-311-x86_64-linux-gnu.so
+2b48fdf59000-2b48fdf5e000 rw-p 00041000 00:25 6525217365                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_decomp_update.cpython-311-x86_64-linux-gnu.so
+2b48fdf5e000-2b48fdf5f000 rw-p 00000000 00:00 0 
+2b48fdf5f000-2b48fdf60000 rw-s dabbad0006130000 00:05 64192              /dev/hfi1_0
+2b48fdf60000-2b48fdf61000 r--s ffffaf55da5fc000 00:05 64192              /dev/hfi1_0
+2b48fdf61000-2b48fdf62000 r--s dabbad0008130000 00:05 64192              /dev/hfi1_0
+2b48fdf62000-2b48fdf63000 rw-p 00000000 00:00 0 
+2b48fdf63000-2b48fdf66000 r--p 00000000 00:25 6525217331                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flinalg.cpython-311-x86_64-linux-gnu.so
+2b48fdf66000-2b48fdf6e000 r-xp 00003000 00:25 6525217331                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flinalg.cpython-311-x86_64-linux-gnu.so
+2b48fdf6e000-2b48fdf71000 r--p 0000b000 00:25 6525217331                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flinalg.cpython-311-x86_64-linux-gnu.so
+2b48fdf71000-2b48fdf72000 r--p 0000d000 00:25 6525217331                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flinalg.cpython-311-x86_64-linux-gnu.so
+2b48fdf72000-2b48fdf75000 rw-p 0000e000 00:25 6525217331                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/linalg/_flinalg.cpython-311-x86_64-linux-gnu.so
+2b48fdf75000-2b48fdf78000 r--p 00000000 00:25 73087948854                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-311-x86_64-linux-gnu.so
+2b48fdf78000-2b48fdfb2000 r-xp 00003000 00:25 73087948854                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-311-x86_64-linux-gnu.so
+2b48fdfb2000-2b48fdfbb000 r--p 0003d000 00:25 73087948854                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-311-x86_64-linux-gnu.so
+2b48fdfbb000-2b48fdfbc000 r--p 00045000 00:25 73087948854                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-311-x86_64-linux-gnu.so
+2b48fdfbc000-2b48fdfbd000 rw-p 00046000 00:25 73087948854                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_dsolve/_superlu.cpython-311-x86_64-linux-gnu.so
+2b48fdfbd000-2b48fdfc3000 r--p 00000000 00:25 15114361958                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-311-x86_64-linux-gnu.so
+2b48fdfc3000-2b48fe00e000 r-xp 00006000 00:25 15114361958                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-311-x86_64-linux-gnu.so
+2b48fe00e000-2b48fe01e000 r--p 00051000 00:25 15114361958                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-311-x86_64-linux-gnu.so
+2b48fe01e000-2b48fe01f000 ---p 00061000 00:25 15114361958                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-311-x86_64-linux-gnu.so
+2b48fe01f000-2b48fe020000 r--p 00061000 00:25 15114361958                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-311-x86_64-linux-gnu.so
+2b48fe020000-2b48fe02b000 rw-p 00062000 00:25 15114361958                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/linalg/_eigen/arpack/_arpack.cpython-311-x86_64-linux-gnu.so
+2b48fe02b000-2b48fe04a000 r--p 00000000 00:25 83821100600                /home/sung.w.kang/anaconda3/lib/libgfortran.so.5.0.0
+2b48fe04a000-2b48fe2a3000 r-xp 0001f000 00:25 83821100600                /home/sung.w.kang/anaconda3/lib/libgfortran.so.5.0.0
+2b48fe2a3000-2b48fe2d5000 r--p 00278000 00:25 83821100600                /home/sung.w.kang/anaconda3/lib/libgfortran.so.5.0.0
+2b48fe2d5000-2b48fe2d6000 ---p 002aa000 00:25 83821100600                /home/sung.w.kang/anaconda3/lib/libgfortran.so.5.0.0
+2b48fe2d6000-2b48fe2d7000 r--p 002aa000 00:25 83821100600                /home/sung.w.kang/anaconda3/lib/libgfortran.so.5.0.0
+2b48fe2d7000-2b48fe2d9000 rw-p 002ab000 00:25 83821100600                /home/sung.w.kang/anaconda3/lib/libgfortran.so.5.0.0
+2b48fe2d9000-2b48fe2dc000 r--p 00000000 00:25 73088906339                /home/sung.w.kang/anaconda3/lib/libquadmath.so.0.0.0
+2b48fe2dc000-2b48fe308000 r-xp 00003000 00:25 73088906339                /home/sung.w.kang/anaconda3/lib/libquadmath.so.0.0.0
+2b48fe308000-2b48fe320000 r--p 0002f000 00:25 73088906339                /home/sung.w.kang/anaconda3/lib/libquadmath.so.0.0.0
+2b48fe320000-2b48fe321000 r--p 00046000 00:25 73088906339                /home/sung.w.kang/anaconda3/lib/libquadmath.so.0.0.0
+2b48fe321000-2b48fe322000 rw-p 00047000 00:25 73088906339                /home/sung.w.kang/anaconda3/lib/libquadmath.so.0.0.0
+2b48fe322000-2b48fe32a000 r--p 00000000 00:25 25808725198                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_shortest_path.cpython-311-x86_64-linux-gnu.so
+2b48fe32a000-2b48fe36b000 r-xp 00008000 00:25 25808725198                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_shortest_path.cpython-311-x86_64-linux-gnu.so
+2b48fe36b000-2b48fe378000 r--p 00049000 00:25 25808725198                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_shortest_path.cpython-311-x86_64-linux-gnu.so
+2b48fe378000-2b48fe379000 r--p 00055000 00:25 25808725198                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_shortest_path.cpython-311-x86_64-linux-gnu.so
+2b48fe379000-2b48fe382000 rw-p 00056000 00:25 25808725198                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_shortest_path.cpython-311-x86_64-linux-gnu.so
+2b48fe382000-2b48fe383000 rw-p 00000000 00:00 0 
+2b48fe383000-2b48fe388000 r--p 00000000 00:25 25808725165                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_tools.cpython-311-x86_64-linux-gnu.so
+2b48fe388000-2b48fe39e000 r-xp 00005000 00:25 25808725165                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_tools.cpython-311-x86_64-linux-gnu.so
+2b48fe39e000-2b48fe3a4000 r--p 0001b000 00:25 25808725165                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_tools.cpython-311-x86_64-linux-gnu.so
+2b48fe3a4000-2b48fe3a5000 ---p 00021000 00:25 25808725165                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_tools.cpython-311-x86_64-linux-gnu.so
+2b48fe3a5000-2b48fe3a6000 r--p 00021000 00:25 25808725165                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_tools.cpython-311-x86_64-linux-gnu.so
+2b48fe3a6000-2b48fe3ab000 rw-p 00022000 00:25 25808725165                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_tools.cpython-311-x86_64-linux-gnu.so
+2b48fe3ab000-2b48fe3af000 r--p 00000000 00:25 25808725162                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_traversal.cpython-311-x86_64-linux-gnu.so
+2b48fe3af000-2b48fe3c2000 r-xp 00004000 00:25 25808725162                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_traversal.cpython-311-x86_64-linux-gnu.so
+2b48fe3c2000-2b48fe3c8000 r--p 00017000 00:25 25808725162                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_traversal.cpython-311-x86_64-linux-gnu.so
+2b48fe3c8000-2b48fe3c9000 r--p 0001c000 00:25 25808725162                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_traversal.cpython-311-x86_64-linux-gnu.so
+2b48fe3c9000-2b48fe3cd000 rw-p 0001d000 00:25 25808725162                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_traversal.cpython-311-x86_64-linux-gnu.so
+2b48fe3cd000-2b48fe3d3000 r--p 00000000 00:25 25808725169                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_min_spanning_tree.cpython-311-x86_64-linux-gnu.so
+2b48fe3d3000-2b48fe3ed000 r-xp 00006000 00:25 25808725169                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_min_spanning_tree.cpython-311-x86_64-linux-gnu.so
+2b48fe3ed000-2b48fe3f4000 r--p 00020000 00:25 25808725169                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_min_spanning_tree.cpython-311-x86_64-linux-gnu.so
+2b48fe3f4000-2b48fe3f5000 r--p 00026000 00:25 25808725169                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_min_spanning_tree.cpython-311-x86_64-linux-gnu.so
+2b48fe3f5000-2b48fe3f8000 rw-p 00027000 00:25 25808725169                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_min_spanning_tree.cpython-311-x86_64-linux-gnu.so
+2b48fe3f8000-2b48fe3f9000 rw-p 00000000 00:00 0 
+2b48fe3f9000-2b48fe400000 r--p 00000000 00:25 25808725189                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_flow.cpython-311-x86_64-linux-gnu.so
+2b48fe400000-2b48fe425000 r-xp 00007000 00:25 25808725189                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_flow.cpython-311-x86_64-linux-gnu.so
+2b48fe425000-2b48fe42e000 r--p 0002c000 00:25 25808725189                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_flow.cpython-311-x86_64-linux-gnu.so
+2b48fe42e000-2b48fe42f000 ---p 00035000 00:25 25808725189                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_flow.cpython-311-x86_64-linux-gnu.so
+2b48fe42f000-2b48fe430000 r--p 00035000 00:25 25808725189                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_flow.cpython-311-x86_64-linux-gnu.so
+2b48fe430000-2b48fe436000 rw-p 00036000 00:25 25808725189                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_flow.cpython-311-x86_64-linux-gnu.so
+2b48fe436000-2b48fe43c000 r--p 00000000 00:25 25808725185                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_matching.cpython-311-x86_64-linux-gnu.so
+2b48fe43c000-2b48fe460000 r-xp 00006000 00:25 25808725185                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_matching.cpython-311-x86_64-linux-gnu.so
+2b48fe460000-2b48fe469000 r--p 0002a000 00:25 25808725185                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_matching.cpython-311-x86_64-linux-gnu.so
+2b48fe469000-2b48fe46a000 ---p 00033000 00:25 25808725185                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_matching.cpython-311-x86_64-linux-gnu.so
+2b48fe46a000-2b48fe46b000 r--p 00033000 00:25 25808725185                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_matching.cpython-311-x86_64-linux-gnu.so
+2b48fe46b000-2b48fe471000 rw-p 00034000 00:25 25808725185                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_matching.cpython-311-x86_64-linux-gnu.so
+2b48fe471000-2b48fe472000 rw-p 00000000 00:00 0 
+2b48fe472000-2b48fe479000 r--p 00000000 00:25 25808725184                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_reordering.cpython-311-x86_64-linux-gnu.so
+2b48fe479000-2b48fe49d000 r-xp 00007000 00:25 25808725184                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_reordering.cpython-311-x86_64-linux-gnu.so
+2b48fe49d000-2b48fe4a5000 r--p 0002b000 00:25 25808725184                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_reordering.cpython-311-x86_64-linux-gnu.so
+2b48fe4a5000-2b48fe4a6000 r--p 00032000 00:25 25808725184                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_reordering.cpython-311-x86_64-linux-gnu.so
+2b48fe4a6000-2b48fe4aa000 rw-p 00033000 00:25 25808725184                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/sparse/csgraph/_reordering.cpython-311-x86_64-linux-gnu.so
+2b48fe4aa000-2b48fe4ab000 rw-p 00000000 00:00 0 
+2b48fe4ab000-2b48fe4b7000 r--p 00000000 00:25 15114361965                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_qhull.cpython-311-x86_64-linux-gnu.so
+2b48fe4b7000-2b48fe549000 r-xp 0000c000 00:25 15114361965                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_qhull.cpython-311-x86_64-linux-gnu.so
+2b48fe549000-2b48fe57b000 r--p 0009e000 00:25 15114361965                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_qhull.cpython-311-x86_64-linux-gnu.so
+2b48fe57b000-2b48fe57c000 r--p 000cf000 00:25 15114361965                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_qhull.cpython-311-x86_64-linux-gnu.so
+2b48fe57c000-2b48fe584000 rw-p 000d0000 00:25 15114361965                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_qhull.cpython-311-x86_64-linux-gnu.so
+2b48fe584000-2b48fe586000 rw-p 00000000 00:00 0 
+2b48fe586000-2b48fe589000 r--p 00000000 00:25 51581973709                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/messagestream.cpython-311-x86_64-linux-gnu.so
+2b48fe589000-2b48fe58e000 r-xp 00003000 00:25 51581973709                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/messagestream.cpython-311-x86_64-linux-gnu.so
+2b48fe58e000-2b48fe590000 r--p 00008000 00:25 51581973709                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/messagestream.cpython-311-x86_64-linux-gnu.so
+2b48fe590000-2b48fe591000 r--p 00009000 00:25 51581973709                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/messagestream.cpython-311-x86_64-linux-gnu.so
+2b48fe591000-2b48fe592000 rw-p 0000a000 00:25 51581973709                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/_lib/messagestream.cpython-311-x86_64-linux-gnu.so
+2b48fe592000-2b48fe692000 rw-p 00000000 00:00 0 
+2b48fe692000-2b48fe698000 r--p 00000000 00:25 15114361943                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_voronoi.cpython-311-x86_64-linux-gnu.so
+2b48fe698000-2b48fe6b0000 r-xp 00006000 00:25 15114361943                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_voronoi.cpython-311-x86_64-linux-gnu.so
+2b48fe6b0000-2b48fe6b6000 r--p 0001e000 00:25 15114361943                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_voronoi.cpython-311-x86_64-linux-gnu.so
+2b48fe6b6000-2b48fe6b7000 r--p 00023000 00:25 15114361943                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_voronoi.cpython-311-x86_64-linux-gnu.so
+2b48fe6b7000-2b48fe6ba000 rw-p 00024000 00:25 15114361943                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_voronoi.cpython-311-x86_64-linux-gnu.so
+2b48fe6ba000-2b48fe6bc000 r--p 00000000 00:25 15114361938                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_wrap.cpython-311-x86_64-linux-gnu.so
+2b48fe6bc000-2b48fe6cf000 r-xp 00002000 00:25 15114361938                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_wrap.cpython-311-x86_64-linux-gnu.so
+2b48fe6cf000-2b48fe6d1000 r--p 00015000 00:25 15114361938                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_wrap.cpython-311-x86_64-linux-gnu.so
+2b48fe6d1000-2b48fe6d2000 ---p 00017000 00:25 15114361938                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_wrap.cpython-311-x86_64-linux-gnu.so
+2b48fe6d2000-2b48fe6d3000 r--p 00017000 00:25 15114361938                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_wrap.cpython-311-x86_64-linux-gnu.so
+2b48fe6d3000-2b48fe6d4000 rw-p 00018000 00:25 15114361938                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_wrap.cpython-311-x86_64-linux-gnu.so
+2b48fe6d4000-2b48fe6da000 r--p 00000000 00:25 15114361946                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_hausdorff.cpython-311-x86_64-linux-gnu.so
+2b48fe6da000-2b48fe6f3000 r-xp 00006000 00:25 15114361946                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_hausdorff.cpython-311-x86_64-linux-gnu.so
+2b48fe6f3000-2b48fe6f9000 r--p 0001f000 00:25 15114361946                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_hausdorff.cpython-311-x86_64-linux-gnu.so
+2b48fe6f9000-2b48fe6fa000 r--p 00024000 00:25 15114361946                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_hausdorff.cpython-311-x86_64-linux-gnu.so
+2b48fe6fa000-2b48fe6fd000 rw-p 00025000 00:25 15114361946                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_hausdorff.cpython-311-x86_64-linux-gnu.so
+2b48fe6fd000-2b48fe709000 r--p 00000000 00:25 4366981962                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs.cpython-311-x86_64-linux-gnu.so
+2b48fe709000-2b48fe7b1000 r-xp 0000c000 00:25 4366981962                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs.cpython-311-x86_64-linux-gnu.so
+2b48fe7b1000-2b48fe820000 r--p 000b4000 00:25 4366981962                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs.cpython-311-x86_64-linux-gnu.so
+2b48fe820000-2b48fe821000 ---p 00123000 00:25 4366981962                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs.cpython-311-x86_64-linux-gnu.so
+2b48fe821000-2b48fe822000 r--p 00123000 00:25 4366981962                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs.cpython-311-x86_64-linux-gnu.so
+2b48fe822000-2b48fe82c000 rw-p 00124000 00:25 4366981962                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs.cpython-311-x86_64-linux-gnu.so
+2b48fe82c000-2b48fe834000 rw-p 00000000 00:00 0 
+2b48fe834000-2b48fe839000 r--p 00000000 00:25 4366981952                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs_cxx.cpython-311-x86_64-linux-gnu.so
+2b48fe839000-2b48fe879000 r-xp 00005000 00:25 4366981952                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs_cxx.cpython-311-x86_64-linux-gnu.so
+2b48fe879000-2b48fe88b000 r--p 00045000 00:25 4366981952                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs_cxx.cpython-311-x86_64-linux-gnu.so
+2b48fe88b000-2b48fe88c000 ---p 00057000 00:25 4366981952                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs_cxx.cpython-311-x86_64-linux-gnu.so
+2b48fe88c000-2b48fe88d000 r--p 00057000 00:25 4366981952                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs_cxx.cpython-311-x86_64-linux-gnu.so
+2b48fe88d000-2b48fe88e000 rw-p 00058000 00:25 4366981952                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ufuncs_cxx.cpython-311-x86_64-linux-gnu.so
+2b48fe88e000-2b48fe891000 r--p 00000000 00:25 4366981934                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_specfun.cpython-311-x86_64-linux-gnu.so
+2b48fe891000-2b48fe8ae000 r-xp 00003000 00:25 4366981934                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_specfun.cpython-311-x86_64-linux-gnu.so
+2b48fe8ae000-2b48fe8b6000 r--p 00020000 00:25 4366981934                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_specfun.cpython-311-x86_64-linux-gnu.so
+2b48fe8b6000-2b48fe8b7000 r--p 00027000 00:25 4366981934                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_specfun.cpython-311-x86_64-linux-gnu.so
+2b48fe8b7000-2b48fe8bc000 rw-p 00028000 00:25 4366981934                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_specfun.cpython-311-x86_64-linux-gnu.so
+2b48fe8bc000-2b48fe8bf000 r--p 00000000 00:25 4366981917                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_comb.cpython-311-x86_64-linux-gnu.so
+2b48fe8bf000-2b48fe8c2000 r-xp 00003000 00:25 4366981917                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_comb.cpython-311-x86_64-linux-gnu.so
+2b48fe8c2000-2b48fe8c3000 r--p 00006000 00:25 4366981917                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_comb.cpython-311-x86_64-linux-gnu.so
+2b48fe8c3000-2b48fe8c4000 r--p 00006000 00:25 4366981917                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_comb.cpython-311-x86_64-linux-gnu.so
+2b48fe8c4000-2b48fe8c5000 rw-p 00007000 00:25 4366981917                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_comb.cpython-311-x86_64-linux-gnu.so
+2b48fe8c5000-2b48fe8c9000 r--p 00000000 00:25 4366981925                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ellip_harm_2.cpython-311-x86_64-linux-gnu.so
+2b48fe8c9000-2b48fe8d3000 r-xp 00004000 00:25 4366981925                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ellip_harm_2.cpython-311-x86_64-linux-gnu.so
+2b48fe8d3000-2b48fe8d5000 r--p 0000e000 00:25 4366981925                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ellip_harm_2.cpython-311-x86_64-linux-gnu.so
+2b48fe8d5000-2b48fe8d6000 ---p 00010000 00:25 4366981925                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ellip_harm_2.cpython-311-x86_64-linux-gnu.so
+2b48fe8d6000-2b48fe8d7000 r--p 00010000 00:25 4366981925                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ellip_harm_2.cpython-311-x86_64-linux-gnu.so
+2b48fe8d7000-2b48fe8d8000 rw-p 00011000 00:25 4366981925                 /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/special/_ellip_harm_2.cpython-311-x86_64-linux-gnu.so
+2b48fe8d8000-2b48fe8de000 r--p 00000000 00:25 15114361960                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_pybind.cpython-311-x86_64-linux-gnu.so
+2b48fe8de000-2b48fe934000 r-xp 00006000 00:25 15114361960                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_pybind.cpython-311-x86_64-linux-gnu.so
+2b48fe934000-2b48fe943000 r--p 0005c000 00:25 15114361960                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_pybind.cpython-311-x86_64-linux-gnu.so
+2b48fe943000-2b48fe945000 r--p 0006a000 00:25 15114361960                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_pybind.cpython-311-x86_64-linux-gnu.so
+2b48fe945000-2b48fe946000 rw-p 0006c000 00:25 15114361960                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/_distance_pybind.cpython-311-x86_64-linux-gnu.so
+2b48fe946000-2b48fe951000 r--p 00000000 00:25 43076165675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/transform/_rotation.cpython-311-x86_64-linux-gnu.so
+2b48fe951000-2b48fe9aa000 r-xp 0000b000 00:25 43076165675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/transform/_rotation.cpython-311-x86_64-linux-gnu.so
+2b48fe9aa000-2b48fe9c2000 r--p 00064000 00:25 43076165675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/transform/_rotation.cpython-311-x86_64-linux-gnu.so
+2b48fe9c2000-2b48fe9c3000 ---p 0007c000 00:25 43076165675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/transform/_rotation.cpython-311-x86_64-linux-gnu.so
+2b48fe9c3000-2b48fe9c4000 r--p 0007c000 00:25 43076165675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/transform/_rotation.cpython-311-x86_64-linux-gnu.so
+2b48fe9c4000-2b48fe9d6000 rw-p 0007d000 00:25 43076165675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/spatial/transform/_rotation.cpython-311-x86_64-linux-gnu.so
+2b48fe9d6000-2b48fe9d7000 rw-p 00000000 00:00 0 
+2b48fe9d7000-2b48fe9dc000 r--p 00000000 00:25 62358869606                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pymatgen/util/coord_cython.cpython-311-x86_64-linux-gnu.so
+2b48fe9dc000-2b48fea0f000 r-xp 00005000 00:25 62358869606                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pymatgen/util/coord_cython.cpython-311-x86_64-linux-gnu.so
+2b48fea0f000-2b48fea18000 r--p 00038000 00:25 62358869606                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pymatgen/util/coord_cython.cpython-311-x86_64-linux-gnu.so
+2b48fea18000-2b48fea19000 r--p 00040000 00:25 62358869606                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pymatgen/util/coord_cython.cpython-311-x86_64-linux-gnu.so
+2b48fea19000-2b48fea1b000 rw-p 00041000 00:25 62358869606                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pymatgen/util/coord_cython.cpython-311-x86_64-linux-gnu.so
+2b48fea1b000-2b48feb1c000 rw-p 00000000 00:00 0 
+2b48feb1c000-2b48feb1f000 r--p 00000000 00:25 443838473                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_vq.cpython-311-x86_64-linux-gnu.so
+2b48feb1f000-2b48feb2d000 r-xp 00003000 00:25 443838473                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_vq.cpython-311-x86_64-linux-gnu.so
+2b48feb2d000-2b48feb30000 r--p 00011000 00:25 443838473                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_vq.cpython-311-x86_64-linux-gnu.so
+2b48feb30000-2b48feb31000 r--p 00013000 00:25 443838473                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_vq.cpython-311-x86_64-linux-gnu.so
+2b48feb31000-2b48feb32000 rw-p 00014000 00:25 443838473                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_vq.cpython-311-x86_64-linux-gnu.so
+2b48feb32000-2b48feb33000 rw-p 00000000 00:00 0 
+2b48feb33000-2b48feb3c000 r--p 00000000 00:25 443838498                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_hierarchy.cpython-311-x86_64-linux-gnu.so
+2b48feb3c000-2b48feb6d000 r-xp 00009000 00:25 443838498                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_hierarchy.cpython-311-x86_64-linux-gnu.so
+2b48feb6d000-2b48feb76000 r--p 0003a000 00:25 443838498                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_hierarchy.cpython-311-x86_64-linux-gnu.so
+2b48feb76000-2b48feb77000 ---p 00043000 00:25 443838498                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_hierarchy.cpython-311-x86_64-linux-gnu.so
+2b48feb77000-2b48feb78000 r--p 00043000 00:25 443838498                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_hierarchy.cpython-311-x86_64-linux-gnu.so
+2b48feb78000-2b48feb7e000 rw-p 00044000 00:25 443838498                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_hierarchy.cpython-311-x86_64-linux-gnu.so
+2b48feb7e000-2b48feb7f000 rw-p 00000000 00:00 0 
+2b48feb7f000-2b48feb86000 r--p 00000000 00:25 443838492                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_optimal_leaf_ordering.cpython-311-x86_64-linux-gnu.so
+2b48feb86000-2b48febb4000 r-xp 00007000 00:25 443838492                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_optimal_leaf_ordering.cpython-311-x86_64-linux-gnu.so
+2b48febb4000-2b48febbb000 r--p 00035000 00:25 443838492                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_optimal_leaf_ordering.cpython-311-x86_64-linux-gnu.so
+2b48febbb000-2b48febbc000 ---p 0003c000 00:25 443838492                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_optimal_leaf_ordering.cpython-311-x86_64-linux-gnu.so
+2b48febbc000-2b48febbd000 r--p 0003c000 00:25 443838492                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_optimal_leaf_ordering.cpython-311-x86_64-linux-gnu.so
+2b48febbd000-2b48febc0000 rw-p 0003d000 00:25 443838492                  /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/scipy/cluster/_optimal_leaf_ordering.cpython-311-x86_64-linux-gnu.so
+2b48febc0000-2b48fecc1000 rw-p 00000000 00:00 0 
+2b48fecc1000-2b48fecc9000 r--p 00000000 00:25 47274924613                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so
+2b48fecc9000-2b48fecd7000 r-xp 00008000 00:25 47274924613                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so
+2b48fecd7000-2b48fecde000 r--p 00016000 00:25 47274924613                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so
+2b48fecde000-2b48fece0000 r--p 0001c000 00:25 47274924613                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so
+2b48fece0000-2b48fece2000 rw-p 0001e000 00:25 47274924613                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_sqlite3.cpython-311-x86_64-linux-gnu.so
+2b48fece2000-2b48fecf4000 r--p 00000000 00:25 8674381860                 /home/sung.w.kang/anaconda3/lib/libsqlite3.so.0.8.6
+2b48fecf4000-2b48fedf4000 r-xp 00012000 00:25 8674381860                 /home/sung.w.kang/anaconda3/lib/libsqlite3.so.0.8.6
+2b48fedf4000-2b48fee28000 r--p 00112000 00:25 8674381860                 /home/sung.w.kang/anaconda3/lib/libsqlite3.so.0.8.6
+2b48fee28000-2b48fee29000 ---p 00146000 00:25 8674381860                 /home/sung.w.kang/anaconda3/lib/libsqlite3.so.0.8.6
+2b48fee29000-2b48fee2d000 r--p 00146000 00:25 8674381860                 /home/sung.w.kang/anaconda3/lib/libsqlite3.so.0.8.6
+2b48fee2d000-2b48fee31000 rw-p 0014a000 00:25 8674381860                 /home/sung.w.kang/anaconda3/lib/libsqlite3.so.0.8.6
+2b48fee31000-2b48ff031000 rw-p 00000000 00:00 0 
+2b48ff031000-2b48ff044000 r--p 00000000 00:25 73085483675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/gmpy2/gmpy2.cpython-311-x86_64-linux-gnu.so
+2b48ff044000-2b48ff098000 r-xp 00013000 00:25 73085483675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/gmpy2/gmpy2.cpython-311-x86_64-linux-gnu.so
+2b48ff098000-2b48ff0b8000 r--p 00067000 00:25 73085483675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/gmpy2/gmpy2.cpython-311-x86_64-linux-gnu.so
+2b48ff0b8000-2b48ff0ba000 r--p 00086000 00:25 73085483675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/gmpy2/gmpy2.cpython-311-x86_64-linux-gnu.so
+2b48ff0ba000-2b48ff0c0000 rw-p 00088000 00:25 73085483675                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/gmpy2/gmpy2.cpython-311-x86_64-linux-gnu.so
+2b48ff0c0000-2b48ff0d7000 r-xp 00000000 00:25 36575396042                /home/sung.w.kang/anaconda3/lib/libmpc.so.3.1.0
+2b48ff0d7000-2b48ff2d7000 ---p 00017000 00:25 36575396042                /home/sung.w.kang/anaconda3/lib/libmpc.so.3.1.0
+2b48ff2d7000-2b48ff2d8000 r--p 00017000 00:25 36575396042                /home/sung.w.kang/anaconda3/lib/libmpc.so.3.1.0
+2b48ff2d8000-2b48ff2d9000 rw-p 00018000 00:25 36575396042                /home/sung.w.kang/anaconda3/lib/libmpc.so.3.1.0
+2b48ff2d9000-2b48ff2e6000 r--p 00000000 00:25 68845851651                /home/sung.w.kang/anaconda3/lib/libmpfr.so.6.0.2
+2b48ff2e6000-2b48ff343000 r-xp 0000d000 00:25 68845851651                /home/sung.w.kang/anaconda3/lib/libmpfr.so.6.0.2
+2b48ff343000-2b48ff354000 r--p 0006a000 00:25 68845851651                /home/sung.w.kang/anaconda3/lib/libmpfr.so.6.0.2
+2b48ff354000-2b48ff355000 ---p 0007b000 00:25 68845851651                /home/sung.w.kang/anaconda3/lib/libmpfr.so.6.0.2
+2b48ff355000-2b48ff357000 r--p 0007b000 00:25 68845851651                /home/sung.w.kang/anaconda3/lib/libmpfr.so.6.0.2
+2b48ff357000-2b48ff358000 rw-p 0007d000 00:25 68845851651                /home/sung.w.kang/anaconda3/lib/libmpfr.so.6.0.2
+2b48ff358000-2b48ff36b000 r--p 00000000 00:25 92430744147                /home/sung.w.kang/anaconda3/lib/libgmp.so.10.4.1
+2b48ff36b000-2b48ff3e3000 r-xp 00013000 00:25 92430744147                /home/sung.w.kang/anaconda3/lib/libgmp.so.10.4.1
+2b48ff3e3000-2b48ff3fa000 r--p 0008b000 00:25 92430744147                /home/sung.w.kang/anaconda3/lib/libgmp.so.10.4.1
+2b48ff3fa000-2b48ff3fb000 ---p 000a2000 00:25 92430744147                /home/sung.w.kang/anaconda3/lib/libgmp.so.10.4.1
+2b48ff3fb000-2b48ff3fd000 r--p 000a2000 00:25 92430744147                /home/sung.w.kang/anaconda3/lib/libgmp.so.10.4.1
+2b48ff3fd000-2b48ff3fe000 rw-p 000a4000 00:25 92430744147                /home/sung.w.kang/anaconda3/lib/libgmp.so.10.4.1
+2b48ff3fe000-2b48ff4fe000 rw-p 00000000 00:00 0 
+2b48ff4fe000-2b48ff500000 r--p 00000000 00:25 47274924585                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/cmath.cpython-311-x86_64-linux-gnu.so
+2b48ff500000-2b48ff50a000 r-xp 00002000 00:25 47274924585                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/cmath.cpython-311-x86_64-linux-gnu.so
+2b48ff50a000-2b48ff50c000 r--p 0000c000 00:25 47274924585                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/cmath.cpython-311-x86_64-linux-gnu.so
+2b48ff50c000-2b48ff50d000 ---p 0000e000 00:25 47274924585                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/cmath.cpython-311-x86_64-linux-gnu.so
+2b48ff50d000-2b48ff50e000 r--p 0000e000 00:25 47274924585                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/cmath.cpython-311-x86_64-linux-gnu.so
+2b48ff50e000-2b48ff50f000 rw-p 0000f000 00:25 47274924585                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/cmath.cpython-311-x86_64-linux-gnu.so
+2b48ff50f000-2b48ff711000 rw-p 00000000 00:00 0 
+2b48ff711000-2b48ff712000 r--p 00000000 00:25 47274924569                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_heapq.cpython-311-x86_64-linux-gnu.so
+2b48ff712000-2b48ff715000 r-xp 00001000 00:25 47274924569                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_heapq.cpython-311-x86_64-linux-gnu.so
+2b48ff715000-2b48ff718000 r--p 00004000 00:25 47274924569                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_heapq.cpython-311-x86_64-linux-gnu.so
+2b48ff718000-2b48ff719000 r--p 00006000 00:25 47274924569                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_heapq.cpython-311-x86_64-linux-gnu.so
+2b48ff719000-2b48ff71a000 rw-p 00007000 00:25 47274924569                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/_heapq.cpython-311-x86_64-linux-gnu.so
+2b48ff71a000-2b48ffe1a000 rw-p 00000000 00:00 0 
+2b48ffe1a000-2b48ffe1d000 r--p 00000000 00:25 47274924619                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/unicodedata.cpython-311-x86_64-linux-gnu.so
+2b48ffe1d000-2b48ffe21000 r-xp 00003000 00:25 47274924619                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/unicodedata.cpython-311-x86_64-linux-gnu.so
+2b48ffe21000-2b48fff2d000 r--p 00007000 00:25 47274924619                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/unicodedata.cpython-311-x86_64-linux-gnu.so
+2b48fff2d000-2b48fff2e000 ---p 00113000 00:25 47274924619                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/unicodedata.cpython-311-x86_64-linux-gnu.so
+2b48fff2e000-2b48fff2f000 r--p 00113000 00:25 47274924619                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/unicodedata.cpython-311-x86_64-linux-gnu.so
+2b48fff2f000-2b48fff30000 rw-p 00114000 00:25 47274924619                /home/sung.w.kang/anaconda3/lib/python3.11/lib-dynload/unicodedata.cpython-311-x86_64-linux-gnu.so
+2b48fff30000-2b4900b06000 rw-p 00000000 00:00 0 
+2b4900b06000-2b4900c0a000 r-xp 00000000 00:25 85934752810                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pyrandspg.cpython-311-x86_64-linux-gnu.so
+2b4900c0a000-2b4900e0a000 ---p 00104000 00:25 85934752810                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pyrandspg.cpython-311-x86_64-linux-gnu.so
+2b4900e0a000-2b4900e0b000 r--p 00104000 00:25 85934752810                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pyrandspg.cpython-311-x86_64-linux-gnu.so
+2b4900e0b000-2b4900e0c000 rw-p 00105000 00:25 85934752810                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/pyrandspg.cpython-311-x86_64-linux-gnu.so
+2b4900e0c000-2b4900e0d000 rw-p 00000000 00:00 0 
+2b4900e0d000-2b4900e33000 r--p 00000000 00:25 47324998672                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/mpi4py/MPI.cpython-311-x86_64-linux-gnu.so
+2b4900e33000-2b4900f24000 r-xp 00026000 00:25 47324998672                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/mpi4py/MPI.cpython-311-x86_64-linux-gnu.so
+2b4900f24000-2b4900f46000 r--p 00117000 00:25 47324998672                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/mpi4py/MPI.cpython-311-x86_64-linux-gnu.so
+2b4900f46000-2b4900f48000 r--p 00138000 00:25 47324998672                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/mpi4py/MPI.cpython-311-x86_64-linux-gnu.so
+2b4900f48000-2b4900f6d000 rw-p 0013a000 00:25 47324998672                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/mpi4py/MPI.cpython-311-x86_64-linux-gnu.so
+2b4900f6d000-2b4900f70000 rw-p 00000000 00:00 0 
+2b4900f70000-2b4901e72000 r-xp 00000000 00:29 275729486                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/lib/release/libmpi.so.12.0.0
+2b4901e72000-2b4902072000 ---p 00f02000 00:29 275729486                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/lib/release/libmpi.so.12.0.0
+2b4902072000-2b4902091000 rw-p 00f02000 00:29 275729486                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/lib/release/libmpi.so.12.0.0
+2b4902091000-2b4902109000 rw-p 00000000 00:00 0 
+2b4902109000-2b4902110000 r-xp 00000000 08:04 33619997                   /usr/lib64/librt-2.17.so
+2b4902110000-2b490230f000 ---p 00007000 08:04 33619997                   /usr/lib64/librt-2.17.so
+2b490230f000-2b4902310000 r--p 00006000 08:04 33619997                   /usr/lib64/librt-2.17.so
+2b4902310000-2b4902311000 rw-p 00007000 08:04 33619997                   /usr/lib64/librt-2.17.so
+2b4902311000-2b4902347000 r-xp 00000000 00:29 275729489                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/libfabric.so.1
+2b4902347000-2b4902546000 ---p 00036000 00:29 275729489                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/libfabric.so.1
+2b4902546000-2b4902549000 rw-p 00035000 00:29 275729489                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/libfabric.so.1
+2b4902549000-2b4902649000 rw-p 00000000 00:00 0 
+2b4902649000-2b4902653000 r-xp 00000000 08:04 33701788                   /usr/lib64/libnuma.so.1
+2b4902653000-2b4902853000 ---p 0000a000 08:04 33701788                   /usr/lib64/libnuma.so.1
+2b4902853000-2b4902854000 r--p 0000a000 08:04 33701788                   /usr/lib64/libnuma.so.1
+2b4902854000-2b4902855000 rw-p 0000b000 08:04 33701788                   /usr/lib64/libnuma.so.1
+2b4902855000-2b490285d000 rw-p 00000000 00:00 0 
+2b490285d000-2b49c210c000 rw-s 00000000 00:13 27763233                   /dev/shm/Intel_MPI_0s4SyT (deleted)
+2b49c210c000-2b49c2150000 r-xp 00000000 00:29 409549368                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libverbs-fi.so
+2b49c2150000-2b49c234f000 ---p 00044000 00:29 409549368                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libverbs-fi.so
+2b49c234f000-2b49c2352000 rw-p 00043000 00:29 409549368                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libverbs-fi.so
+2b49c2352000-2b49c2359000 -w-s dabbad0002130000 00:05 64192              /dev/hfi1_0
+2b49c235d000-2b49c2372000 r-xp 00000000 08:04 33767140                   /usr/lib64/librdmacm.so.1.1.17.2
+2b49c2372000-2b49c2571000 ---p 00015000 08:04 33767140                   /usr/lib64/librdmacm.so.1.1.17.2
+2b49c2571000-2b49c2572000 r--p 00014000 08:04 33767140                   /usr/lib64/librdmacm.so.1.1.17.2
+2b49c2572000-2b49c2573000 rw-p 00015000 08:04 33767140                   /usr/lib64/librdmacm.so.1.1.17.2
+2b49c2573000-2b49c2574000 rw-p 00000000 00:00 0 
+2b49c2574000-2b49c2589000 r-xp 00000000 08:04 33767125                   /usr/lib64/libibverbs.so.1.1.17.2
+2b49c2589000-2b49c2789000 ---p 00015000 08:04 33767125                   /usr/lib64/libibverbs.so.1.1.17.2
+2b49c2789000-2b49c278a000 r--p 00015000 08:04 33767125                   /usr/lib64/libibverbs.so.1.1.17.2
+2b49c278a000-2b49c278b000 rw-p 00016000 08:04 33767125                   /usr/lib64/libibverbs.so.1.1.17.2
+2b49c278b000-2b49c27ef000 r-xp 00000000 08:04 33620061                   /usr/lib64/libnl-route-3.so.200.23.0
+2b49c27ef000-2b49c29ee000 ---p 00064000 08:04 33620061                   /usr/lib64/libnl-route-3.so.200.23.0
+2b49c29ee000-2b49c29f1000 r--p 00063000 08:04 33620061                   /usr/lib64/libnl-route-3.so.200.23.0
+2b49c29f1000-2b49c29f6000 rw-p 00066000 08:04 33620061                   /usr/lib64/libnl-route-3.so.200.23.0
+2b49c29f6000-2b49c29f8000 rw-p 00000000 00:00 0 
+2b49c29f8000-2b49c2a16000 r-xp 00000000 08:04 33620038                   /usr/lib64/libnl-3.so.200.23.0
+2b49c2a16000-2b49c2c16000 ---p 0001e000 08:04 33620038                   /usr/lib64/libnl-3.so.200.23.0
+2b49c2c16000-2b49c2c18000 r--p 0001e000 08:04 33620038                   /usr/lib64/libnl-3.so.200.23.0
+2b49c2c18000-2b49c2c19000 rw-p 00020000 08:04 33620038                   /usr/lib64/libnl-3.so.200.23.0
+2b49c2c19000-2b49c2c1d000 r-xp 00000000 08:04 67923073                   /usr/lib64/libibverbs/libvmw_pvrdma-rdmav17.so
+2b49c2c1d000-2b49c2e1d000 ---p 00004000 08:04 67923073                   /usr/lib64/libibverbs/libvmw_pvrdma-rdmav17.so
+2b49c2e1d000-2b49c2e1e000 r--p 00004000 08:04 67923073                   /usr/lib64/libibverbs/libvmw_pvrdma-rdmav17.so
+2b49c2e1e000-2b49c2e1f000 rw-p 00005000 08:04 67923073                   /usr/lib64/libibverbs/libvmw_pvrdma-rdmav17.so
+2b49c2e1f000-2b49c2e23000 r-xp 00000000 08:04 67923072                   /usr/lib64/libibverbs/librxe-rdmav17.so
+2b49c2e23000-2b49c3022000 ---p 00004000 08:04 67923072                   /usr/lib64/libibverbs/librxe-rdmav17.so
+2b49c3022000-2b49c3023000 r--p 00003000 08:04 67923072                   /usr/lib64/libibverbs/librxe-rdmav17.so
+2b49c3023000-2b49c3024000 rw-p 00004000 08:04 67923072                   /usr/lib64/libibverbs/librxe-rdmav17.so
+2b49c3024000-2b49c302c000 r-xp 00000000 08:04 67923071                   /usr/lib64/libibverbs/libqedr-rdmav17.so
+2b49c302c000-2b49c322b000 ---p 00008000 08:04 67923071                   /usr/lib64/libibverbs/libqedr-rdmav17.so
+2b49c322b000-2b49c322c000 r--p 00007000 08:04 67923071                   /usr/lib64/libibverbs/libqedr-rdmav17.so
+2b49c322c000-2b49c322d000 rw-p 00008000 08:04 67923071                   /usr/lib64/libibverbs/libqedr-rdmav17.so
+2b49c322d000-2b49c3233000 r-xp 00000000 08:04 67923070                   /usr/lib64/libibverbs/libocrdma-rdmav17.so
+2b49c3233000-2b49c3432000 ---p 00006000 08:04 67923070                   /usr/lib64/libibverbs/libocrdma-rdmav17.so
+2b49c3432000-2b49c3433000 r--p 00005000 08:04 67923070                   /usr/lib64/libibverbs/libocrdma-rdmav17.so
+2b49c3433000-2b49c3434000 rw-p 00006000 08:04 67923070                   /usr/lib64/libibverbs/libocrdma-rdmav17.so
+2b49c3434000-2b49c3439000 r-xp 00000000 08:04 67923069                   /usr/lib64/libibverbs/libnes-rdmav17.so
+2b49c3439000-2b49c3639000 ---p 00005000 08:04 67923069                   /usr/lib64/libibverbs/libnes-rdmav17.so
+2b49c3639000-2b49c363a000 r--p 00005000 08:04 67923069                   /usr/lib64/libibverbs/libnes-rdmav17.so
+2b49c363a000-2b49c363b000 rw-p 00006000 08:04 67923069                   /usr/lib64/libibverbs/libnes-rdmav17.so
+2b49c363b000-2b49c3643000 r-xp 00000000 08:04 67923068                   /usr/lib64/libibverbs/libmthca-rdmav17.so
+2b49c3643000-2b49c3842000 ---p 00008000 08:04 67923068                   /usr/lib64/libibverbs/libmthca-rdmav17.so
+2b49c3842000-2b49c3843000 r--p 00007000 08:04 67923068                   /usr/lib64/libibverbs/libmthca-rdmav17.so
+2b49c3843000-2b49c3844000 rw-p 00008000 08:04 67923068                   /usr/lib64/libibverbs/libmthca-rdmav17.so
+2b49c3844000-2b49c3865000 r-xp 00000000 08:04 33767132                   /usr/lib64/libmlx5.so.1.4.17.2
+2b49c3865000-2b49c3a65000 ---p 00021000 08:04 33767132                   /usr/lib64/libmlx5.so.1.4.17.2
+2b49c3a65000-2b49c3a66000 r--p 00021000 08:04 33767132                   /usr/lib64/libmlx5.so.1.4.17.2
+2b49c3a66000-2b49c3a67000 rw-p 00022000 08:04 33767132                   /usr/lib64/libmlx5.so.1.4.17.2
+2b49c3a67000-2b49c3a72000 r-xp 00000000 08:04 33767128                   /usr/lib64/libmlx4.so.1.0.17.2
+2b49c3a72000-2b49c3c71000 ---p 0000b000 08:04 33767128                   /usr/lib64/libmlx4.so.1.0.17.2
+2b49c3c71000-2b49c3c72000 r--p 0000a000 08:04 33767128                   /usr/lib64/libmlx4.so.1.0.17.2
+2b49c3c72000-2b49c3c73000 rw-p 0000b000 08:04 33767128                   /usr/lib64/libmlx4.so.1.0.17.2
+2b49c3c73000-2b49c3c77000 r-xp 00000000 08:04 67923065                   /usr/lib64/libibverbs/libipathverbs-rdmav17.so
+2b49c3c77000-2b49c3e76000 ---p 00004000 08:04 67923065                   /usr/lib64/libibverbs/libipathverbs-rdmav17.so
+2b49c3e76000-2b49c3e77000 r--p 00003000 08:04 67923065                   /usr/lib64/libibverbs/libipathverbs-rdmav17.so
+2b49c3e77000-2b49c3e78000 rw-p 00004000 08:04 67923065                   /usr/lib64/libibverbs/libipathverbs-rdmav17.so
+2b49c3e78000-2b49c3e7f000 r-xp 00000000 08:04 67923064                   /usr/lib64/libibverbs/libi40iw-rdmav17.so
+2b49c3e7f000-2b49c407e000 ---p 00007000 08:04 67923064                   /usr/lib64/libibverbs/libi40iw-rdmav17.so
+2b49c407e000-2b49c407f000 r--p 00006000 08:04 67923064                   /usr/lib64/libibverbs/libi40iw-rdmav17.so
+2b49c407f000-2b49c4080000 rw-p 00007000 08:04 67923064                   /usr/lib64/libibverbs/libi40iw-rdmav17.so
+2b49c4080000-2b49c4087000 r-xp 00000000 08:04 67923063                   /usr/lib64/libibverbs/libhns-rdmav17.so
+2b49c4087000-2b49c4286000 ---p 00007000 08:04 67923063                   /usr/lib64/libibverbs/libhns-rdmav17.so
+2b49c4286000-2b49c4287000 r--p 00006000 08:04 67923063                   /usr/lib64/libibverbs/libhns-rdmav17.so
+2b49c4287000-2b49c4288000 rw-p 00007000 08:04 67923063                   /usr/lib64/libibverbs/libhns-rdmav17.so
+2b49c4288000-2b49c428c000 r-xp 00000000 08:04 67923062                   /usr/lib64/libibverbs/libhfi1verbs-rdmav17.so
+2b49c428c000-2b49c448b000 ---p 00004000 08:04 67923062                   /usr/lib64/libibverbs/libhfi1verbs-rdmav17.so
+2b49c448b000-2b49c448c000 r--p 00003000 08:04 67923062                   /usr/lib64/libibverbs/libhfi1verbs-rdmav17.so
+2b49c448c000-2b49c448d000 rw-p 00004000 08:04 67923062                   /usr/lib64/libibverbs/libhfi1verbs-rdmav17.so
+2b49c448d000-2b49c4494000 r-xp 00000000 08:04 67923061                   /usr/lib64/libibverbs/libcxgb4-rdmav17.so
+2b49c4494000-2b49c4694000 ---p 00007000 08:04 67923061                   /usr/lib64/libibverbs/libcxgb4-rdmav17.so
+2b49c4694000-2b49c4695000 r--p 00007000 08:04 67923061                   /usr/lib64/libibverbs/libcxgb4-rdmav17.so
+2b49c4695000-2b49c4696000 rw-p 00008000 08:04 67923061                   /usr/lib64/libibverbs/libcxgb4-rdmav17.so
+2b49c4696000-2b49c469b000 r-xp 00000000 08:04 67923060                   /usr/lib64/libibverbs/libcxgb3-rdmav17.so
+2b49c469b000-2b49c489a000 ---p 00005000 08:04 67923060                   /usr/lib64/libibverbs/libcxgb3-rdmav17.so
+2b49c489a000-2b49c489b000 r--p 00004000 08:04 67923060                   /usr/lib64/libibverbs/libcxgb3-rdmav17.so
+2b49c489b000-2b49c489c000 rw-p 00005000 08:04 67923060                   /usr/lib64/libibverbs/libcxgb3-rdmav17.so
+2b49c489c000-2b49c48a1000 r-xp 00000000 08:04 67923059                   /usr/lib64/libibverbs/libbnxt_re-rdmav17.so
+2b49c48a1000-2b49c4aa0000 ---p 00005000 08:04 67923059                   /usr/lib64/libibverbs/libbnxt_re-rdmav17.so
+2b49c4aa0000-2b49c4aa1000 r--p 00004000 08:04 67923059                   /usr/lib64/libibverbs/libbnxt_re-rdmav17.so
+2b49c4aa1000-2b49c4aa2000 rw-p 00005000 08:04 67923059                   /usr/lib64/libibverbs/libbnxt_re-rdmav17.so
+2b49c4aa2000-2b49c4ad1000 r-xp 00000000 00:29 409549367                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libtcp-fi.so
+2b49c4ad1000-2b49c4cd1000 ---p 0002f000 00:29 409549367                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libtcp-fi.so
+2b49c4cd1000-2b49c4cd3000 rw-p 0002f000 00:29 409549367                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libtcp-fi.so
+2b49c4cd3000-2b49c4d1d000 r-xp 00000000 00:29 409549366                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libsockets-fi.so
+2b49c4d1d000-2b49c4f1c000 ---p 0004a000 00:29 409549366                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libsockets-fi.so
+2b49c4f1c000-2b49c4f1f000 rw-p 00049000 00:29 409549366                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libsockets-fi.so
+2b49c4f1f000-2b49c4f61000 r-xp 00000000 00:29 409549365                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/librxm-fi.so
+2b49c4f61000-2b49c5160000 ---p 00042000 00:29 409549365                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/librxm-fi.so
+2b49c5160000-2b49c5173000 rw-p 00041000 00:29 409549365                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/librxm-fi.so
+2b49c5173000-2b49c51d6000 r-xp 00000000 00:29 409549364                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libpsmx2-fi.so
+2b49c51d6000-2b49c53d6000 ---p 00063000 00:29 409549364                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libpsmx2-fi.so
+2b49c53d6000-2b49c53db000 rw-p 00063000 00:29 409549364                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/mpi/intel64/libfabric/lib/prov/libpsmx2-fi.so
+2b49c53db000-2b49c53df000 rw-p 00000000 00:00 0 
+2b49c53df000-2b49c543e000 r-xp 00000000 08:04 33701544                   /usr/lib64/libpsm2.so.2.1
+2b49c543e000-2b49c563e000 ---p 0005f000 08:04 33701544                   /usr/lib64/libpsm2.so.2.1
+2b49c563e000-2b49c563f000 r--p 0005f000 08:04 33701544                   /usr/lib64/libpsm2.so.2.1
+2b49c563f000-2b49c5640000 rw-p 00060000 08:04 33701544                   /usr/lib64/libpsm2.so.2.1
+2b49c5640000-2b49c5642000 rw-p 00000000 00:00 0 
+2b49c5642000-2b49c5649000 -w-s dabbad0001130000 00:05 64192              /dev/hfi1_0
+2b49c5649000-2b49c5689000 r--s dabbad0004130000 00:05 64192              /dev/hfi1_0
+2b49c5689000-2b49c5e89000 r--s dabbad0005130000 00:05 64192              /dev/hfi1_0
+2b49c5e89000-2b49c719d000 rw-p 00000000 00:00 0 
+2b49c719d000-2b49c719e000 ---p 00000000 00:00 0 
+2b49c719e000-2b49c739e000 rw-p 00000000 00:00 0 
+2b49c739e000-2b49c77c1000 rw-s 00000000 00:13 27014600                   /dev/shm/psm2_shm.103500000000000c13020
+2b49c77c1000-2b49c7be4000 rw-s 00000000 00:13 27763236                   /dev/shm/psm2_shm.103500000000000c0d020
+2b49c7be4000-2b49c8007000 rw-s 00000000 00:13 27764030                   /dev/shm/psm2_shm.103500000000000c17020
+2b49c8007000-2b49c842a000 rw-s 00000000 00:13 27765910                   /dev/shm/psm2_shm.103500000000000c21020
+2b49c842a000-2b49c884d000 rw-s 00000000 00:13 27725894                   /dev/shm/psm2_shm.103500000000000c0e020
+2b49c884d000-2b49c8c70000 rw-s 00000000 00:13 27528092                   /dev/shm/psm2_shm.103500000000000c1d020
+2b49c8c70000-2b49c9093000 rw-s 00000000 00:13 27489070                   /dev/shm/psm2_shm.103500000000000c16020
+2b49c9093000-2b49c94b6000 rw-s 00000000 00:13 27616716                   /dev/shm/psm2_shm.103500000000000c1a020
+2b49c94b6000-2b49c98d9000 rw-s 00000000 00:13 27481368                   /dev/shm/psm2_shm.103500000000000c10020
+2b49c98d9000-2b49c9cfc000 rw-s 00000000 00:13 26759642                   /dev/shm/psm2_shm.103500000000000c0f020
+2b49c9cfc000-2b49ca11f000 rw-s 00000000 00:13 26956115                   /dev/shm/psm2_shm.103500000000000c12020
+2b49ca11f000-2b49ca542000 rw-s 00000000 00:13 27622380                   /dev/shm/psm2_shm.103500000000000c1c020
+2b49ca542000-2b49ca965000 rw-s 00000000 00:13 27748985                   /dev/shm/psm2_shm.103500000000000c0b020
+2b49ca965000-2b49cad88000 rw-s 00000000 00:13 27569182                   /dev/shm/psm2_shm.103500000000000c0c020
+2b49cad88000-2b49cb1ab000 rw-s 00000000 00:13 26758567                   /dev/shm/psm2_shm.103500000000000c20020
+2b49cb1ab000-2b49cb5ce000 rw-s 00000000 00:13 25685876                   /dev/shm/psm2_shm.103500000000000c15020
+2b49cb5ce000-2b49cb9f1000 rw-s 00000000 00:13 26796293                   /dev/shm/psm2_shm.103500000000000c22020
+2b49cb9f1000-2b49cbe14000 rw-s 00000000 00:13 27624358                   /dev/shm/psm2_shm.103500000000000c04020
+2b49cbe14000-2b49cc237000 rw-s 00000000 00:13 27764984                   /dev/shm/psm2_shm.103500000000000c08020
+2b49cc237000-2b49cc65a000 rw-s 00000000 00:13 27710533                   /dev/shm/psm2_shm.103500000000000c18020
+2b49cc65a000-2b49cca7d000 rw-s 00000000 00:13 27721814                   /dev/shm/psm2_shm.103500000000000c03020
+2b49cca7d000-2b49ccea0000 rw-s 00000000 00:13 25742314                   /dev/shm/psm2_shm.103500000000000c07020
+2b49ccea0000-2b49cd2c3000 rw-s 00000000 00:13 27766920                   /dev/shm/psm2_shm.103500000000000c0a020
+2b49cd2c3000-2b49cd6e6000 rw-s 00000000 00:13 24547077                   /dev/shm/psm2_shm.103500000000000c05020
+2b49cd6e6000-2b49cdb09000 rw-s 00000000 00:13 27103355                   /dev/shm/psm2_shm.103500000000000c1e020
+2b49cdb09000-2b49cdf2c000 rw-s 00000000 00:13 25849200                   /dev/shm/psm2_shm.103500000000000c19020
+2b49cdf2c000-2b49ce34f000 rw-s 00000000 00:13 27767810                   /dev/shm/psm2_shm.103500000000000c1f020
+2b49ce34f000-2b49ce772000 rw-s 00000000 00:13 14238568                   /dev/shm/psm2_shm.103500000000000c1b020
+2b49ce772000-2b49ceb95000 rw-s 00000000 00:13 26475722                   /dev/shm/psm2_shm.103500000000000c11020
+2b49ceb95000-2b49cefb8000 rw-s 00000000 00:13 26876025                   /dev/shm/psm2_shm.103500000000000c06020
+2b49cefb8000-2b49cf3db000 rw-s 00000000 00:13 25474335                   /dev/shm/psm2_shm.103500000000000c14020
+2b49cf3db000-2b49cf7fe000 rw-s 00000000 00:13 27011506                   /dev/shm/psm2_shm.103500000000000c09020
+2b49cf7fe000-2b49cf806000 rw-p 00000000 00:00 0 
+2b49cf806000-2b49d1806000 rw-p 00000000 00:00 0 
+2b49d1806000-2b49d23eb000 r-xp 00000000 00:25 73052479541                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so
+2b49d23eb000-2b49d25ea000 ---p 00be5000 00:25 73052479541                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so
+2b49d25ea000-2b49d25ee000 r--p 00be4000 00:25 73052479541                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so
+2b49d25ee000-2b49d2610000 rw-p 00be8000 00:25 73052479541                /home/sung.w.kang/anaconda3/lib/python3.11/site-packages/lammps/liblammps.so
+2b49d2610000-2b49d2701000 r--p 00000000 00:25 19379270171                /home/sung.w.kang/anaconda3/lib/libpython3.11.so.1.0
+2b49d2701000-2b49d2948000 r-xp 000f1000 00:25 19379270171                /home/sung.w.kang/anaconda3/lib/libpython3.11.so.1.0
+2b49d2948000-2b49d2a35000 r--p 00338000 00:25 19379270171                /home/sung.w.kang/anaconda3/lib/libpython3.11.so.1.0
+2b49d2a35000-2b49d2a36000 ---p 00425000 00:25 19379270171                /home/sung.w.kang/anaconda3/lib/libpython3.11.so.1.0
+2b49d2a36000-2b49d2a65000 r--p 00425000 00:25 19379270171                /home/sung.w.kang/anaconda3/lib/libpython3.11.so.1.0
+2b49d2a65000-2b49d2b95000 rw-p 00454000 00:25 19379270171                /home/sung.w.kang/anaconda3/lib/libpython3.11.so.1.0
+2b49d2b95000-2b49d2bd8000 rw-p 00000000 00:00 0 
+2b49d2bd8000-2b49d2d9e000 r--p 00000000 00:25 25808714768                /home/sung.w.kang/anaconda3/lib/libmkl_sequential.so.2
+2b49d2d9e000-2b49d4352000 r-xp 001c6000 00:25 25808714768                /home/sung.w.kang/anaconda3/lib/libmkl_sequential.so.2
+2b49d4352000-2b49d4594000 r--p 0177a000 00:25 25808714768                /home/sung.w.kang/anaconda3/lib/libmkl_sequential.so.2
+2b49d4594000-2b49d4595000 ---p 019bc000 00:25 25808714768                /home/sung.w.kang/anaconda3/lib/libmkl_sequential.so.2
+2b49d4595000-2b49d4598000 r--p 019bc000 00:25 25808714768                /home/sung.w.kang/anaconda3/lib/libmkl_sequential.so.2
+2b49d4598000-2b49d45e4000 rw-p 019bf000 00:25 25808714768                /home/sung.w.kang/anaconda3/lib/libmkl_sequential.so.2
+2b49d45e4000-2b49d46c3000 rw-p 01b9e000 00:25 25808714768                /home/sung.w.kang/anaconda3/lib/libmkl_sequential.so.2
+2b49d46c3000-2b49d48f4000 r--p 00000000 00:25 25808713976                /home/sung.w.kang/anaconda3/lib/libmkl_intel_lp64.so.2
+2b49d48f4000-2b49d5417000 r-xp 00231000 00:25 25808713976                /home/sung.w.kang/anaconda3/lib/libmkl_intel_lp64.so.2
+2b49d5417000-2b49d58d5000 r--p 00d54000 00:25 25808713976                /home/sung.w.kang/anaconda3/lib/libmkl_intel_lp64.so.2
+2b49d58d5000-2b49d58d6000 ---p 01212000 00:25 25808713976                /home/sung.w.kang/anaconda3/lib/libmkl_intel_lp64.so.2
+2b49d58d6000-2b49d58d8000 r--p 01212000 00:25 25808713976                /home/sung.w.kang/anaconda3/lib/libmkl_intel_lp64.so.2
+2b49d58d8000-2b49d58f6000 rw-p 01214000 00:25 25808713976                /home/sung.w.kang/anaconda3/lib/libmkl_intel_lp64.so.2
+2b49d58f6000-2b49d58fd000 rw-p 00000000 00:00 0 
+2b49d58fd000-2b49d59b3000 rw-p 0144c000 00:25 25808713976                /home/sung.w.kang/anaconda3/lib/libmkl_intel_lp64.so.2
+2b49d59b3000-2b49d5ba3000 r--p 00000000 00:25 25808717346                /home/sung.w.kang/anaconda3/lib/libmkl_core.so.2
+2b49d5ba3000-2b49d92c7000 r-xp 001f0000 00:25 25808717346                /home/sung.w.kang/anaconda3/lib/libmkl_core.so.2
+2b49d92c7000-2b49d9d34000 r--p 03914000 00:25 25808717346                /home/sung.w.kang/anaconda3/lib/libmkl_core.so.2
+2b49d9d34000-2b49d9d3b000 r--p 04380000 00:25 25808717346                /home/sung.w.kang/anaconda3/lib/libmkl_core.so.2
+2b49d9d3b000-2b49d9d6b000 rw-p 04387000 00:25 25808717346                /home/sung.w.kang/anaconda3/lib/libmkl_core.so.2
+2b49d9d6b000-2b49d9d94000 rw-p 00000000 00:00 0 
+2b49d9d94000-2b49d9e85000 rw-p 046cd000 00:25 25808717346                /home/sung.w.kang/anaconda3/lib/libmkl_core.so.2
+2b49d9e85000-2b49d9fbf000 r-xp 00000000 00:29 142625241                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libifcore.so.5
+2b49d9fbf000-2b49da1be000 ---p 0013a000 00:29 142625241                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libifcore.so.5
+2b49da1be000-2b49da1c1000 r--p 00139000 00:29 142625241                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libifcore.so.5
+2b49da1c1000-2b49da1c4000 rw-p 0013c000 00:29 142625241                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libifcore.so.5
+2b49da1c4000-2b49da1e2000 rw-p 00000000 00:00 0 
+2b49da1e2000-2b49da525000 r-xp 00000000 00:29 142630123                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libimf.so
+2b49da525000-2b49da725000 ---p 00343000 00:29 142630123                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libimf.so
+2b49da725000-2b49da72c000 r--p 00343000 00:29 142630123                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libimf.so
+2b49da72c000-2b49da782000 rw-p 0034a000 00:29 142630123                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libimf.so
+2b49da782000-2b49dbea3000 r-xp 00000000 00:29 142630140                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libsvml.so
+2b49dbea3000-2b49dc0a2000 ---p 01721000 00:29 142630140                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libsvml.so
+2b49dc0a2000-2b49dc0f2000 r--p 01720000 00:29 142630140                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libsvml.so
+2b49dc0f2000-2b49dc126000 rw-p 01770000 00:29 142630140                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libsvml.so
+2b49dc126000-2b49dc284000 r-xp 00000000 00:29 142630131                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libirng.so
+2b49dc284000-2b49dc484000 ---p 0015e000 00:29 142630131                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libirng.so
+2b49dc484000-2b49dc485000 r--p 0015e000 00:29 142630131                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libirng.so
+2b49dc485000-2b49dc498000 rw-p 0015f000 00:29 142630131                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libirng.so
+2b49dc498000-2b49dc506000 r-xp 00000000 00:29 142630125                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libintlc.so.5
+2b49dc506000-2b49dc706000 ---p 0006e000 00:29 142630125                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libintlc.so.5
+2b49dc706000-2b49dc707000 r--p 0006e000 00:29 142630125                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libintlc.so.5
+2b49dc707000-2b49dc708000 rw-p 0006f000 00:29 142630125                  /usr/local/intel2019u3/compilers_and_libraries_2019.3.199/linux/compiler/lib/intel64_lin/libintlc.so.5
+2b49dc708000-2b49dc70a000 rw-p 00000000 00:00 0 
+2b49dc70a000-2b49dc80f000 r--p 00000000 00:25 25808716967                /home/sung.w.kang/anaconda3/lib/libmkl_avx512.so.2
+2b49dc80f000-2b49e0258000 r-xp 00105000 00:25 25808716967                /home/sung.w.kang/anaconda3/lib/libmkl_avx512.so.2
+2b49e0258000-2b49e057a000 r--p 03b4e000 00:25 25808716967                /home/sung.w.kang/anaconda3/lib/libmkl_avx512.so.2
+2b49e057a000-2b49e0583000 r--p 03e6f000 00:25 25808716967                /home/sung.w.kang/anaconda3/lib/libmkl_avx512.so.2
+2b49e0583000-2b49e0591000 rw-p 03e78000 00:25 25808716967                /home/sung.w.kang/anaconda3/lib/libmkl_avx512.so.2
+2b49e0591000-2b49e0592000 rw-p 00000000 00:00 0 
+2b49e0592000-2b49e0619000 rw-p 03fac000 00:25 25808716967                /home/sung.w.kang/anaconda3/lib/libmkl_avx512.so.2
+2b49e0619000-2b49e0673000 r--p 00000000 00:25 25808650816                /home/sung.w.kang/anaconda3/lib/libmkl_vml_avx512.so.2
+2b49e0673000-2b49e0e6a000 r-xp 0005a000 00:25 25808650816                /home/sung.w.kang/anaconda3/lib/libmkl_vml_avx512.so.2
+2b49e0e6a000-2b49e135f000 r--p 00851000 00:25 25808650816                /home/sung.w.kang/anaconda3/lib/libmkl_vml_avx512.so.2
+2b49e135f000-2b49e1360000 ---p 00d46000 00:25 25808650816                /home/sung.w.kang/anaconda3/lib/libmkl_vml_avx512.so.2
+2b49e1360000-2b49e1364000 r--p 00d46000 00:25 25808650816                /home/sung.w.kang/anaconda3/lib/libmkl_vml_avx512.so.2
+2b49e1364000-2b49e137d000 rw-p 00d4a000 00:25 25808650816                /home/sung.w.kang/anaconda3/lib/libmkl_vml_avx512.so.2
+2b49e137d000-2b49e137e000 rw-p 00000000 00:00 0 
+2b49e137e000-2b49e139d000 rw-p 00dbc000 00:25 25808650816                /home/sung.w.kang/anaconda3/lib/libmkl_vml_avx512.so.2
+2b49e139d000-2b49e9e85000 rw-p 00000000 00:00 0 
+2b49ee026000-2b49f3a87000 rw-p 00000000 00:00 0 
+2b49f6d88000-2b49fc7e9000 rw-p 00000000 00:00 0 
+2b49fc7e9000-2b4a0224a000 rw-p 00000000 00:00 0 
+2b4a02a8b000-2b4a084ec000 rw-p 00000000 00:00 0 
+2b4a0866d000-2b4a0e0ce000 rw-p 00000000 00:00 0 
+2b4a11431000-2b4a16e92000 rw-p 00000000 00:00 0 
+2b4a18000000-2b4a18021000 rw-p 00000000 00:00 0 
+2b4a18021000-2b4a1c000000 ---p 00000000 00:00 0 
+7f0000000000-7f0003000000 rw-p 00000000 00:00 0 
+7f1000000000-7f1000200000 rw-p 00000000 00:00 0 
+7f2000000000-7f2001a00000 rw-p 00000000 00:00 0 
+7ffc41ff8000-7ffc42072000 rw-p 00000000 00:00 0                          [stack]
+7ffc420f8000-7ffc420fa000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
