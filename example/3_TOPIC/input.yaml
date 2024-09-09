@@ -1,0 +1,52 @@
+directory:
+  input_path: ./input
+
+generation: 500
+
+volume: 1352.0
+
+material:
+  Li: 6
+  P: 18
+  Ti: 12
+  O: 72
+
+cation_cn:
+  Ti: 6
+  P: 4
+
+# Position where 1/10 value of 1st RDF peak
+generation_constraint:
+  Ti-Ti: 2.705
+  Ti-P: 2.465
+  P-P: 2.605
+
+# 1st RDF peak
+LJ_constraint:
+  Ti-O: 1.925
+  P-O: 1.545
+
+# Position where 1/10 value of 1st RDF peak
+repulsion_constraint:
+  Ti-Ti: 2.705
+  Ti-P: 2.465
+  P-P: 2.605
+  O-O: 2.255
+
+# Position where 1/10 value of 2nd RDF peak
+distance_constraint_2:
+  Ti-O: 3.065
+  P-O: 2.815
+
+# 1st RDF valley
+topology_constraint:
+  Ti-O: 2.795
+  P-O: 2.235
+
+generation_distance_factor: 1
+lj_distance_factor: 1
+harmonic_distance_factor: 1
+scrutinize_distance_factor: 1
+ 
+post_process:
+  max_mc_steps: 100

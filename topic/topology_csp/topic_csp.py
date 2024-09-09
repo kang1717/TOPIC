@@ -1,138 +1,157 @@
-from topic.topology_csp.module_structure import make_oxygen, coo2CONTCAR, randspg
-from topic.topology_csp.module_lammps import lammps_write, POSCAR2cooall, POSCAR2coo, run_lammps, run_lj_lammps
-from topic.topology_csp.module_scrutinize import scrutinize
-from topic.topology_csp.module_log import write_log_head, write_log
-import time
+from topic.topology_csp.module_structure \
+        import randspg, calculate_distance_o_sites, make_oxygen, get_space_group
+from topic.topology_csp.module_lammps import lammps_write, pos_dict2cooall, \
+        run_lj_lammps, coo2pos_dict, change_coo_index, run_lammps
+from topic.topology_csp.module_scrutinize import check_topology
+from topic.topology_csp.module_log \
+        import write_log_head,make_poscars_contcars,write_log,write_poscars_contcars
 from time import time
-import mpi4py
 from mpi4py import MPI
+import random
 import os, sys, shutil, yaml
 
-########### input #############
 
-def main()
+def main():
     input_file = str(sys.argv[1])
     with open(input_file, 'r') as f:
         total_yaml = yaml.safe_load(f)
-
-    generation      = total_yaml['generation']
-    volume          = total_yaml['volume']
-    material        = total_yaml['material']
-    bond_dict       = total_yaml['distance_constraint']
-    factor          = total_yaml['constraint_factor']
-    factor          = 1
-
-    # Getting cation information, and sort with number of atoms
-    cat_info = {k: v for k, v in material.items() if k not in {'Li', 'O'}}
-    cat_info = sorted(cat_info.items(), key=lambda item: item[1], reverse=True)
-
-    # bond distance for metal atoms
-    m1_m1 = bond_dict[f"{cat_info[0][0]}-{cat_info[0][0]}"]
-    m2_m2 = bond_dict[f"{cat_info[1][0]}-{cat_info[1][0]}"]
-    if f"{cat_info[0][0]}-{cat_info[1][0]}" in bond_dict:
-        m1_m2 = bond_dict[f"{cat_info[0][0]}-{cat_info[1][0]}"]
-    else:
-        m1_m2 = bond_dict[f"{cat_info[1][0]}-{cat_info[0][0]}"]
-
-    # Distance constraint for random structure generation
-    spg_tolerance = [ [[1,1], m1_m1*factor],
-                      [[1,2], m1_m2*factor],
-                      [[2,2], m2_m2*factor] ]
-    composition = [1 for i in range(cat_info[0][1])] + [2 for i in range(cat_info[1][1])]
-    elements = ' '.join([item[0] for item in cat_info])
-
-    ###############################
-
 
     # MPI setting
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     corenum = comm.Get_size()
 
+    ########### input #############
+    if 'spg_seed' in total_yaml.keys():
+        spg_seed = total_yaml['spg_seed']
+    else:
+        spg_seed = None
+
+    if 'continue' in total_yaml.keys():
+        start_idx = int(total_yaml['continue']/corenum)
+    else:
+        start_idx = 0
+        total_yaml['continue'] = 0
+    end_idx = int(total_yaml['generation']/corenum)
+    ###############################
+
     if os.path.isdir(str(rank)) == False:
         shutil.copytree('input', str(rank))
     os.chdir(str(rank))
 
-    write_log_head()
+    if total_yaml['continue'] == 0:
+        write_log_head()
 
-    success_1   = 0
-    iteration_1 = 0
-    for i in range(int(generation/corenum)):     # modified
-        iteration_1 += 1
+    poscars = []
+    contcars = []
+    contcar2s = []
+    contcar3s = []
+    buffer = 0
 
-        E0 =  1000
-        E  =  1000
-        V  =  100
+    for i in range(start_idx, end_idx):
+        E0 = E1 = E2 = 1000
+        V0 = V1 = V2 = 0
+        fail_0 = fail_1 = fail_2 = fail_3 = -1
+        spg0 = spg1 = spg2 = spg3 = 0
+
+        # 1. Generate initial structure
+        trial = 0
         t1 = time()
+        while fail_0 == -1:
+            if spg_seed == None:
+                spg = random.randint(1, 230)
+            else:
+                spg = spg_seed
 
-        # 1. Generate initial POSCAR file
-        fail_1 = 1
-        while fail_1 == 1:
-            try:
-                spg = randspg(composition, elements, volume, spg_tolerance)
-                fail_1 = 0
-            except:
-                fail_1 = 1
+            pos_c = randspg(total_yaml, spg) # Cartesian coordinates
+            if pos_c == None:
+                continue
+
+            # Generate oxygen sites
+            dist_array, o_pos = calculate_distance_o_sites(pos_c)
+            for spg_trial in range(100):
+                trial += 1
+                pos, cation_dict = make_oxygen(pos_c, total_yaml, dist_array, o_pos)
+                spg0 = get_space_group(pos) 
+                if spg0 in [0, 1]:
+                    continue
+
+                fail_0 = check_topology(total_yaml, pos)
+                break
+
+        poscar_text = make_poscars_contcars(pos, rank, i)
         t2 = time()
 
-        # 2. LJ & spring model 
-        cation_dict = make_oxygen()             # set oxygen inbetween two cations
-        lammps_write('POSCAR', cation_dict)     # write lammps input: in.all
-        POSCAR2cooall('POSCAR')                 # convert POSCAR to coo 
-        shutil.copyfile('POSCAR', f'POSCAR_{i+1}')
+        # 2. LJ & harmonic potential relax 
+        lammps_write(pos, total_yaml, cation_dict)     # write lammps input: in.all
+        pos_dict2cooall(pos, output='coo')
+        E0, V0 = run_lj_lammps('in.all')
 
-        with open('lj_results', 'a') as f:
-            E0, V0 = run_lj_lammps('in.all')
-            f.write(f"Generation {i+1}, Energy: {E0:.3f}, Volume: {V0:.3f}\n")
-            #os.rename('out.xyz', f'out_{i+1}.xyz')
+        pos = coo2pos_dict('coo_out', total_yaml)
+        spg1 = get_space_group(pos)
+        fail_1 = check_topology(total_yaml, pos)
+        #if E0 != 0 or V0 != 0:
+        #    pos = coo2pos_dict('coo_out', total_yaml)
+        #    spg1 = get_space_group(pos)
+        #    fail_1 = check_topology(total_yaml, pos)
+        #else:
+        #    continue
 
-        if E0 != 0 or V0 != 0:
-            coo2CONTCAR('coo_out')
-            fail_2 = scrutinize('CONTCAR', cation_dict, total_yaml)
-        else:
-            continue
+        buffer += 1
+        poscars.append(poscar_text)
+        contcar_text = make_poscars_contcars(pos, rank, i)
+        contcars.append(contcar_text)
         t3 = time()
 
-        # 3. short NNP 
-        if fail_2 == 0:
-            os.rename(f'out.xyz', f'out_{i+1}_lj.xyz')
-            POSCAR2coo("CONTCAR", 'coo_out2')               # convert POSCAR to coo
-            shutil.copyfile('CONTCAR', f'CONTCAR_lj_{i+1}')
+        # 3. Short NNP relax
+        t4 = t3
+        t5 = t3
+        if fail_1 == 0:
+            change_coo_index('coo_out', pos)
+            E1, V1 = run_lammps('in.nnp')
 
-            E,V = run_lammps('in.nnp')
-            os.rename('out.xyz', f'out_{i+1}_nnp.xyz')
+            pos = coo2pos_dict('coo_nnp', total_yaml)
+            spg2 = get_space_group(pos)
+            fail_2 = check_topology(total_yaml, pos)
 
-            coo2CONTCAR('coo_nnp', 'CONTCAR2')              # convert coo_out to CONTCAR 
-            shutil.copyfile('CONTCAR2', f'CONTCAR_nnp_short_{i+1}')
+            contcar2_text = make_poscars_contcars(pos, rank, i)
+            contcar2s.append(contcar2_text)
+            t4 = time()
 
-            fail_3 = scrutinize('CONTCAR2', cation_dict, total_yaml)
-        else:
-            fail_3 = 100
-        t4 = time()
+            # 4. Long NNP  relax
+            t5 = t4
+            if fail_2 == 0:
+                E2, V2 = run_lammps('in.nnplong')
 
-        # 3. long NNP 
-        if fail_3 == 0:
-            POSCAR2coo("CONTCAR2", 'coo_out3')              # convert POSCAR to coo
+                pos = coo2pos_dict('coo_nnp2', total_yaml)
+                spg3 = get_space_group(pos)
+                fail_3 = check_topology(total_yaml, pos)
 
-            E,V = run_lammps('in.nnplong')
+                contcar3_text = make_poscars_contcars(pos, rank, i)
+                contcar3s.append(contcar3_text)
+                t5 = time()
 
-            coo2CONTCAR('coo_nnp2', 'CONTCAR3')             # convert coo_out to CONTCAR 
-            shutil.copyfile('CONTCAR3', f'CONTCAR_nnp_long_{i+1}')
+                if fail_3 == 0:
+                    with open(f'CONTCAR_success_{i}', 'w') as s:
+                        s.write(contcar3_text)
 
-            fail_4 = scrutinize('CONTCAR3', cation_dict, total_yaml)
-        else:
-            fail_4 = 100
-
-        if fail_4 == 0:
-            shutil.copyfile('CONTCAR3', f'CONTCAR_success_{i+1}')
-        t5 = time()
-
-
+        # 5. Finalize
         T0 = t2-t1
         T1 = t3-t2
         T2 = t4-t3
         T3 = t5-t4
-        write_log(rank,spg, iteration_1, T0, T1, T2, T3, fail_2, fail_3, E, V)
+        write_log(rank, i, trial, fail_0, T0, spg, spg0, fail_1, T1, spg1, E0, V0,\
+                                fail_2, T2, spg2, E1, V1, fail_3, T3, spg3, E2, V2)
+
+        if buffer >= 10:
+            write_poscars_contcars(poscars, contcars, contcar2s, contcar3s)
+            poscars = []
+            contcars = []
+            contcar2s = []
+            contcar3s = []
+            buffer = 0
+
+    write_poscars_contcars(poscars, contcars, contcar2s, contcar3s)
 
 if __name__ == '__main__':
     main()

@@ -83,6 +83,12 @@ to bind randSpg with python, do
   cp pyrandspg.cpython* /directory-where-your-python-is/lib/python3/site-packages/
 ```
 
+### Install randSpg
+```
+  cd /TOPIC-directory/pyzeo/
+  pip install .
+```
+
 ### Install LAMMPS
 This is the most tricky part of the installation steps. You can install python-lammps by following steps below but it may not work depending on your environment. Please look into LAMMPS forum (https://www.lammps.org/forum.html) or LAMMPS manual Ch. 2 (https://docs.lammps.org/Python_run.html) for detailed discussion.
 
@@ -93,14 +99,14 @@ We lastly tested on 2Aug2023 version.
   git clone -b stable https://github.com/lammps/lammps.git lammps-spinner
 ```
 
-SPINNER provide two version of LAMMPS, Normal and SIMD. Install process is different for each version. Check your machine and follow the install process that match with your machine.
+TOPIC provide two version of LAMMPS, Normal and SIMD. Install process is different for each version. Check your machine and follow the install process that match with your machine.
 
 #### 1. Normal version
 Copy pair potential code of SIMPLE-NN to LAMMPS src
 
 ```
-  cp /SPINNER-directory/spinner/simple_nn/features/symmetry_function/pair_nn_simd.* /LAMMPS-directory/src/
-  cp /SPINNER-directory/spinner/simple_nn/features/symmetry_function/symmetry_function.h /LAMMPS-directory/src/
+  cp /TOPIC-directory/spinner/simple_nn/features/symmetry_function/pair_nn_simd.* /LAMMPS-directory/src/
+  cp /TOPIC-directory/spinner/simple_nn/features/symmetry_function/symmetry_function.h /LAMMPS-directory/src/
 ```
 
 ```
@@ -124,7 +130,7 @@ lmp = lammps()
 If your machine support SIMD, we recommend to use SIMD version. It speeds up around 2 times faster than normal version.
 
 ```
-  cp /SPINNER-directory/spinner/simple_nn/features/symmetry_function/SIMD/pair_nn_simd.* /LAMMPS-directory/src/
+  cp /TOPIC-directory/spinner/simple_nn/features/symmetry_function/SIMD/pair_nn_simd.* /LAMMPS-directory/src/
 ```
 
 ```
@@ -167,7 +173,7 @@ lmp = lammps('simd_serial')
 Other packages are automatically installed by running the bellow command.
 
 ```
-  cd /SPINNER-directory/
+  cd /TOPIC-directory/
   pip install .
 ```
 
