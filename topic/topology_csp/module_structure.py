@@ -29,87 +29,38 @@ atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
                    Lr=262.00, Rf=261.00, Db=262.00, Sg=266.00, Bh=264.00,
                    Hs=269.00, Mt=268.00)
 
-def make_oxygen(pos, total_yaml, distance_array, o_pos_dict):
-    cation_cn  = total_yaml['cation_cn']
-    iteration_limit = len(pos['coor']) - 2
-    n_cation = [i for i in range(len(pos['coor']))]
 
-    # select pairs
-    cation_dict = {}
-
-    iteration = 0
-    fail = 1
+def generate_initial_structure(total_yaml):
     trial = 0
-    while fail == 1:
-        trial += 1
-        pair_lists  = []
-        for k, a0 in enumerate(pos['coor']):
-            cation_dict[k] = []
+    done = 0
+    while done == 0:
+        if total_yaml['spg_seed'] == None:
+            spg = random.randint(1, 230)
+        else:
+            spg = total_yaml['spg_seed']
 
-        # link cations
-        fail = 0
-        random.shuffle(n_cation)
-        #if trial > 1000:
-        #    return None, None
+        # Generate cation sites
+        pos_cat = generate_cation_sites(total_yaml, spg) # Cartesian coordinates
+        if pos_cat == None:
+            continue
 
-        for ta in n_cation:
-            ta_type = pos['atomarray'][ta]
-            CN = cation_cn[ta_type]
+        # Generate oxygen sites which not have P1 symmetry
+        neighbor_dict, pos_o = calculate_distance_o_sites(pos_cat)
+        for spg_trial in range(100):
+            trial += 1
+            pos, bond_dict = generate_o_sites(pos_cat, total_yaml, neighbor_dict, pos_o)
+            spg0 = get_space_group(pos) 
+            if spg0 not in [0, 1]:
+                done = 1
+                break
 
-            # link other cations
-            ii = 0
-            if len(cation_dict[ta]) < CN:
-                while len(cation_dict[ta]) < CN:
-                    if ii > iteration_limit:
-                        fail = 1
-                        break
+    return pos, bond_dict, trial, spg, spg0
 
-                    #candidate = distance_array[ta][ii][0]
-                    candidate = distance_array[ta][ii]
-                    candidate_type = pos['atomarray'][candidate]
-                    candidate_CN   = cation_cn[candidate_type]
-                    #o_pos = o_pos_dict[ta][ii][2]
-
-                    #if len(cation_dict[candidate]) < candidate_CN:
-                    if candidate not in cation_dict[ta]:
-                        if len(cation_dict[candidate]) < candidate_CN:
-                            cation_dict[ta].append(candidate)
-                            cation_dict[candidate].append(ta)
-                            #pair_lists.append([ta,candidate, o_pos])
-                            pair_lists.append([ta,candidate])
-
-                    ii += 1
-        iteration += 1
-
-    # add oxygen
-    cation_o_pair = {}
-    for n in sorted(n_cation):
-        cation_o_pair[n] = []
-
-    O_num = len(n_cation)
-    for pair in pair_lists:
-        a1 = pair[0]
-        a2 = pair[1]
-        o_atom = o_pos_dict[f'{a1}-{a2}']
-        #o_atom = pair[2]
-        pos = adatom_dict_fix(pos, o_atom, 'O', 'T')
-
-        cation_o_pair[a1].append(O_num)
-        cation_o_pair[a2].append(O_num)
-        O_num += 1
-
-    # sort cation_o_pair
-    for ckey in cation_o_pair.keys():
-        cation_o_pair[ckey] = sorted(cation_o_pair[ckey])
-
-    return pos, cation_o_pair
-
-def randspg(total_yaml, spg):
+def generate_cation_sites(total_yaml, spg):
     ######### input parameters ########
     material = total_yaml['material']
     cat_info = {k: v for k, v in material.items() if k not in {'Li', 'O'}}
     cat_info = sorted(cat_info.items(), key=lambda item: item[1], reverse=True)
-    #composition = [1 for i in range(cat_info[0][1])] + [2 for i in range(cat_info[1][1])]
     composition = []
     for i in range(len(cat_info)):
         composition += [i+1 for _ in range(cat_info[i][1])]
@@ -117,43 +68,49 @@ def randspg(total_yaml, spg):
 
     volume = total_yaml['volume']
 
-    bond_dict = total_yaml['generation_constraint']
+    # distance constraint
+    constraint_dict = total_yaml['generation_constraint']
     gen_factor = total_yaml['generation_distance_factor']
-    m1_m1 = bond_dict[f"{cat_info[0][0]}-{cat_info[0][0]}"]
-    m2_m2 = bond_dict[f"{cat_info[1][0]}-{cat_info[1][0]}"]
-    if f"{cat_info[0][0]}-{cat_info[1][0]}" in bond_dict:
-        m1_m2 = bond_dict[f"{cat_info[0][0]}-{cat_info[1][0]}"]
-    else:
-        m1_m2 = bond_dict[f"{cat_info[1][0]}-{cat_info[0][0]}"]
-    distance_tolerance = [[[1,1], m1_m1*gen_factor],
-                          [[1,2], m1_m2*gen_factor],
-                          [[2,2], m2_m2*gen_factor]]
+    distance_tolerance = []
+    for i in range(len(cat_info)):
+        for j in range(i, len(cat_info)):
+            if f"{cat_info[i][0]}-{cat_info[j][0]}" in constraint_dict:
+                constraint = constraint_dict[f"{cat_info[i][0]}-{cat_info[j][0]}"]
+            else:
+                constraint = constraint_dict[f"{cat_info[j][0]}-{cat_info[i][0]}"]
+            distance_tolerance.append([[i+1,j+1], constraint*gen_factor])
     ####################################
 
+    # Generate random cation sites
     lmin = volume**(1.0/3.0) * 0.4
     lmax = volume**(1.0/3.0) * 2.5
-
     pymin = pyrandspg.LatticeStruct(lmin, lmin, lmin, 60.0, 60.0, 60.0)
     pymax = pyrandspg.LatticeStruct(lmax, lmax, lmax, 120.0, 120.0, 120.0)
-
     input_ = pyrandspg.RandSpgInput(spg, composition, pymin, pymax, 1.0, \
                             volume*0.9, volume*1.2, 100, distance_tolerance, False)
 
     c = pyrandspg.RandSpg.randSpgCrystal(input_)
-
     structure = c.getPOSCARString()
-
     if 'nan' in structure:
         return None
 
-    structure_lists = structure.split('\n')
+    pos = transform_poscar_text_to_pos_dict(structure, total_yaml)
+    return pos
+
+def transform_poscar_text_to_pos_dict(poscar_text, total_yaml):
+    material = total_yaml['material']
+    cat_info = {k: v for k, v in material.items() if k not in {'Li', 'O'}}
+    cat_info = sorted(cat_info.items(), key=lambda item: item[1], reverse=True)
+    N = sum([cat_info[i][1] for i in range(len(cat_info))])
+
+    structure_lists = poscar_text.split('\n')
 
     pos = dict()
     matrix_list = [list(map(float, line.split())) for line in structure_lists[2:5]]
     pos['latt'] = np.array(matrix_list)
 
     coords_list = []
-    for line in structure_lists[8:len(composition)+8]:
+    for line in structure_lists[8:N+8]:
         coords_list.append(list(map(float, line.split())))
     pos['coor'] = np.array(coords_list)
     pos['coor'] = direct2cartesian(pos['latt'], pos['coor'])
@@ -172,26 +129,8 @@ def randspg(total_yaml, spg):
 
     return pos
 
-def get_space_group(pos):
-    lattice = pos['latt']
-    if pos['cartesian'] == True:
-        positions = cartesian2direct(pos['latt'], pos['coor'])
-    else:
-        positions = pos['coor']
-
-    numbers = pos['numarray']
-
-    cell = (lattice, positions, numbers)
-
-    #spacegroup = spglib.get_spacegroup(cell, symprec=1)
-    spacegroup = spglib.get_symmetry_dataset(cell, symprec=1)
-    if spacegroup == None:
-        return 0
-    else:
-        return spacegroup.number
-
 def calculate_distance_o_sites(pos):
-    distance_array = {}
+    neighbor_dict = {}
     o_pos_dict = {}
     for i1, c1 in enumerate(pos['coor']):
         r_data = []
@@ -214,9 +153,93 @@ def calculate_distance_o_sites(pos):
                 r_data.append([i2, r])
 
         r_data = sorted(r_data, key=lambda x:x[1])
-        distance_array[i1] = [i[0] for i in r_data]
+        neighbor_dict[i1] = [i[0] for i in r_data]
 
-    return distance_array, o_pos_dict
+    return neighbor_dict, o_pos_dict
+
+def generate_o_sites(pos, total_yaml, neighbor_dict, pos_o):
+    # Link two cations and make pair_lists
+    bond_dict = make_bond_dict_in_random_order(pos, total_yaml, neighbor_dict)
+
+    # Place oxygen atom in between two cations
+    cation_o_pair = {}
+    for n in range(len(pos['coor'])):
+        cation_o_pair[n] = []
+
+    pair_lists = [] # duplicate list
+    O_idx = len(pos['coor'])
+    for cat_idx in bond_dict.keys():
+        for neighbor_idx in bond_dict[cat_idx]:
+            if (neighbor_idx, cat_idx) in pair_lists:
+                continue
+            pair_lists.append((cat_idx, neighbor_idx))
+
+            pos = adatom_dict_fix(pos, pos_o[f'{cat_idx}-{neighbor_idx}'], 'O', 'T')
+            cation_o_pair[cat_idx].append(O_idx)
+            cation_o_pair[neighbor_idx].append(O_idx)
+            O_idx += 1
+
+    # sort cation_o_pair
+    for ckey in cation_o_pair.keys():
+        cation_o_pair[ckey] = sorted(cation_o_pair[ckey])
+
+    return pos, cation_o_pair
+
+def make_bond_dict_in_random_order(pos, total_yaml, neighbor_dict):
+    cation_cn  = total_yaml['cation_cn']
+    n_cation = [i for i in range(len(pos['coor']))]
+
+    trial = 0
+    while True:
+        trial += 1
+        bond_dict = {}
+        for k, a0 in enumerate(pos['coor']):
+            bond_dict[k] = []
+
+        random.shuffle(n_cation)
+        success = True
+        for cat_idx in n_cation:
+            cat_type = pos['atomarray'][cat_idx]
+            cat_CN = cation_cn[cat_type]
+            if len(bond_dict[cat_idx]) >= cat_CN: # Check center atom CN
+                continue
+
+            for neighbor_idx in neighbor_dict[cat_idx]:
+                neighbor_type = pos['atomarray'][neighbor_idx]
+                neighbor_CN   = cation_cn[neighbor_type]
+                if len(bond_dict[neighbor_idx]) >= neighbor_CN: # Check neighbor CN
+                    continue
+
+                if neighbor_idx not in bond_dict[cat_idx]:
+                    bond_dict[cat_idx].append(neighbor_idx)
+                    bond_dict[neighbor_idx].append(cat_idx)
+
+                if len(bond_dict[cat_idx]) >= cat_CN:
+                    break
+
+            if len(bond_dict[cat_idx]) < cat_CN:
+                success = False
+                break
+
+        if success:
+            return bond_dict
+
+def get_space_group(pos):
+    lattice = pos['latt']
+    if pos['cartesian'] == True:
+        positions = cartesian2direct(pos['latt'], pos['coor'])
+    else:
+        positions = pos['coor']
+
+    numbers = pos['numarray']
+
+    cell = (lattice, positions, numbers)
+
+    spacegroup = spglib.get_symmetry_dataset(cell, symprec=1)
+    if spacegroup == None:
+        return 0
+    else:
+        return spacegroup.number
 
 ########################### backup ###########################
 def make_oxygen_shortest_bond(pos, num_o):

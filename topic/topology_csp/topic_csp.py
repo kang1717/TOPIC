@@ -1,5 +1,5 @@
 from topic.topology_csp.module_structure \
-        import randspg, calculate_distance_o_sites, make_oxygen, get_space_group
+        import generate_initial_structure, get_space_group
 from topic.topology_csp.module_lammps import lammps_write, pos_dict2cooall, \
         run_lj_lammps, coo2pos_dict, change_coo_index, run_lammps
 from topic.topology_csp.module_scrutinize import check_topology
@@ -23,9 +23,11 @@ def main():
 
     ########### input #############
     if 'spg_seed' in total_yaml.keys():
-        spg_seed = total_yaml['spg_seed']
+        if total_yaml['spg_seed'] < 1 or total_yaml['spg_seed'] > 230:
+            print('Wrong space group seed')
+            exit()
     else:
-        spg_seed = None
+        total_yaml['spg_seed'] = None
 
     if 'continue' in total_yaml.keys():
         start_idx = int(total_yaml['continue']/corenum)
@@ -55,35 +57,14 @@ def main():
         spg0 = spg1 = spg2 = spg3 = 0
 
         # 1. Generate initial structure
-        trial = 0
         t1 = time()
-        while fail_0 == -1:
-            if spg_seed == None:
-                spg = random.randint(1, 230)
-            else:
-                spg = spg_seed
-
-            pos_c = randspg(total_yaml, spg) # Cartesian coordinates
-            if pos_c == None:
-                continue
-
-            # Generate oxygen sites
-            dist_array, o_pos = calculate_distance_o_sites(pos_c)
-            for spg_trial in range(100):
-                trial += 1
-                pos, cation_dict = make_oxygen(pos_c, total_yaml, dist_array, o_pos)
-                spg0 = get_space_group(pos) 
-                if spg0 in [0, 1]:
-                    continue
-
-                fail_0 = check_topology(total_yaml, pos)
-                break
-
+        pos, bond_dict, trial, spg, spg0 = generate_initial_structure(total_yaml)
+        fail_0 = check_topology(total_yaml, pos)
         poscar_text = make_poscars_contcars(pos, rank, i)
         t2 = time()
 
         # 2. LJ & harmonic potential relax 
-        lammps_write(pos, total_yaml, cation_dict)     # write lammps input: in.all
+        lammps_write(pos, total_yaml, bond_dict)     # write lammps input: in.all
         pos_dict2cooall(pos, output='coo')
         E0, V0 = run_lj_lammps('in.all')
 

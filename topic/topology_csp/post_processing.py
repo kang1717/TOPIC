@@ -5,6 +5,7 @@ from pymatgen.core import Structure, Lattice, Element
 from pymatgen.io.vasp import Poscar
 from pymatgen.analysis.structure_matcher import StructureMatcher
 from pymatgen.io.cif import CifParser, CifWriter
+from topic.topology_csp.basic_tools import read_poscar_dict, calculate_distance
 
 import numpy as np
 import sys, re
@@ -15,6 +16,8 @@ from time import time
 
 from mpi4py import MPI
 
+
+anion_type = ['O'] #,'F','S','Cl']
 
 atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
                    N=14.01, O=16.00, F=19.00, Ne=20.18, Na=22.99, Mg=24.31,
@@ -45,6 +48,11 @@ def gather_candidates(n, inp):
         if elem != 'Li':
             num_atom += inp['material'][elem]
 
+    for m in os.listdir(str(n)):
+        if 'CONTCAR_success' in m:
+            idx = m.split('_')[2]
+            shutil.copy(str(n)+'/'+m, 'poscars/POSCAR_%s_%s'%(n, idx))
+    """
     if 'CONTCAR3s' in os.listdir(str(n)):
         with open(str(n)+'/CONTCAR3s','r') as f:
             lines = f.readlines()
@@ -56,6 +64,7 @@ def gather_candidates(n, inp):
                     for k in range(8+num_atom):
                         s.write(lines[i*(8+num_atom)+k])
                 idx += 1
+    """
 
 def structure_match(FILE1, FILE2):
     sm = StructureMatcher(ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=False)
@@ -66,36 +75,23 @@ def structure_match(FILE1, FILE2):
     return sm.fit(structure1, structure2, symmetric=True)
 
 def gather_unique_structure(DIR):
-    poscars = os.listdir('poscars')
+    structures = []
+    structure_files = os.listdir(DIR)
+    for n in structure_files:
+        structure = Poscar.from_file(DIR+'/'+n).structure
+        structure.remove_species(["Li"])
+        structures.append((n, structure))
 
-    unique_structure = []
-    dup_dict = {n: [] for n in poscars}
+    sm = StructureMatcher(ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=False)
+    unique_structures = []
+    unique_filenames = []
 
-    for i in range(len(poscars)-1):
-        for j in range(i+1, len(poscars)):
-            file1 = poscars[i]
-            file2 = poscars[j]
-            if structure_match(DIR+'/'+file1, DIR+'/'+file2): # If both are same
-                dup_dict[file1].append(file2)
-                dup_dict[file2].append(file1)
-                if file1 not in unique_structure and file2 not in unique_structure:
-                    unique_structure.append(file1)
-            else: # If both are unique
-                if file1 in unique_structure:
-                    key1 = 0
-                else:
-                    key1 = all(file not in unique_structure for file in dup_dict[file1])
-                if key1 == 1:
-                    unique_structure.append(file1)
+    for filename, structure in structures:
+        if not any(sm.fit(structure, uniq_struct) for _, uniq_struct in unique_structures):
+            unique_structures.append((filename, structure))
+            unique_filenames.append(filename)
 
-                if file2 in unique_structure:
-                    key2 = 0
-                else:
-                    key2 = all(file not in unique_structure for file in dup_dict[file2])
-                if key2 == 1:
-                    unique_structure.append(file2)
-
-    return unique_structure
+    return unique_filenames
 
 # remove Li before calculate
 def convert_poscar_to_cif(poscar_file):
@@ -184,7 +180,7 @@ def calculate_li_sites(poscar_file, li_file, max_li):
 
     return cif_file
 
-def concatenate_initial_li(cif_file, li_file, final_file, max_li):
+def concatenate_initial_li(inp, cif_file, li_file, final_file, max_li):
     structure = CifParser(cif_file).parse_structures(primitive=False)[0]
     li_pos = []
 
@@ -201,7 +197,13 @@ def concatenate_initial_li(cif_file, li_file, final_file, max_li):
         print("Number of Li candidate sites are less than {}".format(max_li))
         exit()
 
-    li_pos = sorted(li_pos, key=lambda pos: pos[3], reverse=True)[:max_li]
+    if inp['post_process']['initial_li_sites'] == 'random':
+        li_pos = np.array(li_pos)
+        rnd_idx = np.random.choice(len(li_pos), max_li, False)
+        li_pos = li_pos[rnd_idx]
+    elif inp['post_process']['initial_li_sites'] == 'free_spcae':
+        li_pos = sorted(li_pos, key=lambda pos: pos[3], reverse=True)[:max_li]
+
     for pos in li_pos:
         structure.append("Li", pos[:3], coords_are_cartesian=True)
 
@@ -304,9 +306,9 @@ def swap_li_site(poscar, li_file, new_poscar):
 
         if np.min(np.linalg.norm(li_positions - new_site, axis=1)) > 2:
             idx = None
-            for i, pos in enumerate(all_positions):
+            for j, pos in enumerate(all_positions):
                 if np.array_equal(pos, selected_pos):
-                    idx = i
+                    idx =j 
                     break
 
             all_positions[idx] = new_site
@@ -322,20 +324,174 @@ def log(file, message):
     with open(file, 'a') as s:
         s.write(message+'\n')
 
-def mc_main(DIR, SAVE_DIR, file_name, max_li, max_mc_steps):
+def md_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_md_steps, T):
     shutil.copy(DIR+'/'+file_name, file_name)
 
     poscar_file = file_name
     # 1. Make Li inserted structure
+    t1 = time()
     cif_file = calculate_li_sites(poscar_file, li_file='Li.xyz', max_li=max_li)
-    concatenate_initial_li(cif_file, li_file='Li.xyz', final_file='POSCAR_init', max_li=max_li)
+    concatenate_initial_li(inp, cif_file, li_file='Li.xyz', final_file='POSCAR_init', max_li=max_li)
+    shutil.copy('POSCAR_init', poscar_file+'_init')
 
     # 2. NNP relax
-
+    t2 = time()
     lmp = lammps('simd_serial', cmdargs=['-log', 'none', '-screen', 'none'])
     #lmp = lammps('simd_serial')
 
-    prev_e = relax(poscar='POSCAR_init', relaxed_file='POSCAR_relax', lmp=lmp)
+    #relax_e = relax(poscar='POSCAR_init', relaxed_file='POSCAR_relax', lmp=lmp)
+    #t3 = time()
+    #shutil.copy('POSCAR_relax', poscar_file+'_relax')
+    #tot_e = md(poscar_file+"_relax", poscar_file+"_fin", lmp, max_md_steps, T)
+    tot_e = md(poscar_file+"_init", poscar_file+"_fin", lmp, max_md_steps, T)
+    t3 = time()
+    fail = check_topology(inp, poscar=poscar_file+"_fin")
+    log('log','{:12}  {:4}  {:6.2f}  {:5.2f}  {:7.2f}'.format(file_name, fail, tot_e, t2-t1, t3-t2))
+
+def md(poscar, relaxed_file, lmp, max_md_steps, T):
+    potential = '../input/potentialli'
+
+    f = open(poscar, 'r')
+    lines = f.readlines()
+    f.close()
+    tot_num = sum(list(map(int, lines[6].split())))
+    elems = lines[5].split()
+    relax_iter = 1
+
+    os.system("/data/hswoo369/module/pos2lammps.sh {} > coo".format(poscar))
+
+    #lmp = lammps('simd_serial')
+    #lmp = PyLammps('simd_serial', verbose=False)
+
+    lmp.command("clear")
+    lmp.command("units           metal")
+    lmp.command("newton          on")
+    lmp.command("dimension       3")
+    lmp.command("boundary        p p p")
+    lmp.command("atom_style 	atomic")
+    lmp.command("box  tilt large")
+    lmp.command("read_data coo")
+    lmp.command("pair_style nn/intel")
+    lmp.command("pair_coeff * * %s %s"%(potential, lines[5].strip()))
+    lmp.command("mass 1 %s"%atomic_mass[elems[0]])
+    lmp.command("mass 2 %s"%atomic_mass[elems[1]])
+    lmp.command("mass 3 %s"%atomic_mass[elems[2]])
+    lmp.command("mass 4 %s"%atomic_mass[elems[3]])
+    lmp.command("neigh_modify 	every 1 delay 0 check yes")
+    lmp.command("neighbor 0.2 bin")
+
+    lmp.command("velocity all create %s 1 mom yes rot yes dist gaussian"%T)
+    pressure = 0
+    lmp.command("fix 1 all npt temp %s %s 0.1 x %s %s 1.0 y 0.0 0.0 1.0 z 0.0 0.0 1.0 couple none"%(T, T, pressure, pressure))
+
+    lmp.command("timestep 0.001")
+    lmp.command("dump traj all custom 10 out_%s.xyz id type x y z fx fy fz"%poscar)
+    lmp.command("dump_modify traj sort id")
+    lmp.command("thermo 100")
+    lmp.command("thermo_style custom step temp press vol density etotal")
+    lmp.command("run %s"%max_md_steps)
+
+    lmp.command('write_data coo_relaxed')
+
+    lmp.command("variable e equal etotal")
+    e1 = lmp.extract_variable("e")
+    #e1 = lmp.variables['e'].value
+    os.system("python3 /data/hswoo369/module/lammps2vasp_Direct.py coo_relaxed > {}".format(relaxed_file))
+
+    return e1
+
+def check_topology(inp, poscar):
+    cation_cn = inp['cation_cn']
+    bond_dict = inp['distance_constraint']
+    scrutinize_factor = inp['scrutinize_distance_factor']
+
+    pos = read_poscar_dict(poscar)
+    if pos['cartesian'] == False:
+        pos['coor'] = np.dot(pos['coor'], pos['latt'])
+
+    # choose cation dict, anion dict
+    n_cation = []
+    n_anion  = []
+    cation_dict = {}
+    anion_dict  = {}
+
+    for i,a in enumerate(pos['atomarray']):
+        if a not in anion_type+['Li']:
+            n_cation.append(i)
+            cation_dict[i] = []
+        elif a in anion_type:
+            n_anion.append(i)
+            anion_dict[i] = []
+
+    # write a cation_dict of its own
+    for c in n_cation:
+        atom_c = pos['atomarray'][c]
+
+        for a in n_anion:
+            distance = calculate_distance(pos['coor'][c],pos['coor'][a],pos['latt'])
+            atom_a = pos['atomarray'][a]
+
+            bond_cut = bond_dict[atom_c+"-"+atom_a]
+
+            if distance < bond_cut * scrutinize_factor:
+                cation_dict[c].append(a)
+
+    for cation in cation_dict:
+        cation_dict[cation] = sorted(cation_dict[cation])
+
+    fail = 0
+    for ckey in cation_dict.keys():
+        if len(cation_dict[ckey]) != cation_cn[pos['atomarray'][ckey]]:
+            fail += 1
+
+    return fail
+
+def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
+    shutil.copy(DIR+'/'+file_name, file_name)
+
+    poscar_file = file_name
+    # 1. Make Li inserted structure
+    t2 = time()
+    cif_file = calculate_li_sites(poscar_file, li_file='Li.xyz', max_li=max_li)
+
+    inp['post_process']['initial_li_sites'] = 'free_space'
+    concatenate_initial_li(inp, cif_file, li_file='Li.xyz', final_file='POSCAR_init', max_li=max_li)
+    shutil.copy('POSCAR_init', poscar_file+'_0_init')
+
+    t3 = time()
+    # 2. NNP relax
+    lmp = lammps('simd_serial', cmdargs=['-log', 'none', '-screen', 'none'])
+    #lmp = lammps('simd_serial')
+    t4 = time()
+
+    prev_e = relax(poscar='POSCAR_init', relaxed_file='POSCAR_relax', lmp=lmp) / natoms
+    fail = check_topology(inp, poscar='POSCAR_relax')
+    log('log','{:12}  {:4}  {:6.2f}  {:6}  {:4}  {:10}  {:5.2f}  {:6}  {:7.2f}'.format(file_name, 'Free', prev_e*natoms, '-', fail, '-', t3-t2, '-', t4-t3))
+
+
+    if fail != 0:
+        inp['post_process']['initial_li_sites'] = 'random'
+        for trial in range(10):
+            concatenate_initial_li(inp, cif_file, li_file='Li.xyz', final_file='POSCAR_init', max_li=max_li)
+            shutil.copy('POSCAR_init', poscar_file+'_0_init')
+
+            # 2. NNP relax
+            t3 = time()
+            lmp = lammps('simd_serial', cmdargs=['-log', 'none', '-screen', 'none'])
+            #lmp = lammps('simd_serial')
+            t4 = time()
+
+            prev_e = relax(poscar='POSCAR_init', relaxed_file='POSCAR_relax', lmp=lmp) / natoms
+            fail = check_topology(inp, poscar='POSCAR_relax')
+            log('log','{:12}  {:4}  {:6.2f}  {:6}  {:4}  {:10}  {:5}  {:6}  {:7.2f}'.format(file_name, 'Rand', prev_e*natoms, '-', fail, trial+1, '-', '-', t4-t3))
+            if fail == 0:
+                break
+        if fail != 0:
+            log('log','{:12} fail to generate initial Li distribution'.format(file_name))
+            return
+
+    shutil.copy('POSCAR_relax', poscar_file+'_0_relax')
+
 
     best_e = 999
     for step in range(max_mc_steps):
@@ -349,23 +505,39 @@ def mc_main(DIR, SAVE_DIR, file_name, max_li, max_mc_steps):
 
         # 5. NNP relax
         t4 = time()
-        e = relax(poscar='POSCAR_init', relaxed_file='POSCAR_relax_tmp', lmp=lmp)
+        tot_e = relax(poscar='POSCAR_init', relaxed_file='POSCAR_relax_tmp', lmp=lmp)
+        e = tot_e / natoms
 
         t5 = time()
-        log('log','Step: {:3>} E: {:7.3f} Swap_trials: {:3>} t_li_sites: {:8.5f} t_swap: {:8.5f} t_relax: {:8.5f}'.format(step, e, trials, t3-t2, t4-t3, t5-t4))
 
         # Postprocess
         if e < prev_e:
             accept = True
         else:
+            if T == 0:
+                accept = False
+            else:
+                ratio = np.exp(-(e - prev_e)/0.025851 * 300/T)
+                if np.random.rand() < ratio:
+                    accept = True
+                else:
+                    accept = False
+
+        fail = check_topology(inp, poscar='POSCAR_relax_tmp')
+        if fail != 0:
             accept = False
 
-        if accept:
-            os.rename('POSCAR_relax_tmp', 'POSCAR_relax')
-            prev_e = e
-            shutil.copy('POSCAR_relax', 'POSCAR_best')
+        log('log','{:12}  {:4}  {:6.2f}  {:6}  {:4}  {:10}  {:5.2f}  {:6.2f}  {:7.2f}'.format(file_name, step, tot_e, accept, fail, trials, t3-t2, t4-t3, t5-t4))
 
-    shutil.copy('POSCAR_best', SAVE_DIR+'/'+file_name)
+        if accept:
+            #os.rename('POSCAR_relax_tmp', 'POSCAR_relax')
+            os.rename('POSCAR_relax_tmp', poscar_file+'_%s_relax'%(step+1))
+            prev_e = e
+            #shutil.copy('POSCAR_relax', 'POSCAR_best')
+            shutil.copy(poscar_file+'_%s_relax'%(step+1), poscar_file+'_best')
+
+    if poscar_file+'_best' in os.listdir():
+        os.rename(poscar_file+'_best', SAVE_DIR+'/'+file_name)
 
 
 def main():
@@ -376,7 +548,14 @@ def main():
     with open(sys.argv[1], 'r') as f:
         inp = yaml.safe_load(f)
         num_li = inp['material']['Li']
-        max_mc_steps = inp['post_process']['max_mc_steps']
+        natoms = sum(list(map(int, inp['material'].values())))
+        post_process_type = inp['post_process']['type']
+        if post_process_type == 'mc':
+            max_mc_steps = inp['post_process']['max_mc_steps']
+            T = inp['post_process']['mc_temperature']
+        elif post_process_type == 'md':
+            max_md_steps = inp['post_process']['max_md_steps']
+            T = inp['post_process']['md_temperature']
 
     # Filter duplicated structures
     if rank == 0:
@@ -390,15 +569,21 @@ def main():
         if 'final_poscars' not in os.listdir('.'):
             os.mkdir('final_poscars')
 
-        for n in range(1000):
-            if str(n) not in os.listdir():
-                continue
-            gather_candidates(n, inp)
+        if len(os.listdir('unique_poscars')) != 0:
+            unique_structure = []
+            for n in os.listdir('unique_poscars'):
+                if n not in os.listdir('after_mc_poscars'):
+                    unique_structure.append(n)
+        else:
+            for n in range(1000):
+                if str(n) not in os.listdir():
+                    continue
+                gather_candidates(n, inp)
 
-        unique_structure = gather_unique_structure(DIR='poscars')
+            unique_structure = gather_unique_structure(DIR='poscars')
 
-        for n in unique_structure:
-            shutil.copy('poscars/'+n, 'unique_poscars/'+n)
+            for n in unique_structure:
+                shutil.copy('poscars/'+n, 'unique_poscars/'+n)
     else:
         unique_structure = None
 
@@ -419,11 +604,21 @@ def main():
     cwd = os.getcwd()
 
     if rank < tot_len:
-        if 'mc_%s'%rank not in os.listdir('.'):
-            os.mkdir('mc_%s'%rank)
-        os.chdir('mc_%s'%rank)
-        for n in unique_structure[begin:end]:
-            mc_main(DIR=cwd+'/unique_poscars', SAVE_DIR=cwd+'/after_mc_poscars', file_name=n, max_li=num_li, max_mc_steps=max_mc_steps)
+        if post_process_type == 'mc':
+            if 'mc_%s'%rank not in os.listdir('.'):
+                os.mkdir('mc_%s'%rank)
+            os.chdir('mc_%s'%rank)
+            log('log','{:12}  {:4}  {:6}  {:6}  {:4}  {:10}  {:5}  {:6}  {:7}'.format("File name", "Step", "Energy", "Accept", "Fail", "Swap trial", "t_zeo", "t_swap", "t_relax"))
+            for n in unique_structure[begin:end]:
+                mc_main(inp, DIR=cwd+'/unique_poscars', SAVE_DIR=cwd+'/after_mc_poscars', file_name=n, max_li=num_li, natoms=natoms, max_mc_steps=max_mc_steps, T=T)
+        elif post_process_type == 'md':
+            if 'md_%s'%rank not in os.listdir('.'):
+                os.mkdir('md_%s'%rank)
+            os.chdir('md_%s'%rank)
+            log('log','{:12}  {:4}  {:6}  {:5}  {:7}'.format("File name", "Fail", "TotalE", "t_zeo", "t_md"))
+            for n in unique_structure[begin:end]:
+                md_main(inp, DIR=cwd+'/unique_poscars', SAVE_DIR=cwd+'/after_mc_poscars', file_name=n, max_li=num_li, natoms=natoms, max_md_steps=max_md_steps, T=T)
+
         os.chdir('..')
 
     comm.barrier()
