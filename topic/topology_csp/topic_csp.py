@@ -67,6 +67,8 @@ def main():
         lammps_write(pos, total_yaml, bond_dict)     # write lammps input: in.all
         pos_dict2cooall(pos, output='coo')
         E0, V0 = run_lj_lammps('in.all')
+        if E0 == 0 and V0 == 0:
+            continue
 
         pos = coo2pos_dict('coo_out', total_yaml)
         spg1 = get_space_group(pos)

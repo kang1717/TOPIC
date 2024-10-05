@@ -46,7 +46,7 @@ def generate_initial_structure(total_yaml):
 
         # Generate oxygen sites which not have P1 symmetry
         neighbor_dict, pos_o = calculate_distance_o_sites(pos_cat)
-        for spg_trial in range(100):
+        for spg_trial in range(1000):
             trial += 1
             pos, bond_dict = generate_o_sites(pos_cat, total_yaml, neighbor_dict, pos_o)
             spg0 = get_space_group(pos) 
