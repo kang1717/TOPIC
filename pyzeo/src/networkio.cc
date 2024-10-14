@@ -101,7 +101,7 @@ bool readCIFFile(char *filename, ATOM_NETWORK *cell, bool radial){
  
   // Try opening the file if it opens proceed with processing
   ifstream ciffile;
-  cout << "Opening File: " << filename << endl;
+  //cout << "Opening File: " << filename << endl;
   ciffile.open(filename);
   bool read_a = false, read_b = false, read_c = false, read_alpha = false, read_beta = false, read_gamma = false, initialized_cell = false; //keep track of when all cell params are parsed, so the cell can be created
   if(ciffile.is_open()) {

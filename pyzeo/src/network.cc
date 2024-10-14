@@ -38,7 +38,6 @@ std::string toUpperCase(const std::string & s)
     return ret;
 }
 
-
 /** Decompose the provided network of atoms into a VORONOI_NETWORK that is stored using the provided pointer. If
     the option is specified, information about each VOR_CELL will also be stored using the provied pointer to
     a vector of VOR_CELL instances. The BASIC_VCELL information is stored regardless of the option specified.*/
@@ -128,8 +127,9 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
         vornet->v_c = cell->v_c;
         return rad_con;
       } else if(attempt==numAttemptsPermitted-1) {
-        printf("Exiting...\n");
-        exit(1);
+        printf("Exiting...1\n");
+        throw std::runtime_error("Error occurred in VoronoiDecomposition");
+        //exit(1);
       } else {
         cell->randomlyAdjustCoordsAndCell();
       }
@@ -159,8 +159,9 @@ void* performVoronoiDecomp(bool radial, ATOM_NETWORK *cell, VORONOI_NETWORK *vor
         vornet->v_c = cell->v_c;
         return no_rad_con;
       } else if(attempt==numAttemptsPermitted-1) {
-        printf("Exiting...\n");
-        exit(1);
+        printf("Exiting...2\n");
+        throw std::runtime_error("Error occurred in VoronoiDecomposition");
+        //exit(1);
       } else {
         cell->randomlyAdjustCoordsAndCell();
       }
@@ -286,8 +287,9 @@ bool storeVoronoiNetwork(c_option &con, ATOM_NETWORK *atmnet, VORONOI_NETWORK *v
     double error_percent = 100*abs(vvol - box_vol)/box_vol;
     double error_percent_tolerance = 0.001; // former (before Voro++ fit default = 0.1; 
     if(error_percent > error_percent_tolerance) {
-      printf("Error: Voronoi volume check failed (%.3f%% error, > %.3f%% tolerance).\nExiting...\n", error_percent, error_percent_tolerance);
-      return false;
+      printf("Warning: Voronoi volume check failed (%.3f%% error, > %.3f%% tolerance).\nExiting...\n", error_percent, error_percent_tolerance);
+      //printf("Error: Voronoi volume check failed (%.3f%% error, > %.3f%% tolerance).\nExiting...\n", error_percent, error_percent_tolerance);
+      //return false;
 //      exit(1);
     }
     

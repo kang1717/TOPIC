@@ -9,6 +9,67 @@ from time import time
 from mpi4py import MPI
 import random
 import os, sys, shutil, yaml
+from pymatgen.analysis.structure_matcher import StructureMatcher
+from pymatgen.core import Structure, Lattice, Element
+from pymatgen.io.vasp import Poscar
+
+
+def make_CONTCAR2structure(str_idx):
+    FILE = 'CONTCAR_success_%s'%(str_idx)
+    structure = Poscar.from_file(FILE).structure
+    return structure
+
+def make_pos2structure(pos):
+    lattice = Lattice(pos['latt'])
+    structure = Structure(lattice, pos['atomarray'], pos['coor'], coords_are_cartesian=True)
+    return structure
+
+def check_candidates(total_yaml, candidates, structure_index, pos, E, sm, num_atom):
+    if E > candidates['minimum_E'] + total_yaml['energy_window']*num_atom:
+        return
+
+    # Check duplicates
+    structure1 = make_pos2structure(pos)
+    new_key = 1
+    for str_idx in candidates['structure'].keys():
+        structure2 = candidates['structure'][str_idx]
+        if sm.fit(structure1, structure2, symmetric=True):
+            if E < candidates['E'][str_idx]:
+                del candidates['structure'][str_idx]
+                del candidates['E'][str_idx]
+                candidates['structure'][structure_index] = structure1
+                candidates['E'][structure_index] = E
+                break
+            else:
+                return
+            new_key = 0
+
+    if new_key == 1:
+        candidates['structure'][structure_index] = structure1
+        candidates['E'][structure_index] = E
+
+    # Update candidates if E is lower than previous lowest E
+    del_key = []
+    if E < candidates['minimum_E']:
+        candidates['minimum_E'] = E
+        for str_idx in candidates['E'].keys():
+            if candidates['E'][str_idx] > candidates['minimum_E'] + total_yaml['energy_window']*num_atom:
+                del_key.append(str_idx)
+
+    for str_idx in del_key:
+        del candidates['structure'][str_idx]
+        del candidates['E'][str_idx]
+
+    if len(candidates['E'].keys()) == 0:
+        candidates['minimum_E'] = E
+        candidates['structure'][structure_index] = structure1
+        candidates['E'][structure_index] = E
+
+    with open('BestStructure', 'w') as s:
+        cand_list = sorted(candidates['E'].items(), key=lambda x:x[1])
+        s.write("Index   Energy\n")
+        for cand in cand_list:
+            s.write("{:7} {:>8.3f}\n".format(cand[0], cand[1]))
 
 
 def main():
@@ -35,6 +96,12 @@ def main():
         start_idx = 0
         total_yaml['continue'] = 0
     end_idx = int(total_yaml['generation']/corenum)
+
+
+    num_atom = 0
+    for elem in total_yaml['material'].keys():
+        if elem != 'Li':
+            num_atom += total_yaml['material'][elem]
     ###############################
 
     if os.path.isdir(str(rank)) == False:
@@ -50,6 +117,22 @@ def main():
     contcar3s = []
     buffer = 0
 
+    # Make candidate dictionary
+    candidates = dict()
+    candidates['minimum_E'] = 99999
+    candidates['structure'] = dict()
+    candidates['E'] = dict()
+    if 'BestStructure' in os.listdir():
+        with open('BestStructure', 'r') as f:
+            for i, line in enumerate(f.readlines()):
+                if i == 0:
+                    continue
+                if i == 1:
+                    candidates['minimum_E'] = float(line.split()[1])
+                candidates['E'][int(line.split()[0])] = float(line.split()[1])
+                candidates['structure'][int(line.split()[0])] = make_CONTCAR2structure(int(line.split()[0]))
+
+    sm = StructureMatcher(ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=False)
     for i in range(start_idx, end_idx):
         E0 = E1 = E2 = 1000
         V0 = V1 = V2 = 0
@@ -115,6 +198,7 @@ def main():
                 t5 = time()
 
                 if fail_3 == 0:
+                    check_candidates(total_yaml, candidates, i, pos, E2, sm, num_atom)
                     with open(f'CONTCAR_success_{i}', 'w') as s:
                         s.write(contcar3_text)
 

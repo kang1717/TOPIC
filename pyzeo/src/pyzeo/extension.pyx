@@ -411,7 +411,7 @@ cdef class AtomNetwork:
         if isinstance(filename, unicode):
             filename = (<unicode>filename).encode('utf8')
 
-        cdef char* c_rad_file = rad_file
+        cdef char* c_rad_file# = rad_file
         if rad_flag:
             if not rad_file:
                 pyzeo.extension.zeo_initializeRadTable()
@@ -450,7 +450,7 @@ cdef class AtomNetwork:
             filename = (<unicode>filename).encode('utf8')
 
         #Calls Zeo++ readARCFile function defined in networkio.cc.
-        cdef char* c_rad_file = rad_file
+        cdef char* c_rad_file# = rad_file
         if rad_flag:
             if not rad_file:
                 pyzeo.extension.zeo_initializeRadTable()
@@ -672,6 +672,7 @@ cdef class AtomNetwork:
         if not performVoronoiDecomp(self.rad_flag, self.thisptr, 
                 vornet.thisptr, &vcells, saveVorCells, &bvcells):
             raise ValueError # Change it to appropriate error
+
         cdef int N
 
         # Get the edge centers
@@ -1168,18 +1169,18 @@ def prune_voronoi_network_close_node(atmnet,delta=0.1):
     """
     ha_atmnet = atmnet.copy()
     high_accuracy_atomnet(ha_atmnet, "MED")
-    vornet,ecs,fcs = atmnet.perform_voronoi_decomposition()
+    #vornet,ecs,fcs = atmnet.perform_voronoi_decomposition()
     ha_vornet,ecs,fcs = ha_atmnet.perform_voronoi_decomposition()
 
-    node_size = vornet.size()
+    #node_size = vornet.size()
     ha_node_size = ha_vornet.size()
-    if node_size == ha_node_size:
-        warning('No high accuracy')
-        #return vornet
+    #if node_size == ha_node_size:
+    #    warning('No high accuracy')
+    #    #return vornet
     
     cdef ATOM_NETWORK* c_atmnet_ptr = (<AtomNetwork?>atmnet).thisptr
-    #cdef VORONOI_NETWORK* c_ha_vornet_ptr = (<VoronoiNetwork?>ha_vornet).thisptr
-    cdef VORONOI_NETWORK* c_ha_vornet_ptr = (<VoronoiNetwork?>vornet).thisptr
+    cdef VORONOI_NETWORK* c_ha_vornet_ptr = (<VoronoiNetwork?>ha_vornet).thisptr
+    #cdef VORONOI_NETWORK* c_ha_vornet_ptr = (<VoronoiNetwork?>vornet).thisptr
     red_vornet = VoronoiNetwork()
     #print ''
     #print '*********WORKED TILL HERE*********'

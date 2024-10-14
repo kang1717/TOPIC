@@ -117,8 +117,9 @@ void VOR_CELL::addEdge(Point from, Point to){
     cerr << "Unable to add edge because nodes have not been added." << "\n"
 	 << "Point 1: (" << from[0] <<  ", " << from[1] << ", " << from[2] << ")" << "\n"
 	 << "Point 2: (" << to[0]   <<  ", " << to[1]   << ", " << to[2]   << ")" << "\n"
-	 << "Exiting..." << "\n";
-    exit(1);
+	 << "Exiting...3" << "\n";
+    throw 999;
+    //exit(1);
   }
   
   if(edgeConnections[iter2->second].find(iter1->second) == edgeConnections[iter2->second].end())
