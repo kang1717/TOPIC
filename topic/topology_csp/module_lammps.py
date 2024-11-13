@@ -345,6 +345,79 @@ def coo2pos_dict(file_path, total_yaml):
 
     return pos
 
+def coo2pos_dict_host(file_path, total_yaml):
+    material = total_yaml['material']
+    host_info = {k: v for k, v in material.items() if k not in {'Li', 'O'}}
+    host_info = sorted(host_info.items(), key=lambda item: item[1], reverse=True)
+    host_info.append(('O', material['O']))
+
+    with open(file_path, 'r') as f:
+        lines = f.readlines()
+
+    # Initialize variables
+    atom_section = False
+    lattice_vectors = np.zeros((3, 3))
+    atom_data = []
+    atomic_numbers = []
+    atomic_elements = []
+
+    for i, line in enumerate(lines):
+        line = line.strip()
+
+        # Read lattice information
+        if "xlo xhi" in line:
+            xlo, xhi = map(float, line.split()[:2])
+            lattice_vectors[0, 0] = xhi - xlo
+        elif "ylo yhi" in line:
+            ylo, yhi = map(float, line.split()[:2])
+            lattice_vectors[1, 1] = yhi - ylo
+        elif "zlo zhi" in line:
+            zlo, zhi = map(float, line.split()[:2])
+            lattice_vectors[2, 2] = zhi - zlo
+        elif "xy xz yz" in line:
+            xy, xz, yz = map(float, line.split()[:3])
+            lattice_vectors[1, 0] = xy
+            lattice_vectors[2, 0] = xz
+            lattice_vectors[2, 1] = yz
+
+        if "Atoms" in line:
+            atom_section = True
+            mass_section = False
+            continue  # Skip the "Atoms" line
+
+        if "Velocities" in line:
+            atom_section = False
+            continue  # Skip the "Atoms" line
+
+        # Read atom information
+        if atom_section and len(line.split()) > 2:
+            tokens = line.split()
+            atom_id = int(tokens[0])  # Atom ID (not used)
+            atom_type = int(tokens[1])  # Atom type (1-based index)
+            x, y, z = map(float, tokens[2:5])  # Atom positions
+            atom_data.append([x, y, z])
+
+    # Convert atom positions and types to arrays
+    atom_data = np.array(atom_data)
+
+    # Create pos dict
+    pos = dict()
+    atomlist = [a[0] for a in host_info]
+    numlist = [a[1] for a in host_info]
+    atomarray = [atom for atom,count in zip(atomlist,numlist) for _ in range(count)]
+    numarray = [j for j in range(len(atomlist)) for _ in range(numlist[j])]
+
+    pos['latt'] = lattice_vectors
+    pos['coor'] = atom_data[:len(atomarray)]
+    pos['cartesian'] = True
+    pos['atomlist'] = atomlist
+    pos['numlist'] = numlist 
+    pos['atomarray'] = np.array(atomarray)
+    pos['numarray'] = np.array(numarray)
+    pos['fix'] = np.array([['T T T'] for i in range(len(pos['atomarray']))])
+
+    return pos
+
 def change_coo_index(file_path, pos):
     with open(file_path, 'r') as f:
         lines = f.readlines()

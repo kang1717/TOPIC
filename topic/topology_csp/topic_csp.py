@@ -1,5 +1,5 @@
 from topic.topology_csp.module_structure \
-        import generate_initial_structure, get_space_group
+        import generate_initial_structure_random, generate_initial_structure_shortest, get_space_group
 from topic.topology_csp.module_lammps import lammps_write, pos_dict2cooall, \
         run_lj_lammps, coo2pos_dict, change_coo_index, run_lammps
 from topic.topology_csp.module_scrutinize import check_topology
@@ -132,7 +132,12 @@ def main():
                 candidates['E'][int(line.split()[0])] = float(line.split()[1])
                 candidates['structure'][int(line.split()[0])] = make_CONTCAR2structure(int(line.split()[0]))
 
-    sm = StructureMatcher(ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=False)
+    if 'structure_matcher_tolerance' in total_yaml.keys():
+        tol = total_yaml['structure_matcher_tolerance']
+        sm = StructureMatcher(ltol=tol, stol=tol, angle_tol=5, primitive_cell=False)
+    else:
+        sm = StructureMatcher(ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=False)
+
     for i in range(start_idx, end_idx):
         E0 = E1 = E2 = 1000
         V0 = V1 = V2 = 0
@@ -141,7 +146,10 @@ def main():
 
         # 1. Generate initial structure
         t1 = time()
-        pos, bond_dict, trial, spg, spg0 = generate_initial_structure(total_yaml)
+        if i%2 == 0: # Link oxygen in random order # Link oxygen in random order # Link oxygen in random order # Link oxygen in random order
+            pos, bond_dict, trial, spg, spg0 = generate_initial_structure_random(total_yaml)
+        else: # Link oxygen in shortest distance order
+            pos, bond_dict, trial, spg, spg0 = generate_initial_structure_shortest(total_yaml)
         fail_0 = check_topology(total_yaml, pos)
         poscar_text = make_poscars_contcars(pos, rank, i)
         t2 = time()

@@ -1,4 +1,5 @@
 from topic.topology_csp.basic_tools import read_poscar_dict, calculate_distance
+import numpy as np
 
 
 def check_topology(inp, pos):
@@ -68,9 +69,20 @@ def check_anion_CN(pos, inp):
             atom_c = pos['atomarray'][c]
             bond_cut = bond_dict[atom_c+"-"+atom_a]
 
-            distance = calculate_distance(pos['coor'][c],pos['coor'][a],pos['latt'])
+            #distance = calculate_distance(pos['coor'][c],pos['coor'][a],pos['latt'])
+            distance = 10000.0
+            for I in range(-1,2):
+                for J in range(-1,2):
+                    for K in range(-1,2):
+                        i=  float(I); j = float(J); k = float(K)
+                        c1_new = pos['coor'][c] + pos['latt'][0]*i + pos['latt'][1]*j + pos['latt'][2]*k
+                        dist = np.linalg.norm(c1_new-pos['coor'][a])
+                        if dist < distance:
+                            distance = dist
+                            image = (i, j ,k)
+
             if distance < bond_cut * scrutinize_factor:
-                anion_dict[a].append(c)
+                anion_dict[a].append((c, image))
 
     for anion in anion_dict:
         anion_dict[anion] = tuple(sorted(anion_dict[anion]))

@@ -1,5 +1,5 @@
 from topic.topology_csp.basic_tools import direct2cartesian, calculate_distance, \
-                                            adatom_dict_fix, cartesian2direct
+                                    adatom_dict_fix, cartesian2direct
 import os, sys, yaml
 import numpy as np
 import random
@@ -30,7 +30,7 @@ atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
                    Hs=269.00, Mt=268.00)
 
 
-def generate_initial_structure(total_yaml):
+def generate_initial_structure_random(total_yaml):
     trial = 0
     done = 0
     while done == 0:
@@ -45,16 +45,107 @@ def generate_initial_structure(total_yaml):
             continue
 
         # Generate oxygen sites which not have P1 symmetry
-        neighbor_dict, pos_o = calculate_distance_o_sites(pos_cat)
+        neighbor_array = calculate_distance_o_sites(pos_cat)
         for spg_trial in range(1000):
             trial += 1
-            pos, bond_dict = generate_o_sites(pos_cat, total_yaml, neighbor_dict, pos_o)
+            pos, bond_dict = generate_o_sites(pos_cat, total_yaml, neighbor_array)
             spg0 = get_space_group(pos) 
             if spg0 not in [0, 1]:
                 done = 1
                 break
 
     return pos, bond_dict, trial, spg, spg0
+
+def generate_initial_structure_shortest(total_yaml):
+    trial = 0
+    done = 0
+    while done == 0:
+        if total_yaml['spg_seed'] == None:
+            spg = random.randint(1, 230)
+        else:
+            spg = total_yaml['spg_seed']
+
+        # Generate cation sites
+        for spg_trial in range(100):
+            trial += 1
+            pos_cat = generate_cation_sites(total_yaml, spg) # Cartesian coordinates
+            if pos_cat == None:
+                break
+
+            pos, bond_dict = make_oxygen_shortest_bond(pos_cat, total_yaml)
+            if pos != None:
+                done = 1
+                break
+
+    spg0 = get_space_group(pos) 
+
+    return pos, bond_dict, trial, spg, spg0
+
+def make_oxygen_shortest_bond(pos, total_yaml):
+    cation_cn  = total_yaml['cation_cn']
+    num_o = int(total_yaml['material']['O'])
+
+    if pos['cartesian'] == True:
+        direct_coord = cartesian2direct(pos['latt'], pos['coor'])
+    else:
+        direct_coord = pos['coor']
+        pos['coor'] = direct2cartesian(pos['latt'], pos['coor'])
+        pos['cartesian'] = True
+
+    cn_num_dict = dict()
+    bond_lengths = []
+    for i1, c1 in enumerate(pos['coor']):
+        cn_num_dict[i1] = 0
+        for i2, c2 in enumerate(pos['coor']):
+            if i1 < i2:
+                for I in range(-1,2):
+                    for J in range(-1,2):
+                        for K in range(-1,2):
+                            i=  float(I); j = float(J); k = float(K)
+                            c1_new = c1 + pos['latt'][0]*i + pos['latt'][1]*j + pos['latt'][2]*k
+                            dist = np.linalg.norm(c1_new-c2)
+                            o_pos = (c1_new+c2)/2.0
+                            bond_lengths.append(((i1, i2), dist, o_pos))
+
+
+    # Step 3: Sort bond lengths
+    cation_o_pair = {}
+    for n in range(len(pos['coor'])):
+        cation_o_pair[n] = []
+
+    bond_lengths_sorted = sorted(bond_lengths, key=lambda x: x[1])
+
+    # Check if CN condition satisfy
+    for bond_info, _, _ in bond_lengths_sorted[:num_o]:
+        i, j = bond_info
+        cn_num_dict[i] += 1
+        cn_num_dict[j] += 1
+
+    no_cs = 0
+    for i in range(len(pos['coor'])):
+        cat_type = pos['atomarray'][i]
+        cat_CN = cation_cn[cat_type]
+        if cn_num_dict[i] != cat_CN:
+            no_cs = 1
+            break
+    if no_cs == 1:
+        return None, None
+
+    O_idx = len(pos['coor'])
+    for bond_info, length, o_pos in bond_lengths_sorted[:num_o]:
+        i, j = bond_info
+
+        # Add an oxygen atom at the midpoint
+        pos = adatom_dict_fix(pos, o_pos, 'O', 'T')
+        cation_o_pair[i].append(O_idx)
+        cation_o_pair[j].append(O_idx)
+        O_idx += 1
+
+    # sort cation_o_pair
+    for ckey in cation_o_pair.keys():
+        cation_o_pair[ckey] = sorted(cation_o_pair[ckey])
+
+    return pos, cation_o_pair
 
 def generate_cation_sites(total_yaml, spg):
     ######### input parameters ########
@@ -129,37 +220,9 @@ def transform_poscar_text_to_pos_dict(poscar_text, total_yaml):
 
     return pos
 
-def calculate_distance_o_sites(pos):
-    neighbor_dict = {}
-    o_pos_dict = {}
-    for i1, c1 in enumerate(pos['coor']):
-        r_data = []
-        for i2, c2 in enumerate(pos['coor']):
-            if i1 != i2:
-                #r = calculate_distance(c1, c2, pos['latt'])
-                r = 10000.0
-                for I in range(-1,2):
-                    for J in range(-1,2):
-                        for K in range(-1,2):
-                            i = float(I); j = float(J); k = float(K)
-                            c1_new = c1 + pos['latt'][0]*i + pos['latt'][1]*j \
-                                                            + pos['latt'][2]*k
-                            temp = np.linalg.norm(c1_new-c2)
-                            if temp < r:
-                                r = temp
-                                o_pos_dict[f'{i1}-{i2}'] = (c1_new+c2)/2.0
-                                o_pos_dict[f'{i2}-{i1}'] = (c1_new+c2)/2.0
-
-                r_data.append([i2, r])
-
-        r_data = sorted(r_data, key=lambda x:x[1])
-        neighbor_dict[i1] = [i[0] for i in r_data]
-
-    return neighbor_dict, o_pos_dict
-
-def generate_o_sites(pos, total_yaml, neighbor_dict, pos_o):
+def generate_o_sites(pos, total_yaml, neighbor_array):
     # Link two cations and make pair_lists
-    bond_dict = make_bond_dict_in_random_order(pos, total_yaml, neighbor_dict)
+    bond_dict = make_bond_dict_in_random_order(pos, total_yaml, neighbor_array)
 
     # Place oxygen atom in between two cations
     cation_o_pair = {}
@@ -167,14 +230,22 @@ def generate_o_sites(pos, total_yaml, neighbor_dict, pos_o):
         cation_o_pair[n] = []
 
     pair_lists = [] # duplicate list
+    dup_o_pos = [] # duplicate list
     O_idx = len(pos['coor'])
     for cat_idx in bond_dict.keys():
-        for neighbor_idx in bond_dict[cat_idx]:
+        for neighbor in bond_dict[cat_idx]:
+            neighbor_idx = neighbor[0]
             if (neighbor_idx, cat_idx) in pair_lists:
-                continue
-            pair_lists.append((cat_idx, neighbor_idx))
+                if tuple(neighbor[1]) in dup_o_pos:
+                    continue
+                else:
+                    dup_o_pos.append(tuple(neighbor[1]))
+            else:
+                pair_lists.append((cat_idx, neighbor_idx))
+                dup_o_pos.append(tuple(neighbor[1]))
 
-            pos = adatom_dict_fix(pos, pos_o[f'{cat_idx}-{neighbor_idx}'], 'O', 'T')
+            #pos = adatom_dict_fix(pos, pos_o[f'{cat_idx}-{neighbor_idx}'], 'O', 'T')
+            pos = adatom_dict_fix(pos, neighbor[1], 'O', 'T')
             cation_o_pair[cat_idx].append(O_idx)
             cation_o_pair[neighbor_idx].append(O_idx)
             O_idx += 1
@@ -185,7 +256,7 @@ def generate_o_sites(pos, total_yaml, neighbor_dict, pos_o):
 
     return pos, cation_o_pair
 
-def make_bond_dict_in_random_order(pos, total_yaml, neighbor_dict):
+def make_bond_dict_in_random_order(pos, total_yaml, neighbor_array):
     cation_cn  = total_yaml['cation_cn']
     n_cation = [i for i in range(len(pos['coor']))]
 
@@ -204,15 +275,18 @@ def make_bond_dict_in_random_order(pos, total_yaml, neighbor_dict):
             if len(bond_dict[cat_idx]) >= cat_CN: # Check center atom CN
                 continue
 
-            for neighbor_idx in neighbor_dict[cat_idx]:
+            for neighbor in neighbor_array[cat_idx]:
+                neighbor_idx = neighbor[0]
                 neighbor_type = pos['atomarray'][neighbor_idx]
                 neighbor_CN   = cation_cn[neighbor_type]
                 if len(bond_dict[neighbor_idx]) >= neighbor_CN: # Check neighbor CN
                     continue
 
-                if neighbor_idx not in bond_dict[cat_idx]:
-                    bond_dict[cat_idx].append(neighbor_idx)
-                    bond_dict[neighbor_idx].append(cat_idx)
+                #if neighbor_idx not in bond_dict[cat_idx]:
+                #    bond_dict[cat_idx].append([neighbor_idx, neighbor[2]])
+                #    bond_dict[neighbor_idx].append([cat_idx, neighbor[2]])
+                bond_dict[cat_idx].append([neighbor_idx, neighbor[2]])
+                bond_dict[neighbor_idx].append([cat_idx, neighbor[2]])
 
                 if len(bond_dict[cat_idx]) >= cat_CN:
                     break
@@ -223,6 +297,7 @@ def make_bond_dict_in_random_order(pos, total_yaml, neighbor_dict):
 
         if success:
             return bond_dict
+
 
 def get_space_group(pos):
     lattice = pos['latt']
@@ -242,138 +317,6 @@ def get_space_group(pos):
         return spacegroup.number
 
 ########################### backup ###########################
-def make_oxygen_shortest_bond(pos, num_o):
-    if pos['cartesian'] == True:
-        direct_coord = cartesian2direct(pos['latt'], pos['coor'])
-    else:
-        direct_coord = pos['coor']
-        pos['coor'] = direct2cartesian(pos['latt'], pos['coor'])
-        pos['cartesian'] = True
-
-    bond_lengths = []
-    for i1, c1 in enumerate(pos['coor']):
-        for i2, c2 in enumerate(pos['coor']):
-            if i1 < i2:
-                r = calculate_distance(c1, c2, pos['latt'])
-                bond_lengths.append(((i1, i2), r))
-
-    # Step 3: Sort bond lengths
-    bond_lengths_sorted = sorted(bond_lengths, key=lambda x: x[1])
-
-    for bond_info, length in bond_lengths_sorted[:num_o]:
-        i, j = bond_info
-
-        # Calculate the midpoint of the bond
-        frac_coords_i = direct_coord[i]
-        frac_coords_j = direct_coord[j]
-        delta = frac_coords_j - frac_coords_i
-        delta = delta - np.round(delta)
-        midpoint_frac = frac_coords_i + 0.5 * delta
-        midpoint_cartesian = direct2cartesian(pos['latt'], midpoint_frac)
-
-        # Add an oxygen atom at the midpoint
-        pos = adatom_dict_fix(pos, midpoint_cartesian, 'O', 'T')
-
-    return pos, None
-
-def make_oxygen_prev(pos):
-    iteration_limit = len(pos['coor']) - 2
-
-    # calculate distance info
-    if pos['cartesian'] == False:
-        pos['coor'] = direct2cartesian(pos['latt'], pos['coor'])
-        pos['cartesian'] = True
-
-    distance_array = {}
-    for i1, c1 in enumerate(pos['coor']):
-        r_data = []
-        for i2, c2 in enumerate(pos['coor']):
-            if i1 != i2:
-                r = calculate_distance(c1, c2, pos['latt'])
-                r_data.append([i2, r])
-
-        r_data = sorted(r_data, key=lambda x:x[1])
-
-        distance_array[i1] = [i[0] for i in r_data]
-
-    # define n_cation
-    n_cation = [i for i in range(len(pos['coor']))]
-
-    # select pairs
-    cation_dict = {}
-
-    iteration = 0
-    fail = 1
-    while fail == 1:
-        pair_lists  = []
-        for k, a0 in enumerate(pos['coor']):
-            cation_dict[k] = []
-
-        # link cations
-        fail = 0
-        random.shuffle(n_cation)
-        for ta in n_cation:
-            ta_type = pos['atomarray'][ta]
-            CN = cation_cn[ta_type]
-
-            # link other cations
-            ii = 0
-            if len(cation_dict[ta]) < CN:
-                while len(cation_dict[ta]) < CN:
-                    if ii > iteration_limit:
-                        fail = 1
-                        break
-
-                    candidate = distance_array[ta][ii]
-                    candidate_type = pos['atomarray'][candidate]
-                    candidate_CN   = cation_cn[candidate_type]
-
-                    if candidate not in cation_dict[ta] and len(cation_dict[candidate]) < candidate_CN:
-                        cation_dict[ta].append(candidate)
-                        cation_dict[candidate].append(ta)
-                        pair_lists.append([ta,candidate])
-
-                    ii += 1
-        iteration += 1
-
-    # add oxygen
-    cation_o_pair = {}
-
-    for n in sorted(n_cation):
-        cation_o_pair[n] = []
-
-    O_num = len(n_cation)
-    for pair in pair_lists:
-        dmax = 100.0
-        a1 = pair[0]
-        a2 = pair[1]
-        c1 = pos['coor'][a1]
-        c2 = pos['coor'][a2]
-        for I in range(3):
-            i = float(I-1)
-            for J in range(3):
-                j = float(J-1)
-                for K in range(3):
-                    k = float(K-1)
-                    c2_new = c2 + i*pos['latt'][0] + j*pos['latt'][1] + k*pos['latt'][2]
-                    d = np.linalg.norm(c2_new-c1)
-
-                    if d < dmax:
-                        dmax = d
-                        o_atom = (c1+c2_new)/2.0
-
-        pos = adatom_dict_fix(pos, o_atom, 'O', 'T')
-
-        cation_o_pair[a1].append(O_num)
-        cation_o_pair[a2].append(O_num)
-        O_num += 1
-
-    # sort cation_o_pair
-    for ckey in cation_o_pair.keys():
-        cation_o_pair[ckey] = sorted(cation_o_pair[ckey])
-
-    return pos, cation_o_pair
-
 def coo2CONTCAR(filename, output="CONTCAR"):
     #------------------------- simple structure file part -----------------------#
     LammpsLines = open(filename).readlines()
@@ -506,7 +449,7 @@ def read_structure(file_path):
             )
     return new_structure
 
-def calculate_distance_o_sites_pbc(pos_cat):
+def calculate_distance_o_sites(pos_cat):
     distance_array = {}
     for i1, c1 in enumerate(pos_cat['coor']):
         r_data = []

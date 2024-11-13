@@ -27,7 +27,7 @@ setup(
     packages=find_packages(include=['topic', 'topic*']),
     include_package_data=True,
     package_data={
-        '': ['configure_default.yaml', 'INCAR_premelt', 'KPOINTS', '*.cpp', '*.h', 'params_*'],
+        '': ['configure_default.yaml', 'INCAR_premelt', 'KPOINTS', '*.cpp', '*.h', 'params_*', 'INCAR0', 'INCAR1'],
     },
     entry_points={
         'console_scripts':[
@@ -36,6 +36,7 @@ setup(
             'configure_csp = topic.utils.configure_csp:main',
             'topic_csp = topic.topology_csp.topic_csp:main',
             'topic_post = topic.topology_csp.post_processing:main',
+            'topic_dft = topic.dft_calculation.run:main',
             #'topic_dft_relax = topic.topic_dft_relax:main',
         ]
     },

@@ -94,7 +94,11 @@ def get_unique_file_list(total_yaml, comm, num_atom):
         structures = None
 
     structures = comm.bcast(structures, root=0)
-    sm = StructureMatcher(ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=False)
+    if 'structure_matcher_tolerance' in total_yaml.keys():
+        tol = total_yaml['structure_matcher_tolerance']
+        sm = StructureMatcher(ltol=tol, stol=tol, angle_tol=5, primitive_cell=False)
+    else:
+        sm = StructureMatcher(ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=False)
 
     prev_div = 99999999999999
     current_div = len(structures)/size
@@ -174,14 +178,6 @@ def gather_candidates(n, inp):
                         s.write(lines[i*(8+num_atom)+k])
                 idx += 1
     """
-
-def structure_match(FILE1, FILE2):
-    sm = StructureMatcher(ltol=0.2, stol=0.3, angle_tol=5, primitive_cell=False)
-    structure1 = Poscar.from_file(FILE1).structure
-    structure1.remove_species(["Li"])
-    structure2 = Poscar.from_file(FILE2).structure
-    structure2.remove_species(["Li"])
-    return sm.fit(structure1, structure2, symmetric=True)
 
 def gather_unique_structure(structures, rank, sm):
     unique_structures = []
