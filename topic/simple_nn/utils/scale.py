@@ -1,5 +1,5 @@
 import numpy as np
-from spinner.simple_nn.features.symmetry_function import utils as utils_symf
+from topic.simple_nn.features.symmetry_function import utils as utils_symf
 from scipy.integrate import nquad
 
 

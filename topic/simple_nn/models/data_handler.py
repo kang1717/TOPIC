@@ -2,7 +2,7 @@ import torch
 import numpy as np
 import os
 from functools import partial
-from spinner.simple_nn.utils import modified_sigmoid
+from topic.simple_nn.utils import modified_sigmoid
 
 
 torch.set_default_dtype(torch.float64)

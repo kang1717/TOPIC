@@ -2,8 +2,8 @@ import torch
 from torch.optim.lr_scheduler import ExponentialLR
 import time, os
 from tqdm import tqdm
-from spinner.simple_nn.models import neural_network, loss, data_handler, optimizers, logger
-from spinner.simple_nn.models import early_stopping  ## new
+from topic.simple_nn.models import neural_network, loss, data_handler, optimizers, logger
+from topic.simple_nn.models import early_stopping  ## new
 
 #Main function that train neural network
 def train(inputs, logfile, comm):

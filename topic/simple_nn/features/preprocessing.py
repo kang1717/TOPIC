@@ -3,10 +3,10 @@ import numpy as np
 import torch
 from sklearn.decomposition import PCA
 
-from spinner.simple_nn.utils import modified_sigmoid, _generate_gdf_file
-from spinner.simple_nn.utils import features as util_feature
-from spinner.simple_nn.utils import scale as util_scale
-from spinner.simple_nn.utils import graph as grp
+from topic.simple_nn.utils import modified_sigmoid, _generate_gdf_file
+from topic.simple_nn.utils import features as util_feature
+from topic.simple_nn.utils import scale as util_scale
+from topic.simple_nn.utils import graph as grp
 
 def preprocess(inputs, logfile, comm):
     """

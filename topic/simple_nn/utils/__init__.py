@@ -9,8 +9,8 @@ import ase
 import torch
 from ase.geometry import get_distances
 
-from spinner.simple_nn.utils.features import _gen_2Darray_for_ffi
-from spinner.simple_nn.features.mpi import DummyMPI, MPI4PY
+from topic.simple_nn.utils.features import _gen_2Darray_for_ffi
+from topic.simple_nn.features.mpi import DummyMPI, MPI4PY
 from ._libgdf import lib, ffi
 
 

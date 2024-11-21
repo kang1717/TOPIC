@@ -4,11 +4,11 @@ import sys, os, time
 import yaml, atexit
 from ._version import __version__, __git_sha__
 
-from spinner.simple_nn.init_inputs import initialize_inputs, check_inputs
-from spinner.simple_nn.features import preprocess
-from spinner.simple_nn.models import train
-from spinner.simple_nn.features.mpi import DummyMPI, MPI4PY
-from spinner.simple_nn.features.symmetry_function import generate as symf_generator
+from topic.simple_nn.init_inputs import initialize_inputs, check_inputs
+from topic.simple_nn.features import preprocess
+from topic.simple_nn.models import train
+from topic.simple_nn.features.mpi import DummyMPI, MPI4PY
+from topic.simple_nn.features.symmetry_function import generate as symf_generator
 
 
 def run(input_file_name):

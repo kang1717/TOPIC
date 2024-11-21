@@ -4,7 +4,7 @@ from torch.nn import Linear
 import numpy as np
 import shutil
 
-from spinner.simple_nn.models import weight_initializers
+from topic.simple_nn.models import weight_initializers
 
 
 class FCNDict(torch.nn.Module):
