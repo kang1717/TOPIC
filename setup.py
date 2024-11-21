@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 install_requires = [
     'matplotlib<3.4.0,>=3.1.0',
     'scikit-learn<1.0',
-    'numpy>=1.22',
+    'numpy>=1.22,<2.0.0',
     'scipy<1.6.0',
     'ase==3.22.0',
     'pyyaml',

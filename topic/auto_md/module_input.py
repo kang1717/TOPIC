@@ -13,6 +13,7 @@ def initialize_auto_md(md_setting_yaml, num_tasks, working_dir):
         input_yaml = tmp_yaml['ab_initio_mqa']
         input_yaml['pot_dir'] = tmp_yaml['pot_path']
         input_yaml['composition'] = tmp_yaml['composition']
+        input_yaml['vasp_config'] = dict()
         input_yaml['vasp_config']['std'] = tmp_yaml['vasp_std']
         input_yaml['vasp_config']['gam'] = tmp_yaml['vasp_gam']
         input_yaml['vasp_config']['ncl'] = tmp_yaml['vasp_ncl']
