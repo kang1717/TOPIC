@@ -207,8 +207,8 @@ def main():
 
                 if fail_3 == 0:
                     check_candidates(total_yaml, candidates, i, pos, E2, sm, num_atom)
-                    with open(f'CONTCAR_success_{i}', 'w') as s:
-                        s.write(contcar3_text)
+                    #with open(f'CONTCAR_success_{i}', 'w') as s:
+                    #    s.write(contcar3_text)
 
         # 5. Finalize
         T0 = t2-t1

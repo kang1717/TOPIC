@@ -83,11 +83,36 @@ def get_unique_file_list(total_yaml, comm, num_atom):
             del energy_info[key]
 
         # Sort in energy order and collect structure object
+        candidate_dict = dict()
+        for name in energy_info.keys():
+            tmp = name.split('_')
+            dnum = int(tmp[1])
+            gen = int(tmp[2])
+            if dnum not in candidate_dict.keys():
+                candidate_dict[dnum] = []
+            candidate_dict[dnum].append(gen)
+
+        poscar_dict = dict()
+        for i in range(0, 100):
+            if str(i) not in os.listdir():
+                continue
+            if i not in candidate_dict.keys():
+                continue
+            with open('%s/CONTCAR3s'%i, 'r') as f:
+                lines = f.readlines()
+                for ii, line in enumerate(lines):
+                    if 'generation' in line:
+                        gen = int(line.split()[4])
+                        if gen in candidate_dict[i]:
+                            poscar = lines[ii:ii+num_atom+8]
+                            poscar_dict['POSCAR_%s_%s'%(i, gen)] = poscar
+
         structure_list = sorted(energy_info.items(), key=lambda x:x[1])
         structures = []
         for n in structure_list:
-            tmp = n[0].split('_')
-            structure = Poscar.from_file('%s/CONTCAR_success_%s'%(tmp[1], tmp[2])).structure
+            #tmp = n[0].split('_')
+            #structure = Poscar.from_file('%s/CONTCAR_success_%s'%(tmp[1], tmp[2])).structure
+            structure = Structure.from_str("".join(poscar_dict[n[0]]), fmt='poscar')
             structure.remove_species(["Li"])
             structures.append((n[0], n[1], structure))
     else:
@@ -148,7 +173,9 @@ def get_unique_file_list(total_yaml, comm, num_atom):
         for unique in structures:
             n = unique[0]
             tmp = n.split('_')
-            shutil.copy('%s/CONTCAR_success_%s'%(tmp[1], tmp[2]), 'unique_poscars/POSCAR_%s_%s'%(tmp[1], tmp[2]))
+            with open('unique_poscars/%s'%(n), 'w') as s:
+                s.write("".join(poscar_dict[n]))
+            #shutil.copy('%s/CONTCAR_success_%s'%(tmp[1], tmp[2]), 'unique_poscars/POSCAR_%s_%s'%(tmp[1], tmp[2]))
 
         unique_structure = []
         for n in os.listdir('unique_poscars'):
