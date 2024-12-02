@@ -588,9 +588,10 @@ def md(poscar, relaxed_file, lmp, max_md_steps, T):
     return e1
 
 def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
-    shutil.copy(DIR+'/'+file_name, file_name)
+    #shutil.copy(DIR+'/'+file_name, file_name)
+    #poscar_file = file_name
+    poscar_file = DIR+'/'+file_name
 
-    poscar_file = file_name
     # 1. Make Li inserted structure
     t2 = time()
     cif_file = calculate_li_sites(poscar_file, li_file='Li.xyz', max_li=max_li)
@@ -602,7 +603,7 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
         log('log','{:16} Number of Li candidate sites are less than {}'.format(file_name, max_li))
         return
 
-    shutil.copy('POSCAR_init', poscar_file+'_0_init')
+    shutil.copy('POSCAR_init', file_name+'_0_init')
 
     t3 = time()
     # 2. NNP relax
@@ -626,7 +627,7 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
         inp['post_process']['initial_li_sites'] = 'random'
         for trial in range(10):
             concatenate_initial_li(inp, cif_file, li_file='Li.xyz', final_file='POSCAR_init', max_li=max_li)
-            shutil.copy('POSCAR_init', poscar_file+'_0_init')
+            shutil.copy('POSCAR_init', file_name+'_0_init')
 
             # 2. NNP relax
             t3 = time()
@@ -652,8 +653,8 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
             shutil.copy('../unique_poscars/'+file_name, '../ERROR/'+file_name)
             return
 
-    shutil.copy('POSCAR_relax', poscar_file+'_0_relax')
-    shutil.copy('POSCAR_relax', poscar_file+'_best')
+    shutil.copy('POSCAR_relax', file_name+'_0_relax')
+    shutil.copy('POSCAR_relax', file_name+'_best')
 
 
     best_e = prev_e
@@ -700,13 +701,14 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
 
         if accept:
             shutil.copy('POSCAR_relax_tmp', 'POSCAR_relax')
-            os.rename('POSCAR_relax_tmp', poscar_file+'_%s_relax'%(step+1))
+            #os.rename('POSCAR_relax_tmp', poscar_file+'_%s_relax'%(step+1))
             prev_e = e
             #shutil.copy('POSCAR_relax', 'POSCAR_best')
-            shutil.copy(poscar_file+'_%s_relax'%(step+1), poscar_file+'_best')
+            #shutil.copy(poscar_file+'_%s_relax'%(step+1), poscar_file+'_best')
+            shutil.copy('POSCAR_relax', file_name+'_best')
 
-    if poscar_file+'_best' in os.listdir():
-        os.rename(poscar_file+'_best', SAVE_DIR+'/'+file_name)
+    if file_name+'_best' in os.listdir():
+        os.rename(file_name+'_best', SAVE_DIR+'/'+file_name)
         with open('Results', 'a') as s:
             s.write('{:20} {:10.4f}\n'.format(file_name, best_e))
 
