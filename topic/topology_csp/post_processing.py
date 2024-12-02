@@ -20,6 +20,8 @@ from time import time
 from mpi4py import MPI
 
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
 anion_type = ['O'] #,'F','S','Cl']
 
 atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
@@ -43,6 +45,90 @@ atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
                    Cf=251.00, Es=252.00, Fm=257.00, Md=258.00, No=259.00,
                    Lr=262.00, Rf=261.00, Db=262.00, Sg=266.00, Bh=264.00,
                    Hs=269.00, Mt=268.00)
+
+def lammps2DIRECT(lammps_file, poscar_file):
+    LammpsLines = open(lammps_file).readlines()
+
+    #------------------------- simple structure file part -----------------------#
+    LatticeVector = [[0,0,0],[0,0,0],[0,0,0]]
+    name = LammpsLines[0]
+    for cnt in range(1,len(LammpsLines)):
+        if 'atoms' in LammpsLines[cnt]:
+            numIon = int(LammpsLines[cnt].split()[0])
+        elif 'atom types' in LammpsLines[cnt]:
+            numElements = int(LammpsLines[cnt].split()[0])
+        elif 'xlo' in LammpsLines[cnt]:
+            LatticeVector[0][0] = float(LammpsLines[cnt].split()[1]) -float(LammpsLines[cnt].split()[0])
+        elif 'ylo' in LammpsLines[cnt]:
+            LatticeVector[1][1] = float(LammpsLines[cnt].split()[1]) - float(LammpsLines[cnt].split()[0])
+        elif 'zlo' in LammpsLines[cnt]:
+            LatticeVector[2][2] = float(LammpsLines[cnt].split()[1]) -float(LammpsLines[cnt].split()[0])
+        elif 'xy' in LammpsLines[cnt]:
+            LatticeVector[1][0] = float(LammpsLines[cnt].split()[0])
+            LatticeVector[2][0] = float(LammpsLines[cnt].split()[1])
+            LatticeVector[2][1] = float(LammpsLines[cnt].split()[2])
+        elif 'Masses' in LammpsLines[cnt]:
+            MassesLines = []
+            cursor = 0
+            while True:
+                cursor += 1
+                if LammpsLines[cnt+cursor].split() != []:
+                    MassesLines.append(LammpsLines[cnt+cursor])
+                if len(MassesLines) == numElements:
+                    break
+        elif 'Atoms' in LammpsLines[cnt]:
+            AtomsLines = []
+            cursor = 0
+            while True:
+                cursor += 1
+                if LammpsLines[cnt+cursor].split() != []:
+                    AtomsLines.append(LammpsLines[cnt+cursor])
+                if len(AtomsLines) == numIon:
+                    break
+
+    AtomsLines.sort(key=lambda x: float(x.split()[4]))   # sort about z coordinate
+    AtomsLines.sort(key=lambda x: int(x.split()[1]))
+    ElementList = []
+    AMItems = list(atomic_mass.items())
+    for line in MassesLines:
+        mass = round(float(line.split()[1]),0)
+        for Tup in AMItems:
+            if round(Tup[1],0) == mass:
+                ElementList.append(Tup[0])
+                break
+
+    NumIonList = [0]*numElements
+    Direct=[]
+    for line in AtomsLines:
+        NumIonList[int(line.split()[1])-1] += 1
+        cart = list(map(float,line.split()[2:]))
+        frac = [0,0,0]
+        frac[2] = cart[2]/LatticeVector[2][2]
+        cart[1] -= frac[2]*LatticeVector[2][1]
+        cart[0] -= frac[2]*LatticeVector[2][0]
+        frac[1] = cart[1]/LatticeVector[1][1]
+        cart[0] -= frac[1]*LatticeVector[1][0]
+        frac[0] = cart[0]/LatticeVector[0][0]
+        Direct.append(frac)
+
+    printBuffer = ''
+    printBuffer += '(Converted from LAMMPS) '+name+' 1.0\n'
+    for rowCnt in range(3):
+        for colCnt in range(3):
+            printBuffer += '   %12.12f ' %float(LatticeVector[rowCnt][colCnt])
+        printBuffer += '\n'
+    for comp in ElementList:
+        printBuffer += '  %s' %comp
+    printBuffer += '\n'
+    for comp in NumIonList:
+        printBuffer += '  %s' %comp
+    printBuffer += '\nDirect\n'
+    for rowCnt in range(numIon):
+        for colCnt in range(3):
+            printBuffer += '   %12.12f ' %float(Direct[rowCnt][colCnt])
+        printBuffer += '\n'
+    with open(poscar_file, 'w') as s:
+        s.write(printBuffer)
 
 def get_unique_file_list(total_yaml, comm, num_atom):
     rank = comm.Get_rank()
@@ -398,7 +484,7 @@ def relax(poscar, relaxed_file, lmp):
     elements = [el.symbol for el in structure.composition.keys()]
     relax_iter = 1
 
-    os.system("/data/hswoo369/module/pos2lammps.sh {} > coo".format(poscar))
+    os.system("{}/pos2lammps.sh {} > coo".format(script_dir, poscar))
 
     lmp.command("clear")
     lmp.command("units           metal")
@@ -444,7 +530,8 @@ def relax(poscar, relaxed_file, lmp):
     lmp.command("variable e equal etotal")
     e1 = lmp.extract_variable("e")
     #e1 = lmp.variables['e'].value
-    os.system("python3 /data/hswoo369/module/lammps2vasp_Direct.py coo_relaxed > {}".format(relaxed_file))
+    #os.system("python3 /data/hswoo369/module/lammps2vasp_Direct.py coo_relaxed > {}".format(relaxed_file))
+    lammps2DIRECT('coo_relaxed', relaxed_file)
 
     return e1
 
@@ -545,7 +632,7 @@ def md(poscar, relaxed_file, lmp, max_md_steps, T):
     elems = lines[5].split()
     relax_iter = 1
 
-    os.system("/data/hswoo369/module/pos2lammps.sh {} > coo".format(poscar))
+    os.system("{}/pos2lammps.sh {} > coo".format(script_dir, poscar))
 
     #lmp = lammps('simd_serial')
     #lmp = PyLammps('simd_serial', verbose=False)
@@ -583,14 +670,14 @@ def md(poscar, relaxed_file, lmp, max_md_steps, T):
     lmp.command("variable e equal etotal")
     e1 = lmp.extract_variable("e")
     #e1 = lmp.variables['e'].value
-    os.system("python3 /data/hswoo369/module/lammps2vasp_Direct.py coo_relaxed > {}".format(relaxed_file))
+    #os.system("python3 /data/hswoo369/module/lammps2vasp_Direct.py coo_relaxed > {}".format(relaxed_file))
+    lammps2DIRECT('coo_relaxed', relaxed_file)
 
     return e1
 
 def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
-    #shutil.copy(DIR+'/'+file_name, file_name)
-    #poscar_file = file_name
     poscar_file = DIR+'/'+file_name
+    POSCAR_text = []
 
     # 1. Make Li inserted structure
     t2 = time()
@@ -598,21 +685,17 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
 
     inp['post_process']['initial_li_sites'] = 'free_space'
     fail = concatenate_initial_li(inp, cif_file, li_file='Li.xyz', final_file='POSCAR_init', max_li=max_li)
-
     if fail == 1:
         log('log','{:16} Number of Li candidate sites are less than {}'.format(file_name, max_li))
         return
 
-    shutil.copy('POSCAR_init', file_name+'_0_init')
-
-    t3 = time()
     # 2. NNP relax
+    t3 = time()
     lmp = lammps('simd_serial', cmdargs=['-log', 'none', '-screen', 'none'])
     #lmp = lammps('simd_serial')
 
     prev_e = relax(poscar='POSCAR_init', relaxed_file='POSCAR_relax', lmp=lmp) / natoms
     t4 = time()
-    #fail = check_topology(inp, poscar='POSCAR_relax')
     pos = coo2pos_dict_host('coo_relaxed', inp)
     spg = get_space_group(pos)
     fail = check_topology(inp, pos)
@@ -621,7 +704,6 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
     else:
         accept = 0
     log('log','{:16}  {:4}  {:8.4f}  {:6}  {:4}  {:10}  {:5.2f}  {:6}  {:7.2f}  {:3}'.format(file_name, 'Free', prev_e, accept, fail, '-', t3-t2, '-', t4-t3, spg))
-
 
     if fail != 0:
         inp['post_process']['initial_li_sites'] = 'random'
@@ -636,7 +718,6 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
 
             prev_e = relax(poscar='POSCAR_init', relaxed_file='POSCAR_relax', lmp=lmp) / natoms
             t4 = time()
-            #fail = check_topology(inp, poscar='POSCAR_relax')
             pos = coo2pos_dict_host('coo_relaxed', inp)
             spg = get_space_group(pos)
             fail = check_topology(inp, pos)
@@ -653,9 +734,15 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
             shutil.copy('../unique_poscars/'+file_name, '../ERROR/'+file_name)
             return
 
-    shutil.copy('POSCAR_relax', file_name+'_0_relax')
-    shutil.copy('POSCAR_relax', file_name+'_best')
-
+    shutil.copy('POSCAR_relax', 'POSCAR_best')
+    with open('POSCAR_init', 'r') as f:
+        text = f.readlines()
+        text[0] = 'Step: 0 init\n'
+        POSCAR_text.append(text)
+    with open('POSCAR_relax', 'r') as f:
+        text = f.readlines()
+        text[0] = 'Step: 0 relax\n'
+        POSCAR_text.append(text)
 
     best_e = prev_e
     for step in range(max_mc_steps):
@@ -677,6 +764,7 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
         # Postprocess
         if e < best_e:
             best_e = e
+            shutil.copy('POSCAR_relax', 'POSCAR_best')
 
         if e < prev_e:
             accept = True
@@ -690,7 +778,6 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
                 else:
                     accept = False
 
-        #fail = check_topology(inp, poscar='POSCAR_relax_tmp')
         pos = coo2pos_dict_host('coo_relaxed', inp)
         spg = get_space_group(pos)
         fail = check_topology(inp, pos)
@@ -701,16 +788,27 @@ def mc_main(inp, DIR, SAVE_DIR, file_name, max_li, natoms, max_mc_steps, T):
 
         if accept:
             shutil.copy('POSCAR_relax_tmp', 'POSCAR_relax')
-            #os.rename('POSCAR_relax_tmp', poscar_file+'_%s_relax'%(step+1))
             prev_e = e
-            #shutil.copy('POSCAR_relax', 'POSCAR_best')
-            #shutil.copy(poscar_file+'_%s_relax'%(step+1), poscar_file+'_best')
-            shutil.copy('POSCAR_relax', file_name+'_best')
+            with open('POSCAR_init', 'r') as f:
+                text = f.readlines()
+                text[0] = 'Step: %s init\n'%step
+                POSCAR_text.append(text)
+            with open('POSCAR_relax', 'r') as f:
+                text = f.readlines()
+                text[0] = 'Step: %s relax\n'%step
+                POSCAR_text.append(text)
 
-    if file_name+'_best' in os.listdir():
-        os.rename(file_name+'_best', SAVE_DIR+'/'+file_name)
+
+    if 'POSCAR_best' in os.listdir():
+        os.rename('POSCAR_best', SAVE_DIR+'/'+file_name)
         with open('Results', 'a') as s:
             s.write('{:20} {:10.4f}\n'.format(file_name, best_e))
+
+    idx = '_'.join(file_name.split('_')[1:])
+    with open('XDATCAR_'+idx, 'w') as s:
+        for text in POSCAR_text:
+            for line in text:
+                s.write(line)
 
 
 def main():
