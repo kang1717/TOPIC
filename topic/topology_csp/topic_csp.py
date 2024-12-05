@@ -19,6 +19,10 @@ def make_CONTCAR2structure(str_idx):
     structure = Poscar.from_file(FILE).structure
     return structure
 
+def make_textlist2structure(text):
+    structure = Poscar.from_str(''.join(text)).structure
+    return structure
+
 def make_pos2structure(pos):
     lattice = Lattice(pos['latt'])
     structure = Structure(lattice, pos['atomarray'], pos['coor'], coords_are_cartesian=True)
@@ -91,7 +95,16 @@ def main():
         total_yaml['spg_seed'] = None
 
     if 'continue' in total_yaml.keys():
-        start_idx = int(total_yaml['continue']/corenum)
+        if total_yaml['continue'] == -1: # Automatically defined by checking last index
+            if 'log' not in os.listdir('%s'%rank):
+                start_idx = 0
+            else:
+                with open('%s/log'%rank, 'r') as f:
+                    lines = f.readlines()
+                    fin_idx = int(lines[-1].split()[1])
+                start_idx = fin_idx + 1
+        else: # Manually define # Manually define # Manually define
+            start_idx = int(total_yaml['continue']/corenum)
     else:
         start_idx = 0
         total_yaml['continue'] = 0
@@ -129,8 +142,27 @@ def main():
                     continue
                 if i == 1:
                     candidates['minimum_E'] = float(line.split()[1])
-                candidates['E'][int(line.split()[0])] = float(line.split()[1])
-                candidates['structure'][int(line.split()[0])] = make_CONTCAR2structure(int(line.split()[0]))
+                index = int(line.split()[0])
+                candidates['E'][index] = float(line.split()[1])
+
+        indices = sorted(candidates['E'].keys())
+        with open('CONTCAR3s', 'r') as f:
+            lines = f.readlines()
+            for i, line in enumerate(lines):
+                if 'generation:' in line:
+                    index = int(line.split()[4])
+                    if index in indices:
+                        text_list = [lines[i]]
+                        idx = 1
+                        while 'generation:' not in lines[i+idx]:
+                            text_list.append(lines[i+idx])
+                            idx += 1
+                            if i+idx == len(lines):
+                                break
+                        candidates['structure'][index] = make_textlist2structure(text_list)
+        for index in indices:
+            if index not in candidates['structure'].keys():
+                del candidates['E'][index]
 
     if 'structure_matcher_tolerance' in total_yaml.keys():
         tol = total_yaml['structure_matcher_tolerance']
