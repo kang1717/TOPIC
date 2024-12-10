@@ -27,7 +27,7 @@ setup(
     packages=find_packages(include=['topic', 'topic*']),
     include_package_data=True,
     package_data={
-        '': ['configure_default.yaml', 'INCAR_premelt', 'KPOINTS', '*.cpp', '*.h', 'params_*', 'INCAR0', 'INCAR1'],
+        '': ['configure_default.yaml', 'INCAR_premelt', 'KPOINTS', '*.cpp', '*.h', 'params_*', 'INCAR0', 'INCAR1', 'pos2lammps.sh'],
     },
     entry_points={
         'console_scripts':[
