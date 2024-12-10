@@ -1,27 +1,27 @@
-# SPINNER_refactoring
-SPINNER(Structure Prediction of Inorganic crystals using Neural Network potentials with Evolutionary and Random searches)
+# TOPIC_refactoring
+TOPIC(TOpology-based crystal structure Prediction of Inorganic solid electrolytes with Corner-sharing frameworks)
 
-If you use SPINNER, please cite this paper: S. Kang et al. Accelerated identification of equilibrium structures of multicomponent inorganic crystals using machine learning potentials (npj Comput. Mater. 8, 108, (2022)).
+If you use TOPIC, please cite this paper: xxxx.
 
 ## Installation
 
 ### Virtual environment
-SPINNER utilize not only SPINNER source but also many other packages such as randspg, LAMMPS, SIMPLE-NN, and AMP2.
+TOPIC utilize not only TOPIC source but also many other packages such as randspg, LAMMPS, SIMPLE-NN, and AMP2.
 So, we highly recommand to use virtual environment such as Anaconda.
-After install Anaconda, create virtual environment for SPINNER and activate the environment.
+After install Anaconda, create virtual environment for TOPIC and activate the environment.
 ```
-  conda create -n SPINNER python=3.9
-  conda activate SPINNER
+  conda create -n TOPIC python=3.9
+  conda activate TOPIC
 ```
 
-### Download SPINNER
+### Download TOPIC
 ```
-git clone https://github.com/MDIL-SNU/SPINNER.git
+git clone https://github.com/MDIL-SNU/TOPIC.git
 ```
 
 ### Python requirements
 
-SPINNER supports Python `3.6` or higher version. SPINNER utilizes Python modules in the following:
+TOPIC supports Python `3.6` or higher version. TOPIC utilizes Python modules in the following:
 
   - mpi4py (https://bitbucket.org/mpi4py/mpi4py/)
   - PyYAML (https://pypi.org/project/PyYAML/)
@@ -45,16 +45,17 @@ Following packages are required to use SIMPLE-NN and AMP2
 
 ### C++ compilers
 
-SPINNER supports CMAKE 3.20 or higher version and gcc version 7.3.1 or higer version.
+[TODO]
+TOPIC supports CMAKE 3.20 or higher version and gcc version 7.3.1 or higer version.
 
 ### Python binding of randSpg and LAMMPS (important)
-SPINNER utilizes python binding of randSpg (https://github.com/xtalopt/randSpg) and LAMMPS code (https://www.lammps.org). However, those codes are slightly modified to be incorporated with SPINNER, so you need to comiple with source codes provided in this page, not with the original ones.
+TOPIC utilizes python binding of randSpg (https://github.com/xtalopt/randSpg) and LAMMPS code (https://www.lammps.org). However, those codes are slightly modified to be incorporated with TOPIC, so you need to comiple with source codes provided in this page, not with the original ones.
 
 ### Install randSpg
 To install randSpg, do
 
 ```
-  cd /SPINNER-directory/randSpg-vspinner/
+  cd /TOPIC-directory/randSpg-vspinner/
   mkdir build
   cd build
   cmake ..
@@ -64,7 +65,7 @@ To install randSpg, do
 to bind randSpg with python, do 
 
 ```
-  cd /SPINNER-directory/randSpg-vspinner/python
+  cd /TOPIC-directory/randSpg-vspinner/python
   mkdir build
   cd build
   cmake ..
@@ -75,7 +76,7 @@ to bind randSpg with python, do
 (FAQ) if error occur during cmake process, try
 
 ```
-  cd /SPINNER-directory/randSpg-vspinner/python
+  cd /TOPIC-directory/randSpg-vspinner/python
   mkdir build
   cd build
   cmake .. -D pybind11_DIR=/VIRTUAL_ENV_DIR/lib/python3.9/site-packeges/pybind11/share/cmake/pybind11/ 
@@ -83,7 +84,7 @@ to bind randSpg with python, do
   cp pyrandspg.cpython* /directory-where-your-python-is/lib/python3/site-packages/
 ```
 
-### Install randSpg
+### Install pyzeo (deprecated)
 ```
   cd /TOPIC-directory/pyzeo/
   pip install .
@@ -179,14 +180,14 @@ Other packages are automatically installed by running the bellow command.
 
 ## Usage
 
-## 1. Running only SPINNER code (crystal structure prediction part)
+## 1. Running only TOPIC code (crystal structure prediction part)
 
-Check the examples in the /SPINNER-directory/examples/csp directory.
+Check the examples in the /TOPIC-directory/examples/csp directory.
 
-To use SPINNER, 1 file (XXX.yaml) and 1 directories (input directory and src) are required.
+To use TOPIC, 1 file (XXX.yaml) and 1 directories (input directory and src) are required.
 
 ### input file (XXX.yaml; XXX is named by the user)
-Parameter list to control SPINNER code is listed in XXX.yaml. 
+Parameter list to control TOPIC code is listed in XXX.yaml. 
 The simplest form of input.yaml is described below:
 ```YAML
 # XXX.yaml
@@ -214,26 +215,20 @@ In input directory (input_dir: in input file), LAMMPS potential file should be l
 
 ## 2. Running whole steps in serial (from DFT MD to crystal structure prediction)
 
-Check the examples in the /SPINNER-directory/examples/serial_run directory.
+Check the examples in the /TOPIC-directory/examples/serial_run directory.
 
 To use serial mode, 1 file (total.yaml) are required.
 
 ### input file (total.yaml)
 Parameter list to control whole process code is listed in total.yaml. 
-Check detail parameters in /SPINNER-directory/examples/serial_run/total.yaml.
+Check detail parameters in /TOPIC-directory/examples/serial_run/total.yaml.
 
 ### Running code
 
 ```
   # DFT melt-quench MD
-  spinner_auto_md -np core_number total.yaml
+  topic_auto_md -np core_number total.yaml
 
   # NNP training with SIMPLE-NN package
-  spinner_nnp_train total.yaml
-
-  # Make yaml file for csp
-  configure_csp total.yaml configs/
-
-  # Crystal structure prediction with SPINNER
-  mpirun -np core_number spinner_csp configs/final_spinner.yaml
+  topic_nnp_train total.yaml
 ```
