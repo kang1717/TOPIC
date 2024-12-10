@@ -98,7 +98,7 @@ def main():
         if total_yaml['continue'] == -1: # Automatically defined by checking last index
             if str(rank) not in os.listdir():
                 start_idx = 0
-            if 'log' not in os.listdir('%s'%rank):
+            elif 'log' not in os.listdir('%s'%rank):
                 start_idx = 0
             else:
                 with open('%s/log'%rank, 'r') as f:
