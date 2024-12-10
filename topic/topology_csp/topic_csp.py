@@ -96,13 +96,18 @@ def main():
 
     if 'continue' in total_yaml.keys():
         if total_yaml['continue'] == -1: # Automatically defined by checking last index
+            if str(rank) not in os.listdir():
+                start_idx = 0
             if 'log' not in os.listdir('%s'%rank):
                 start_idx = 0
             else:
                 with open('%s/log'%rank, 'r') as f:
                     lines = f.readlines()
-                    fin_idx = int(lines[-1].split()[1])
-                start_idx = fin_idx + 1
+                    if lines[-1].split()[1].isdigit():
+                        fin_idx = int(lines[-1].split()[1])
+                        start_idx = fin_idx + 1
+                    else:
+                        start_idx = 0
         else: # Manually define # Manually define # Manually define
             start_idx = int(total_yaml['continue']/corenum)
     else:
