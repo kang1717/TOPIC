@@ -21,7 +21,7 @@ def make_potcar(pot_dir):
             f.readline()
         atoms = f.readline().split()
 
-    fw = open("POTCAR","a")
+    fw = open("POTCAR","w")
 
     for atom in atoms:
         if atom == 'Cs':
