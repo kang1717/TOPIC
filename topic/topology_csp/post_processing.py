@@ -76,6 +76,8 @@ def get_unique_file_list(total_yaml, comm, num_atom):
         structure_list = sorted(energy_info.items(), key=lambda x:x[1])
         structures = []
         for n in structure_list:
+            if n[0] not in poscar_dict.keys():
+                continue
             structure = Structure.from_str("".join(poscar_dict[n[0]]), fmt='poscar')
             structure.remove_species(["Li"])
             structures.append((n[0], n[1], structure))
