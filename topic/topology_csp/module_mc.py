@@ -155,7 +155,7 @@ def replicate_positions(positions, cell, reps):
     return np.array(replicated_positions)
 
 def filter_vertices_within_cell(vertices, cell):
-    inv_cell = np.linalg.inv(cell.T)
+    inv_cell = np.linalg.inv(cell)
     fractional_position = np.dot(vertices, inv_cell)
     in_cell = np.all((fractional_position >= 0) & (fractional_position < 1), axis=1)
     return vertices[in_cell]
