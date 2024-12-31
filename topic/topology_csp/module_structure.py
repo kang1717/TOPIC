@@ -30,6 +30,33 @@ atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
                    Hs=269.00, Mt=268.00)
 
 
+def check_close_oxygen(pos):
+    threshold = 0.2
+    o_idx = np.where(pos['atomarray'] == 'O')
+    o_pos = pos['coor'][o_idx]
+    latt = pos['latt']
+    for i1, c1 in enumerate(o_pos):
+        for i2, c2 in enumerate(o_pos):
+            if i1 < i2:
+                close = 0
+                for I in range(-1,2):
+                    if close == 1:
+                        break
+                    for J in range(-1,2):
+                        if close == 1:
+                            break
+                        for K in range(-1,2):
+                            if close == 1:
+                                break
+                            i=  float(I); j = float(J); k = float(K)
+                            c1_new = c1 + pos['latt'][0]*i + pos['latt'][1]*j + pos['latt'][2]*k
+                            dist = np.linalg.norm(c1_new-c2)
+                            if dist < threshold:
+                                close = 1
+                if close == 1:
+                    return True
+    return False
+
 def generate_initial_structure_random(total_yaml):
     trial = 0
     done = 0
@@ -51,8 +78,9 @@ def generate_initial_structure_random(total_yaml):
             pos, bond_dict = generate_o_sites(pos_cat, total_yaml, neighbor_array)
             spg0 = get_space_group(pos) 
             if spg0 not in [0, 1]:
-                done = 1
-                break
+                if check_close_oxygen(pos) == False:
+                    done = 1
+                    break
 
     return pos, bond_dict, trial, spg, spg0
 
@@ -74,8 +102,9 @@ def generate_initial_structure_shortest(total_yaml):
 
             pos, bond_dict = make_oxygen_shortest_bond(pos_cat, total_yaml)
             if pos != None:
-                done = 1
-                break
+                if check_close_oxygen(pos) == False:
+                    done = 1
+                    break
 
     spg0 = get_space_group(pos) 
 

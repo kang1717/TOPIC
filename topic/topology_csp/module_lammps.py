@@ -196,31 +196,34 @@ def run_lj_lammps(filename):
     lmp_name = 'simd_serial'
     #lmp = lammps(lmp_name)
     lmp = lammps(lmp_name, cmdargs=["-log","none","-screen",os.devnull,"-nocite"])
-    lmp.file(filename)  
-    lmp.command("minimize 0.0 2.0e-1 1000 10000000")
-    lmp.command("fix F1 all box/relax tri 0.0 vmax 0.00001")
-    lmp.command("minimize 0.0 2.0e-3 2000 10000000")
-    lmp.command("variable p equal press")
-    p = lmp.extract_variable("p",'all')
-    if p > 10000:
-        return 0,0
-    lmp.command("unfix F1")
-    lmp.command("fix F2 all box/relax tri 0.0 vmax 0.001")
-    i=0
-    while i < 11:
-        i+=1
-        lmp.command("minimize 0.0 2.0e-3 200 10000000")
+    try:
+        lmp.file(filename)  
+        lmp.command("minimize 0.0 2.0e-1 1000 10000000")
+        lmp.command("fix F1 all box/relax tri 0.0 vmax 0.00001")
+        lmp.command("minimize 0.0 2.0e-3 2000 10000000")
         lmp.command("variable p equal press")
         p = lmp.extract_variable("p",'all')
-        if abs(p) > 10000:
+        if p > 10000:
             return 0,0
-    lmp.command("variable e equal etotal")
-    lmp.command("variable v equal vol")
-    e1 = lmp.extract_variable("e",'all')
-    v1 = lmp.extract_variable("v",'all')
-    lmp.command("write_data coo_out") 
+        lmp.command("unfix F1")
+        lmp.command("fix F2 all box/relax tri 0.0 vmax 0.001")
+        i=0
+        while i < 11:
+            i+=1
+            lmp.command("minimize 0.0 2.0e-3 200 10000000")
+            lmp.command("variable p equal press")
+            p = lmp.extract_variable("p",'all')
+            if abs(p) > 10000:
+                return 0,0
+        lmp.command("variable e equal etotal")
+        lmp.command("variable v equal vol")
+        e1 = lmp.extract_variable("e",'all')
+        v1 = lmp.extract_variable("v",'all')
+        lmp.command("write_data coo_out") 
 
-    return e1,v1
+        return e1,v1
+    except:
+        return 0,0
 
 def pos_dict2cooall(pos, output='coo'):
     if pos['cartesian'] == False:
