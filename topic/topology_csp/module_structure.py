@@ -32,11 +32,9 @@ atomic_mass = dict(H=1.01, He=4.00, Li=6.94, Be=9.01, B=10.81, C=12.01,
 
 def check_close_oxygen(pos):
     threshold = 0.2
-    o_idx = np.where(pos['atomarray'] == 'O')
-    o_pos = pos['coor'][o_idx]
     latt = pos['latt']
-    for i1, c1 in enumerate(o_pos):
-        for i2, c2 in enumerate(o_pos):
+    for i1, c1 in enumerate(pos['coor']):
+        for i2, c2 in enumerate(pos['coor']):
             if i1 < i2:
                 close = 0
                 for I in range(-1,2):
