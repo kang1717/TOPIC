@@ -16,12 +16,12 @@ After install Anaconda, create virtual environment for TOPIC and activate the en
 
 ### Download TOPIC
 ```
-git clone https://github.com/MDIL-SNU/TOPIC.git
+git clone https://github.com/kan1717/TOPIC.git
 ```
 
 ### Python requirements
 
-TOPIC supports Python `3.6` or higher version. TOPIC utilizes Python modules in the following:
+TOPIC supports Python `3.9` or higher version. TOPIC utilizes Python modules in the following:
 
   - mpi4py (https://bitbucket.org/mpi4py/mpi4py/)
   - PyYAML (https://pypi.org/project/PyYAML/)
@@ -59,7 +59,7 @@ To install randSpg, do
   mkdir build
   cd build
   cmake ..
-  make -j3
+  make
 ```
 
 to bind randSpg with python, do 
@@ -69,7 +69,7 @@ to bind randSpg with python, do
   mkdir build
   cd build
   cmake ..
-  make –j3
+  make
   cp pyrandspg.cpython* /directory-where-your-python-is/lib/python3/site-packages/
 ```
 
@@ -80,7 +80,7 @@ to bind randSpg with python, do
   mkdir build
   cd build
   cmake .. -D pybind11_DIR=/VIRTUAL_ENV_DIR/lib/python3.9/site-packeges/pybind11/share/cmake/pybind11/ 
-  make –j3
+  make
   cp pyrandspg.cpython* /directory-where-your-python-is/lib/python3/site-packages/
 ```
 
@@ -100,8 +100,8 @@ TOPIC provide two version of LAMMPS, Normal and SIMD. Install process is differe
 Copy pair potential code of SIMPLE-NN to LAMMPS src
 
 ```
-  cp /TOPIC-directory/spinner/simple_nn/features/symmetry_function/pair_nn_simd.* /LAMMPS-directory/src/
-  cp /TOPIC-directory/spinner/simple_nn/features/symmetry_function/symmetry_function.h /LAMMPS-directory/src/
+  cp /TOPIC-directory/topic/simple_nn/features/symmetry_function/pair_nn_simd.* /LAMMPS-directory/src/
+  cp /TOPIC-directory/topic/simple_nn/features/symmetry_function/symmetry_function.h /LAMMPS-directory/src/
 ```
 
 ```
@@ -125,7 +125,7 @@ lmp = lammps()
 If your machine support SIMD, we recommend to use SIMD version. It speeds up around 2 times faster than normal version.
 
 ```
-  cp /TOPIC-directory/spinner/simple_nn/features/symmetry_function/SIMD/pair_nn_simd.* /LAMMPS-directory/src/
+  cp /TOPIC-directory/topic/simple_nn/features/symmetry_function/SIMD/pair_nn_simd.* /LAMMPS-directory/src/
 ```
 
 ```
@@ -174,30 +174,37 @@ Other packages are automatically installed by running the bellow command.
 
 ## Usage
 
-## 1. Running only TOPIC code (crystal structure prediction part)
+## 1. Running melt-quench molecular dynamics (MD) simulation
 
-Check the examples in the /TOPIC-directory/examples/csp directory.
+Check the examples in the /TOPIC-directory/example/ directory.
 
-To use TOPIC, 1 file (XXX.yaml) and 1 directories (input directory and src) are required.
+To run melt-quench MD simulation, 1 file (total.yaml) is required.
 
-### input file (XXX.yaml; XXX is named by the user)
-Parameter list to control TOPIC code is listed in XXX.yaml. 
-The simplest form of input.yaml is described below:
-```YAML
-# input.yaml
-directory:
-  input_path:        input_directory_name
-cation_cn:
-  P: 4
-  Ti: 6
-generation: 400
-material:
-  Li: 4
-  O: 20
-  P: 4
-  Ti: 4
-volume:   500.0
+### input file (total.yaml)
+Replace POTCAR_DIR to specific directory that VASP POTCAR exist.
+Replace VASP_std_ver_BINARY to specific file path that standard version of VASP. 
+Replace VASP_gam_ver_BINARY to specific file path that gamma version of VASP. 
+Specify target composition (use unit formula) at 'composition:' field.
+
+
+### Running code
+
 ```
+  # DFT melt-quench MD
+  topic_auto_md -np core_number total.yaml
+```
+
+
+## 2. Running melt-quench molecular dynamics (MD) simulation
+
+Check the examples in the /TOPIC-directory/example/2_NNP/ directory.
+Follow the instruction of SIMPLE-NN documents. (https://simple-nn-v2.readthedocs.io/en/latest/)
+
+## 3. Running TOPIC code (crystal structure prediction part)
+
+Check the examples in the /TOPIC-directory/example/3_TOPIC directory.
+
+To use TOPIC, 1 file (input.yaml) and 1 directories (input directory) are required.
 
 ### input directory
 In input directory (input_dir: in input file), LAMMPS potential file should be located. (Potential file have to be named potential.) Potential should be SIMPLE-NN format (https://github.com/MDIL-SNU/SIMPLE-NN).
@@ -209,22 +216,3 @@ In input directory (input_dir: in input file), LAMMPS potential file should be l
   mpirun -np core_number topic_csp input.yaml
 ```
 
-## 2. Running whole steps in serial (from DFT MD to crystal structure prediction)
-
-Check the examples in the /TOPIC-directory/examples/serial_run directory.
-
-To use serial mode, 1 file (total.yaml) are required.
-
-### input file (total.yaml)
-Parameter list to control whole process code is listed in total.yaml. 
-Check detail parameters in /TOPIC-directory/examples/serial_run/total.yaml.
-
-### Running code
-
-```
-  # DFT melt-quench MD
-  topic_auto_md -np core_number total.yaml
-
-  # NNP training with SIMPLE-NN package
-  topic_nnp_train total.yaml
-```
