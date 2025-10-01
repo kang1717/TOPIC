@@ -182,8 +182,11 @@ To run melt-quench MD simulation, 1 file (total.yaml) is required.
 
 ### input file (total.yaml)
 Replace POTCAR_DIR to specific directory that VASP POTCAR exist.
+
 Replace VASP_std_ver_BINARY to specific file path that standard version of VASP. 
+
 Replace VASP_gam_ver_BINARY to specific file path that gamma version of VASP. 
+
 Specify target composition (use unit formula) at 'composition:' field.
 
 
@@ -195,9 +198,10 @@ Specify target composition (use unit formula) at 'composition:' field.
 ```
 
 
-## 2. Running melt-quench molecular dynamics (MD) simulation
+## 2. Training MLIPs with SIMPLE-NN 
 
 Check the examples in the /TOPIC-directory/example/2_NNP/ directory.
+
 Follow the instruction of SIMPLE-NN documents. (https://simple-nn-v2.readthedocs.io/en/latest/)
 
 ## 3. Running TOPIC code (crystal structure prediction part)
