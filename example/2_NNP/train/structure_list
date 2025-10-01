@@ -1,0 +1,6 @@
+[Melting]
+PATH_of_melt_OUTCAR ::5
+[Quenching]
+PATH_of_quench_OUTCAR ::5
+[Annealing]
+PATH_of_anneal_OUTCAR ::5

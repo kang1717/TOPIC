@@ -1,0 +1,6 @@
+[Melting]
+/DATASET_DIR/melt.extxyz ::5
+[Quenching]
+/DATASET_DIR/quench.extxyz ::5
+[Annealing]
+/DATASET_DIR/anneal.extxyz ::5

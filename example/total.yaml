@@ -1,0 +1,18 @@
+Actions:
+  premelt: True
+  convergence_test: True
+  find_Tm: True
+  melt: True
+  quench: True
+  anneal: True
+
+pot_dir: /POTCAR_DIR/ 
+composition: Li1Ti1P1O5 #A1B1X2
+vasp_config:
+  std: /VASP_std_ver_BINARY 
+  gam: /VASP_gam_ver_BINARY 
+  npar: 4
+  mpicommand: mpirun
+
+    
+
