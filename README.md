@@ -84,12 +84,6 @@ to bind randSpg with python, do
   cp pyrandspg.cpython* /directory-where-your-python-is/lib/python3/site-packages/
 ```
 
-### Install pyzeo (deprecated)
-```
-  cd /TOPIC-directory/pyzeo/
-  pip install .
-```
-
 ### Install LAMMPS
 This is the most tricky part of the installation steps. You can install python-lammps by following steps below but it may not work depending on your environment. Please look into LAMMPS forum (https://www.lammps.org/forum.html) or LAMMPS manual Ch. 2 (https://docs.lammps.org/Python_run.html) for detailed discussion.
 
@@ -190,17 +184,19 @@ To use TOPIC, 1 file (XXX.yaml) and 1 directories (input directory and src) are 
 Parameter list to control TOPIC code is listed in XXX.yaml. 
 The simplest form of input.yaml is described below:
 ```YAML
-# XXX.yaml
-
-  input_dir:        input_directory_name
-  output_dir:       output_directory_name
-  initial_volume:   326.0
-  structure:
-      generation: 400
-  material:
-      Li:  4
-      Hf:  2
-      N:   4
+# input.yaml
+directory:
+  input_path:        input_directory_name
+cation_cn:
+  P: 4
+  Ti: 6
+generation: 400
+material:
+  Li: 4
+  O: 20
+  P: 4
+  Ti: 4
+volume:   500.0
 ```
 
 ### input directory
@@ -210,7 +206,7 @@ In input directory (input_dir: in input file), LAMMPS potential file should be l
 ### Running code
 
 ```
-  mpirun -np core_number spinner_csp XXX.yaml
+  mpirun -np core_number topic_csp input.yaml
 ```
 
 ## 2. Running whole steps in serial (from DFT MD to crystal structure prediction)

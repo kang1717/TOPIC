@@ -1,6 +1,6 @@
 [Melting]
-/data/dlwlgh6319/CSP_SSE/composition/1_MD/Output/composition/melt/OUTCAR ::5
+PATH_of_melt_OUTCAR ::5
 [Quenching]
-/data/dlwlgh6319/CSP_SSE/composition/1_MD/Output/composition/quench/OUTCAR ::5
+PATH_of_quench_OUTCAR ::5
 [Annealing]
-/data/dlwlgh6319/CSP_SSE/composition/1_MD/Output/composition/anneal/OUTCAR ::5
+PATH_of_anneal_OUTCAR ::5
