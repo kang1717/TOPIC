@@ -1,5 +1,5 @@
-# TOPIC_refactoring
-TOPIC(TOpology-based crystal structure Prediction of Inorganic solid electrolytes with Corner-sharing frameworks)
+# TOPIC
+TOPIC (TOpology-constrained Prediction of Inorganic Crystals)
 
 If you use TOPIC, please cite this paper: xxxx.
 
@@ -91,7 +91,7 @@ First, download stable version of LAMMPS from LAMMPS github (https://github.com/
 We lastly tested on 2Aug2023 version.
 
 ```
-  git clone -b stable https://github.com/lammps/lammps.git lammps-spinner
+  git clone -b stable https://github.com/lammps/lammps.git lammps-topic
 ```
 
 TOPIC provide two version of LAMMPS, Normal and SIMD. Install process is different for each version. Check your machine and follow the install process that match with your machine.
