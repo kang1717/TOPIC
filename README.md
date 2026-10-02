@@ -1,7 +1,7 @@
 # TOPIC
 TOPIC (TOpology-constrained Prediction of Inorganic Crystals)
 
-If you use TOPIC, please cite this paper: xxxx.
+If you use TOPIC, please cite this paper: J. Mater. Chem. A 14, 21940 (2026).
 
 ## Installation
 
@@ -27,7 +27,7 @@ TOPIC supports Python `3.9` or higher version. TOPIC utilizes Python modules in 
   - PyYAML (https://pypi.org/project/PyYAML/)
   - numpy (1.x.x version) (https://numpy.org/)
   - pybind11 (https://github.com/pybind/pybind11/)
-  - pymatgen ()
+  - pymatgen (https://github.com/materialsproject/pymatgen/)
 
 You can download these modules by
 
@@ -45,7 +45,6 @@ Following packages are required to use SIMPLE-NN and AMP2
 
 ### C++ compilers
 
-[TODO]
 TOPIC supports CMAKE 3.20 or higher version and gcc version 7.3.1 or higer version.
 
 ### Python binding of randSpg and LAMMPS (important)
